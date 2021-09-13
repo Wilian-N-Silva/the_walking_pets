@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:rive/rive.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,28 +14,26 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  Text(
-                    'Mas me diga...\nJá nos vimos antes?',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                    textAlign: TextAlign.center,
+            const SizedBox(height: 16.0),
+            Column(
+              children: const [
+                Text(
+                  'Mas me diga...\nJá nos vimos antes?',
+                  style: TextStyle(
+                    fontSize: 20.0,
                   ),
-                  SizedBox(
-                    height: 300.0,
-                    child: RiveAnimation.asset(
-                      'assets/animations/cautious_dog_bro.riv',
-                    ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 300.0,
+                  child: RiveAnimation.asset(
+                    'assets/animations/cautious_dog_bro.riv',
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Expanded(
               child: Container(
@@ -50,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                         labelText: 'E-mail',
                       ),
                     ),
-                    const SizedBox(height: 10.0),
+                    const SizedBox(height: 16.0),
                     const TextField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -58,25 +57,32 @@ class _LoginPageState extends State<LoginPage> {
                         labelText: 'Senha',
                       ),
                     ),
-                    const SizedBox(height: 10.0),
+                    const SizedBox(height: 16.0),
                     ElevatedButton(
                       onPressed: null,
                       child: const Text('Entrar'),
                       style: ButtonStyle(
                         fixedSize: MaterialStateProperty.all<Size>(
-                          const Size(200, 50),
+                          const Size(150, 50),
                         ),
                         backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.amber,
+                          Colors.amberAccent.shade100,
                         ),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.black),
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
+                      margin: const EdgeInsets.symmetric(vertical: 16.0),
                       width: 200.0,
                       child: const Divider(),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        platformLoginButton(context, TargetPlatform.android),
+                        platformLoginButton(context, TargetPlatform.iOS),
+                      ],
                     )
                   ],
                 ),
@@ -87,4 +93,18 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
+
+Widget platformLoginButton(BuildContext context, TargetPlatform platform) {
+  return ElevatedButton(
+    onPressed: null,
+    child: Text(
+        'Entrar com ${platform == TargetPlatform.iOS ? 'Apple' : 'Google'}'),
+    style: ButtonStyle(
+      fixedSize: MaterialStateProperty.all<Size>(const Size(150, 50)),
+      backgroundColor:
+          MaterialStateProperty.all<Color>(Colors.amberAccent.shade100),
+      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+    ),
+  );
 }

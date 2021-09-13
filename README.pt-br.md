@@ -1,4 +1,3 @@
-
 <h1 align="center">The Walking Pets</h1>
 
 <p align="center">Encontre seu mais novo amigo Pet!</p>
