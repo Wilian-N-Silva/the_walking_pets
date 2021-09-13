@@ -1,7 +1,19 @@
-# The Walking Pets
+<h1 align="center">The Walking Pets</h1>
 
-Aqui você pode encontrar seu mais novo amigo Pet
+<p align="center">Find Your Newest Pet Friend!</p>
 
-## Objetivo
+## About The Project
 
-Um projeto que tem como premissa, facilitar a adoção de animais domésticos, nos quais foram cadastrados através de doadores como ONGs ou pessoas físicas que desejam doar seus pets. Além disso, o projeto tem como objetivo secundário, auxiliar tutores de pets a encontrarem seus animais perdidos, através de anúncio feito por ele ou por terceiros que o tenham encontrado algum animal em situação de rua.
+
+A project whose premise is to facilitate the adoption of domestic animals, which have been registered through donors such as NGOs or individuals who wish to donate their pets. In addition, the project's secondary objective is to help pet tutors find their lost animals, through an advertisement made by him or by third parties who have found him a homeless animal.
+
+### Built With
+* [Flutter](http://flutter.dev/)
+* [Rive](https://rive.app/)
+
+## Acknowledgements
+* [Storyset](https://storyset.com/)
+* [Figma](https://www.figma.com/)
+* [Adobe Colors](https://color.adobe.com/)
+
+
