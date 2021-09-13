@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:rive/rive.dart';
@@ -38,23 +39,29 @@ class _LoginPageState extends State<LoginPage> {
             Expanded(
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
+                  horizontal: 16.0,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'E-mail',
+                    const SizedBox(
+                      height: 48.0,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'E-mail',
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16.0),
-                    const TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Senha',
+                    const SizedBox(
+                      height: 48.0,
+                      child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Senha',
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16.0),
@@ -63,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text('Entrar'),
                       style: ButtonStyle(
                         fixedSize: MaterialStateProperty.all<Size>(
-                          const Size(150, 50),
+                          const Size(256, 48),
                         ),
                         backgroundColor: MaterialStateProperty.all<Color>(
                           Colors.amberAccent.shade100,
@@ -77,11 +84,27 @@ class _LoginPageState extends State<LoginPage> {
                       width: 200.0,
                       child: const Divider(),
                     ),
+                    platformLoginButton(context, TargetPlatform.android),
+                    const SizedBox(height: 16.0),
+                    platformLoginButton(context, TargetPlatform.iOS),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 16.0),
+                      width: 200.0,
+                      child: const Divider(),
+                    ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        platformLoginButton(context, TargetPlatform.android),
-                        platformLoginButton(context, TargetPlatform.iOS),
+                        const Text('Não tem uma conta?'),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Cadastre-se',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        )
                       ],
                     )
                   ],
@@ -101,7 +124,7 @@ Widget platformLoginButton(BuildContext context, TargetPlatform platform) {
     child: Text(
         'Entrar com ${platform == TargetPlatform.iOS ? 'Apple' : 'Google'}'),
     style: ButtonStyle(
-      fixedSize: MaterialStateProperty.all<Size>(const Size(150, 50)),
+      fixedSize: MaterialStateProperty.all<Size>(const Size(256, 48)),
       backgroundColor:
           MaterialStateProperty.all<Color>(Colors.amberAccent.shade100),
       foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
