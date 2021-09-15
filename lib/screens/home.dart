@@ -44,10 +44,15 @@ class _HomeState extends State<Home> {
                 mainAxisSpacing: 15.0,
                 crossAxisSpacing: 15.0,
                 children: List.generate(9, (index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(15.0),
+                  return GestureDetector(
+                    onTap: () {
+                      print(index);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
                     ),
                   );
                 }),
@@ -57,7 +62,33 @@ class _HomeState extends State<Home> {
               clipper: CurveClipper(),
               child: Container(
                 height: 105,
+                width: double.infinity,
                 color: Theme.of(context).primaryColor,
+              ),
+            ),
+            SizedBox(
+              height: 50.0,
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.filter_alt_rounded),
+                      Text('Filtro'),
+                    ],
+                  ),
+                  style: ButtonStyle(
+                    fixedSize: MaterialStateProperty.all<Size>(
+                      const Size(128, 48.0),
+                    ),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.white,
+                    ),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black),
+                  ),
+                ),
               ),
             ),
           ],
