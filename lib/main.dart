@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/screens/tutorial/step_one.dart';
+import 'package:the_walking_pets/screens/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,13 +16,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.blue,
+        // colorScheme: ColorScheme(secondary: Colors.blue),
       ),
       // routes: <String, WidgetBuilder>{
       //   '/presentationOne': (BuildContext context) => const PresentationOne(),
       //   '/presentationTwo': (BuildContext context) => const PresentationTwo(),
       // },
       // initialRoute: '/presentationOne',
-      home: const TutorialStepOne(),
+      home: const Home(),
     );
   }
 }
