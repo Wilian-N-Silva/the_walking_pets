@@ -1,28 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/screens/animal_profile.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
-import 'package:the_walking_pets/model/animal.dart';
+import 'package:the_walking_pets/data/animal.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
-}
-
-List<Animal> _animals(BuildContext context) {
-  return [
-    Animal(
-      nome: 'Matador',
-      especie: 'Canino',
-      raca: 'SRD',
-      idade: 3,
-      porte: 'Mini',
-      sexo: 'Macho',
-      temperamento: 'Dócil',
-      foto: 'assets/placeholder_pets/dog/1.jpg',
-    )
-  ];
 }
 
 class _HomeState extends State<Home> {
@@ -61,24 +46,7 @@ class _HomeState extends State<Home> {
                 ),
                 mainAxisSpacing: 15.0,
                 crossAxisSpacing: 15.0,
-                // children: List.generate(9, (index) {
-                //   return GestureDetector(
-                //     onTap: () {
-                //       Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //             builder: (context) => AnimalProfile(id: index)),
-                //       );
-                //     },
-                //     child: Container(
-                //       decoration: BoxDecoration(
-                //         color: Colors.grey,
-                //         borderRadius: BorderRadius.circular(15.0),
-                //       ),
-                //     ),
-                //   );
-                // }),
-                children: _animals(context).map<Widget>((animal) {
+                children: animalData(context).map<Widget>((animal) {
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
