@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:the_walking_pets/model/animal.dart';
 
 class AnimalProfile extends StatefulWidget {
@@ -44,22 +45,22 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
       _Tile(
         title: 'Altura',
-        subtitle: widget.animal.altura.toString(),
+        subtitle: (widget.animal.altura ?? 'Sem informações').toString(),
         leading: Icons.height,
       ),
       _Tile(
         title: 'Peso',
-        subtitle: widget.animal.peso.toString(),
+        subtitle: (widget.animal.peso ?? 'Sem informações').toString(),
         leading: Icons.monitor_weight,
       ),
       _Tile(
         title: 'Pelagem',
-        subtitle: widget.animal.pelagem.toString(),
+        subtitle: widget.animal.pelagem ?? 'Sem informações',
         leading: Icons.color_lens_outlined,
       ),
       _Tile(
         title: 'Temperamento',
-        subtitle: widget.animal.temperamento.toString(),
+        subtitle: widget.animal.temperamento ?? 'Sem informações',
         leading: Icons.mood,
       ),
       _Tile(
@@ -71,6 +72,13 @@ class _AnimalProfileState extends State<AnimalProfile> {
         title: 'Raça',
         subtitle: widget.animal.raca.toString(),
         leading: Icons.invert_colors_rounded,
+      ),
+      _Tile(
+        title: 'Sexo',
+        subtitle: widget.animal.sexo.toString(),
+        leading: widget.animal.sexo.toString().toLowerCase() == 'macho'
+            ? Icons.male
+            : Icons.female,
       ),
     ];
 
@@ -116,11 +124,14 @@ class _AnimalProfileState extends State<AnimalProfile> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Icon(
-                      widget.animal.sexo.toString().toLowerCase() == 'macho'
-                          ? Icons.male
-                          : Icons.female,
-                      color: Colors.white,
+                    IconButton(
+                      onPressed: () async {
+                        shareAnimal(context, widget.animal.nome.toString());
+                      },
+                      icon: const Icon(
+                        Icons.share,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
@@ -153,5 +164,11 @@ Widget infoTile(String title, String subtitle, IconData leading) {
     leading: Icon(leading),
     title: Text(title),
     subtitle: Text(subtitle.toString()),
+  );
+}
+
+Future<void> shareAnimal(BuildContext context, String animalName) {
+  return Share.share(
+    'O "$animalName" está a procura de um lar no projeto The Walking Pets! \nhttps://www.thewalkingpets.com.br/adoption/id',
   );
 }

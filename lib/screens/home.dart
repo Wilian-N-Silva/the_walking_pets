@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_walking_pets/data/animal.dart';
 import 'package:the_walking_pets/screens/animal_profile.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
+import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -21,9 +22,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
-      drawer: Drawer(
-        child: Container(),
-      ),
+      drawer: const CustomDrawer(),
       body: SafeArea(
         child: Stack(
           children: [

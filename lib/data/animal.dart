@@ -13,6 +13,7 @@ List<Animal> animalData(BuildContext context) {
       sexo: 'Macho',
       temperamento: 'Dócil',
       foto: 'assets/placeholder_pets/dog/1.jpg',
-    )
+      pelagem: null,
+    ),
   ];
 }
