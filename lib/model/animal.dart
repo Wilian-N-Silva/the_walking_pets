@@ -10,7 +10,7 @@ class Animal {
     this.pelagem,
     this.porte,
     this.temperamento,
-    this.castrado,
+    required this.castrado,
     required this.foto,
     this.perdido,
     this.identificacao,
@@ -26,7 +26,7 @@ class Animal {
   final String? pelagem;
   final String? porte;
   final String? temperamento;
-  final bool? castrado;
+  final bool castrado;
   final String foto;
   final bool? perdido;
   final String? identificacao;

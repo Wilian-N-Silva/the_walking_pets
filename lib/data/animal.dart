@@ -9,6 +9,7 @@ List<Animal> animalData(BuildContext context) {
       raca: 'SRD',
       idade: 3,
       porte: 'Mini',
+      castrado: true,
       sexo: 'Macho',
       temperamento: 'Dócil',
       foto: 'assets/placeholder_pets/dog/1.jpg',

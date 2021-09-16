@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/data/animal.dart';
 import 'package:the_walking_pets/screens/animal_profile.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
-import 'package:the_walking_pets/data/animal.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -68,6 +68,12 @@ class _HomeState extends State<Home> {
                         child: GridTileBar(
                           backgroundColor: Colors.black45,
                           title: Text(animal.nome.toString()),
+                          trailing: Icon(
+                            animal.sexo.toString().toLowerCase() == 'macho'
+                                ? Icons.male
+                                : Icons.female,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       child: Material(
@@ -76,6 +82,7 @@ class _HomeState extends State<Home> {
                         ),
                         clipBehavior: Clip.antiAlias,
                         child: Hero(
+                          transitionOnUserGestures: false,
                           tag: 'animal',
                           child: Image.asset(
                             animal.foto,
