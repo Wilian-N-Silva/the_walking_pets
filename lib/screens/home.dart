@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/screens/animal_profile.dart';
+import 'package:the_walking_pets/widgets/curve_clipper.dart';
+import 'package:the_walking_pets/model/animal.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
+}
+
+List<Animal> _animals(BuildContext context) {
+  return [
+    Animal(
+      nome: 'Matador',
+      especie: 'Canino',
+      raca: 'SRD',
+      idade: 3,
+      porte: 'Mini',
+      sexo: 'Macho',
+      temperamento: 'Dócil',
+      foto: 'assets/placeholder_pets/dog/1.jpg',
+    )
+  ];
 }
 
 class _HomeState extends State<Home> {
@@ -43,19 +61,63 @@ class _HomeState extends State<Home> {
                 ),
                 mainAxisSpacing: 15.0,
                 crossAxisSpacing: 15.0,
-                children: List.generate(9, (index) {
+                // children: List.generate(9, (index) {
+                //   return GestureDetector(
+                //     onTap: () {
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => AnimalProfile(id: index)),
+                //       );
+                //     },
+                //     child: Container(
+                //       decoration: BoxDecoration(
+                //         color: Colors.grey,
+                //         borderRadius: BorderRadius.circular(15.0),
+                //       ),
+                //     ),
+                //   );
+                // }),
+                children: _animals(context).map<Widget>((animal) {
                   return GestureDetector(
                     onTap: () {
-                      print(index);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AnimalProfile(animal: animal),
+                        ),
+                      );
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(15.0),
+                    child: GridTile(
+                      footer: Material(
+                        color: Colors.transparent,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            bottom: Radius.circular(15.0),
+                          ),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: GridTileBar(
+                          backgroundColor: Colors.black45,
+                          title: Text(animal.nome.toString()),
+                        ),
+                      ),
+                      child: Material(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Hero(
+                          tag: 'animal',
+                          child: Image.asset(
+                            animal.foto,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ),
                   );
-                }),
+                }).toList(),
               ),
             ),
             ClipPath(
@@ -95,45 +157,5 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
-  }
-}
-
-class CurveClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-
-    path.lineTo(0, 4 * size.height / 5);
-
-    Offset curvePoint1 = Offset(size.width / 4, size.height);
-    Offset centerPoint = Offset(size.width / 2, 4 * size.height / 5);
-
-    path.quadraticBezierTo(
-      curvePoint1.dx,
-      curvePoint1.dy,
-      centerPoint.dx,
-      centerPoint.dy,
-    );
-
-    Offset curvePoint2 = Offset(3 * size.width / 4, 3 * size.height / 5);
-    Offset endPoint = Offset(size.width, 4 * size.height / 5);
-
-    path.quadraticBezierTo(
-      curvePoint2.dx,
-      curvePoint2.dy,
-      endPoint.dx,
-      endPoint.dy,
-    );
-
-    path.lineTo(size.width, 0);
-
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
   }
 }

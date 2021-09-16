@@ -57,6 +57,7 @@ class TutorialStepOne extends StatelessWidget {
               child: RiveAnimation.asset(
                 'assets/animations/good_doggy_pana.riv',
                 animations: ['intro', 'idle'],
+                controllers: [],
               ),
             ),
 
