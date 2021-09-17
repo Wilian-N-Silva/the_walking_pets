@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
-      drawer: const CustomDrawer(),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: Stack(
           children: [

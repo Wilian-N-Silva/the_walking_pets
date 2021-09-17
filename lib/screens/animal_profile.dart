@@ -30,7 +30,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
   Widget build(BuildContext context) {
     final animal = widget.animal;
 
-    List<_Tile> tileDataSource = [
+    final List<_Tile> tileDataSource = [
       _Tile(
         title: 'Idade',
         subtitle: animal.idade.toString(),

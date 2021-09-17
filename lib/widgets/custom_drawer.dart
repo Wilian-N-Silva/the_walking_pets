@@ -2,14 +2,67 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
 
-class CustomDrawer extends StatelessWidget {
+class _Tile {
+  _Tile({
+    required this.title,
+    required this.leading,
+  });
+
+  final String title;
+  final IconData leading;
+}
+
+class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
 
+  @override
+  _CustomDrawerState createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+  final List<_Tile> tileDataSource = [
+    _Tile(
+      title: 'Adoção',
+      leading: Icons.cake,
+    ),
+    _Tile(
+      title: 'Doação',
+      leading: Icons.health_and_safety,
+    ),
+    _Tile(
+      title: 'Achados e Perdidos',
+      leading: Icons.screen_search_desktop_outlined,
+    ),
+    _Tile(
+      title: 'Serviços',
+      leading: Icons.store,
+    ),
+    _Tile(
+      title: 'Configurações',
+      leading: Icons.settings,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Stack(
         children: [
+          Container(
+            margin: const EdgeInsets.only(top: 140.0),
+            child: ListView.separated(
+              padding: const EdgeInsets.symmetric(vertical: 64),
+              physics: const BouncingScrollPhysics(),
+              itemCount: tileDataSource.length,
+              itemBuilder: (BuildContext context, int index) {
+                return drawerItemTile(
+                  tileDataSource[index].title,
+                  tileDataSource[index].leading,
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+            ),
+          ),
           ClipPath(
             clipper: CurveClipper(),
             child: Container(
@@ -71,4 +124,12 @@ class CustomDrawer extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget drawerItemTile(String title, IconData leading) {
+  return ListTile(
+    leading: Icon(leading),
+    title: Text(title),
+    onTap: () {},
+  );
 }
