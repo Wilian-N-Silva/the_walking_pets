@@ -27,56 +27,58 @@ class _Tile {
 class _AnimalProfileState extends State<AnimalProfile> {
   @override
   Widget build(BuildContext context) {
+    final animal = widget.animal;
+
     List<_Tile> tileDataSource = [
       _Tile(
         title: 'Idade',
-        subtitle: widget.animal.idade.toString(),
+        subtitle: animal.idade.toString(),
         leading: Icons.cake,
       ),
       _Tile(
         title: 'Castrado',
-        subtitle: (widget.animal.castrado ? 'Sim' : 'Não'),
+        subtitle: (animal.castrado ? 'Sim' : 'Não'),
         leading: Icons.health_and_safety,
       ),
       _Tile(
         title: 'Porte',
-        subtitle: widget.animal.porte.toString(),
+        subtitle: animal.porte.toString(),
         leading: Icons.swap_horiz_outlined,
       ),
       _Tile(
         title: 'Altura',
-        subtitle: (widget.animal.altura ?? 'Sem informações').toString(),
+        subtitle: (animal.altura ?? 'Sem informações').toString(),
         leading: Icons.height,
       ),
       _Tile(
         title: 'Peso',
-        subtitle: (widget.animal.peso ?? 'Sem informações').toString(),
+        subtitle: (animal.peso ?? 'Sem informações').toString(),
         leading: Icons.monitor_weight,
       ),
       _Tile(
         title: 'Pelagem',
-        subtitle: widget.animal.pelagem ?? 'Sem informações',
+        subtitle: animal.pelagem ?? 'Sem informações',
         leading: Icons.color_lens_outlined,
       ),
       _Tile(
         title: 'Temperamento',
-        subtitle: widget.animal.temperamento ?? 'Sem informações',
+        subtitle: animal.temperamento ?? 'Sem informações',
         leading: Icons.mood,
       ),
       _Tile(
         title: 'Espécie',
-        subtitle: widget.animal.especie.toString(),
+        subtitle: animal.especie.toString(),
         leading: Icons.local_offer,
       ),
       _Tile(
         title: 'Raça',
-        subtitle: widget.animal.raca.toString(),
+        subtitle: animal.raca.toString(),
         leading: Icons.invert_colors_rounded,
       ),
       _Tile(
         title: 'Sexo',
-        subtitle: widget.animal.sexo.toString(),
-        leading: widget.animal.sexo.toString().toLowerCase() == 'macho'
+        subtitle: animal.sexo.toString(),
+        leading: animal.sexo.toString().toLowerCase() == 'macho'
             ? Icons.male
             : Icons.female,
       ),
@@ -95,7 +97,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
                 child: Hero(
                     tag: 'animal',
                     child: Image.asset(
-                      widget.animal.foto.toString(),
+                      animal.foto.toString(),
                       fit: BoxFit.cover,
                     )),
               ),
@@ -107,17 +109,14 @@ class _AnimalProfileState extends State<AnimalProfile> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
+                    BackButton(
+                      color: Colors.white,
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
                     ),
                     Text(
-                      widget.animal.nome.toString(),
+                      animal.nome.toString(),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
@@ -126,7 +125,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
                     ),
                     IconButton(
                       onPressed: () async {
-                        shareAnimal(context, widget.animal.nome.toString());
+                        shareAnimal(context, animal.nome.toString());
                       },
                       icon: const Icon(
                         Icons.share,
@@ -135,11 +134,31 @@ class _AnimalProfileState extends State<AnimalProfile> {
                     ),
                   ],
                 ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 275.0),
+                height: 50.0,
+                child: Center(
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text('Adote-me!'),
+                    style: ButtonStyle(
+                      fixedSize: MaterialStateProperty.all<Size>(
+                        const Size(128, 48.0),
+                      ),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                        Colors.blue,
+                      ),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                    ),
+                  ),
+                ),
               )
             ],
           ),
           Container(
-            margin: const EdgeInsets.only(top: 300.0),
+            margin: const EdgeInsets.only(top: 325.0),
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
               itemCount: tileDataSource.length,
