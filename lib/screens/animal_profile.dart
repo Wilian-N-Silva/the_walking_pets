@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:the_walking_pets/model/animal.dart';
+import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 
 class AnimalProfile extends StatefulWidget {
   const AnimalProfile({Key? key, required this.animal}) : super(key: key);
@@ -87,7 +88,6 @@ class _AnimalProfileState extends State<AnimalProfile> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
@@ -125,7 +125,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
                     ),
                     IconButton(
                       onPressed: () async {
-                        shareAnimal(context, animal.nome.toString());
+                        shareProfile(context, animal.nome.toString());
                       },
                       icon: const Icon(
                         Icons.share,
@@ -163,7 +163,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
               physics: const BouncingScrollPhysics(),
               itemCount: tileDataSource.length,
               itemBuilder: (BuildContext context, int index) {
-                return infoTile(
+                return animalProfileInfoTile(
                     tileDataSource[index].title,
                     tileDataSource[index].subtitle,
                     tileDataSource[index].leading);
@@ -178,16 +178,8 @@ class _AnimalProfileState extends State<AnimalProfile> {
   }
 }
 
-Widget infoTile(String title, String subtitle, IconData leading) {
-  return ListTile(
-    leading: Icon(leading),
-    title: Text(title),
-    subtitle: Text(subtitle.toString()),
-  );
-}
-
-Future<void> shareAnimal(BuildContext context, String animalName) {
+Future<void> shareProfile(BuildContext context, String animalName) {
   return Share.share(
-    'O "$animalName" está a procura de um lar no projeto The Walking Pets! \nhttps://www.thewalkingpets.com.br/adoption/id',
+    'O "$animalName" está a procura de um lar no projeto The Walking Pets!\nhttps://www.thewalkingpets.com.br/adoption/id',
   );
 }

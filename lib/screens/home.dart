@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/data/animal.dart';
 import 'package:the_walking_pets/screens/animal_profile.dart';
+import 'package:the_walking_pets/screens/home_filter.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
@@ -106,7 +107,14 @@ class _HomeState extends State<Home> {
               height: 50.0,
               child: Center(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeFilter(),
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
