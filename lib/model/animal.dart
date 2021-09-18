@@ -11,6 +11,7 @@ class Animal {
     this.porte,
     this.temperamento,
     required this.castrado,
+    required this.vacinado,
     required this.foto,
     this.perdido,
     this.identificacao,
@@ -27,6 +28,7 @@ class Animal {
   final String? porte;
   final String? temperamento;
   final bool castrado;
+  final bool vacinado;
   final String foto;
   final bool? perdido;
   final String? identificacao;

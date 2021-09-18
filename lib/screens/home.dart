@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:the_walking_pets/data/animal.dart';
 import 'package:the_walking_pets/screens/animal_profile.dart';
 import 'package:the_walking_pets/screens/home_filter.dart';
@@ -23,7 +24,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       body: SafeArea(
         child: Stack(
           children: [

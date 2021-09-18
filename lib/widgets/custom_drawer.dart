@@ -23,11 +23,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
   final List<_Tile> tileDataSource = [
     _Tile(
       title: 'Adoção',
-      leading: Icons.cake,
+      leading: Icons.favorite,
     ),
     _Tile(
       title: 'Doação',
-      leading: Icons.health_and_safety,
+      leading: Icons.home,
     ),
     _Tile(
       title: 'Achados e Perdidos',
