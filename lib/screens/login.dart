@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:rive/rive.dart';
+import 'package:the_walking_pets/screens/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 300.0,
                       child: RiveAnimation.asset(
-                        'assets/animations/cautious_dog_bro.riv',
+                        'assets/animations/blue/cautious_dog_bro.riv',
                       ),
                     ),
                   ],
@@ -70,17 +71,24 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 16.0),
                         ElevatedButton(
-                          onPressed: null,
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Home(),
+                              ),
+                            );
+                          },
                           child: const Text('Entrar'),
                           style: ButtonStyle(
                             fixedSize: MaterialStateProperty.all<Size>(
                               const Size(256, 48),
                             ),
                             backgroundColor: MaterialStateProperty.all<Color>(
-                              Colors.amberAccent.shade100,
+                              Colors.lightBlueAccent.shade400,
                             ),
                             foregroundColor:
-                                MaterialStateProperty.all<Color>(Colors.black),
+                                MaterialStateProperty.all<Color>(Colors.white),
                           ),
                         ),
                         Container(
@@ -105,8 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                               child: const Text(
                                 'Cadastre-se',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
                               ),
                             )
                           ],
@@ -132,8 +141,8 @@ Widget platformLoginButton(BuildContext context, TargetPlatform platform) {
     style: ButtonStyle(
       fixedSize: MaterialStateProperty.all<Size>(const Size(256, 48)),
       backgroundColor:
-          MaterialStateProperty.all<Color>(Colors.amberAccent.shade100),
-      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+          MaterialStateProperty.all<Color>(Colors.lightBlueAccent.shade400),
+      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
     ),
   );
 }

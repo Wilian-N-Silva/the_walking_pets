@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/screens/home.dart';
 import 'package:the_walking_pets/screens/login.dart';
+import 'package:the_walking_pets/screens/onboarding/step_one.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        primaryColor: Colors.blue,
         // colorScheme: ColorScheme(secondary: Colors.blue),
       ),
       // routes: <String, WidgetBuilder>{
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       //   '/presentationTwo': (BuildContext context) => const PresentationTwo(),
       // },
       // initialRoute: '/presentationOne',
-      home: const LoginPage(),
+      home: const OnboardingStepOne(),
     );
   }
 }

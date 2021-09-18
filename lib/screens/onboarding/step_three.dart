@@ -34,7 +34,7 @@ class OnboardingStepThree extends StatelessWidget {
             const SizedBox(
               height: 300.0,
               child: RiveAnimation.asset(
-                'assets/animations/veterinary_pana.riv',
+                'assets/animations/blue/veterinary_pana.riv',
                 animations: ['intro', 'idle'],
               ),
             ),

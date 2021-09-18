@@ -157,7 +157,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
                         const Size(128, 48.0),
                       ),
                       backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.blue,
+                        Colors.lightBlueAccent.shade400,
                       ),
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),

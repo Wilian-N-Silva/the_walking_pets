@@ -55,7 +55,7 @@ class OnboardingStepOne extends StatelessWidget {
             const SizedBox(
               height: 300.0,
               child: RiveAnimation.asset(
-                'assets/animations/good_doggy_pana.riv',
+                'assets/animations/blue/good_doggy_pana.riv',
                 animations: ['intro', 'idle'],
                 controllers: [],
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:the_walking_pets/data/animal.dart';
 import 'package:the_walking_pets/screens/animal_profile.dart';
 import 'package:the_walking_pets/screens/home_filter.dart';
@@ -21,7 +20,7 @@ class _HomeState extends State<Home> {
         title: const Text('Encontre seu novo amigo!'),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.lightBlueAccent.shade400,
         foregroundColor: Colors.white,
       ),
       drawer: const CustomDrawer(),
@@ -32,7 +31,7 @@ class _HomeState extends State<Home> {
               clipper: CurveClipper(),
               child: Container(
                 height: 120,
-                color: Colors.blue.shade700,
+                color: Colors.lightBlueAccent.shade700,
               ),
             ),
             Container(
@@ -101,7 +100,7 @@ class _HomeState extends State<Home> {
               child: Container(
                 height: 105,
                 width: double.infinity,
-                color: Theme.of(context).primaryColor,
+                color: Colors.lightBlueAccent.shade400,
               ),
             ),
             SizedBox(

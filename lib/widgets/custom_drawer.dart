@@ -67,7 +67,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             clipper: CurveClipper(),
             child: Container(
               height: 220,
-              color: Colors.blue.shade700,
+              color: Colors.lightBlueAccent.shade700,
             ),
           ),
           ClipPath(
@@ -75,7 +75,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             child: Container(
               height: 205,
               width: double.infinity,
-              color: Theme.of(context).primaryColor,
+              color: Colors.lightBlueAccent.shade400,
             ),
           ),
           SafeArea(

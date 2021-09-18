@@ -66,10 +66,14 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-  - assets/animations/good_doggy_pana.riv
-  - assets/animations/good_doggy_bro.riv
-  - assets/animations/veterinary_pana.riv
-  - assets/animations/cautious_dog_bro.riv
+  # - assets/animations/yellow/good_doggy_pana.riv
+  # - assets/animations/yellow/good_doggy_bro.riv
+  # - assets/animations/yellow/veterinary_pana.riv
+  # - assets/animations/yellow/cautious_dog_bro.riv
+  - assets/animations/blue/good_doggy_pana.riv
+  - assets/animations/blue/good_doggy_bro.riv
+  - assets/animations/blue/veterinary_pana.riv
+  - assets/animations/blue/cautious_dog_bro.riv
   - assets/placeholder_pets/dog/1.jpg
   - assets/placeholder_pets/dog/2.jpg
   - assets/placeholder_pets/dog/3.jpg
