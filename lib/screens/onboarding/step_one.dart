@@ -26,7 +26,7 @@ class OnboardingStepOne extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 350.0,
+                    height: MediaQuery.of(context).size.height / 2,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
@@ -52,9 +52,9 @@ class OnboardingStepOne extends StatelessWidget {
             ),
 
             // Animação
-            const SizedBox(
-              height: 300.0,
-              child: RiveAnimation.asset(
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 3,
+              child: const RiveAnimation.asset(
                 'assets/animations/blue/good_doggy_pana.riv',
                 animations: ['intro', 'idle'],
                 controllers: [],

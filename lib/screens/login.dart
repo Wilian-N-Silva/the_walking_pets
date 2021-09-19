@@ -15,37 +15,34 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: SafeArea(
-            child: Column(
-              children: [
-                const SizedBox(height: 16.0),
-                Column(
-                  children: const [
-                    Text(
-                      'Mas me diga...\nJá nos vimos antes?',
-                      style: TextStyle(
-                        fontSize: 20.0,
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Column(
+                    children: [
+                      const Text(
+                        'Mas me diga...\nJá nos vimos antes?',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 300.0,
-                      child: RiveAnimation.asset(
-                        'assets/animations/blue/cautious_dog_bro.riv',
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 3,
+                        child: const RiveAnimation.asset(
+                          'assets/animations/blue/cautious_dog_bro.riv',
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                    ),
+                    ],
+                  ),
+                  Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -122,9 +119,9 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ],
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
