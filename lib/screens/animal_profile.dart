@@ -32,6 +32,10 @@ class _AnimalProfileState extends State<AnimalProfile> {
 
     final List<_Tile> tileDataSource = [
       _Tile(
+          title: 'Localização',
+          subtitle: 'São Paulo - SP',
+          leading: Icons.location_on),
+      _Tile(
         title: 'Espécie',
         subtitle: animal.especie.toString(),
         leading: Icons.local_offer,

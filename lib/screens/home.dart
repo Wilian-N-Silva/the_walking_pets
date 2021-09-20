@@ -118,7 +118,7 @@ class _HomeState extends State<Home> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Icon(Icons.filter_alt_rounded),
+                      Icon(Icons.filter),
                       Text('Filtro'),
                     ],
                   ),

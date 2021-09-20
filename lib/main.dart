@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/screens/login.dart';
-import 'package:the_walking_pets/screens/home.dart';
-import 'package:the_walking_pets/screens/home_filter.dart';
 import 'package:the_walking_pets/screens/onboarding/step_one.dart';
 
 void main() {
