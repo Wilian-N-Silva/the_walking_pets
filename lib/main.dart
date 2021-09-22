@@ -20,7 +20,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key, required this.route}) : super(key: key);
 
-  final route;
+  final Widget route;
 
   @override
   Widget build(BuildContext context) {
