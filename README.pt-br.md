@@ -8,7 +8,7 @@ Um projeto que tem como premissa, facilitar a adoção de animais domésticos, n
 ### Back-end
 Acesse nosso back-end [clicando aqui](https://github.com/luanvsfeo/backend-the-walking-pets)!
 ### Back-end
-[Clique aqui](https://github.com/luanvsfeo/backend-the-walking-pets) para conferir o repositório do nosso back-end feito em Spring Boot!
+[Clique aqui](https://github.com/luanvsfeo/backend-the-walking-pets) para conferir o nosso repositório do back-end feito em Spring Boot!
 
 ### Feito com
 * [Flutter](http://flutter.dev/)
