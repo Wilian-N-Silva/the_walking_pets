@@ -4,12 +4,16 @@
 
 ## Sobre o projeto
 
-Um projeto que tem como premissa, facilitar a adoção de animais domésticos, nos quais foram cadastrados através de doadores como ONGs ou pessoas físicas que desejam doar seus pets. Além disso, o projeto tem como objetivo secundário, auxiliar tutores de pets a encontrarem seus animais perdidos, através de anúncio feito por ele ou por terceiros que o tenham encontrado algum animal em situação de rua.
+Um projeto que tem como premissa, facilitar a adoção de animais domésticos, nos quais foram cadastrados através de doadores como ONGs ou pessoas físicas que desejam doar seus pets. Além disso, o projeto tem como objetivo secundário, auxiliar tutores de pets a encontrarem seus animais perdidos, através de anúncio feito por ele ou por terceiros que o tenham encontrado algum animal em situação de rua
+### Back-end
+Acesse nosso back-end [clicando aqui](https://github.com/luanvsfeo/backend-the-walking-pets)!
+### Back-end
+[Clique aqui](https://github.com/luanvsfeo/backend-the-walking-pets) para conferir o repositório do nosso back-end feito em Spring Boot!
 
 ### Feito com
 * [Flutter](http://flutter.dev/)
 * [Rive](https://rive.app/)
-
+* [Spring Boot](https://spring.io/)
 ## Agradecimentos
 * [Storyset](https://storyset.com/)
 * [Figma](https://www.figma.com/)
