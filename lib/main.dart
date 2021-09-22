@@ -1,19 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_walking_pets/data/settings.dart';
 import 'package:the_walking_pets/screens/login.dart';
 import 'package:the_walking_pets/screens/onboarding/step_one.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  bool isOnboardingComplete =
-      prefs.getBool('onboarding') == null ? false : true;
-
   runApp(MyApp(
-    route: isOnboardingComplete ? const LoginPage() : const OnboardingStepOne(),
+    route: prefs.getBool('onboarding') == null
+        ? const LoginPage()
+        : const OnboardingStepOne(),
   ));
 }
 
