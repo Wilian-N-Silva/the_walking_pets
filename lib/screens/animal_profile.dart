@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:the_walking_pets/model/animal.dart';
-import 'package:the_walking_pets/model/animalProfileTile.dart';
+import 'package:the_walking_pets/model/animal_profile_tile.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/widgets/animal_profile_share.dart';
 
@@ -74,7 +73,9 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
       AnimalProfileTile(
         title: 'Peso',
-        subtitle: (animal.peso ?? 'Sem informações').toString(),
+        subtitle: animal.peso == null
+            ? '${formatWeight(animal.peso!)} kg'
+            : 'Sem informações',
         leading: Icons.monitor_weight,
       ),
       AnimalProfileTile(
@@ -96,7 +97,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
                 height: screenHeight / 2,
                 width: double.infinity,
                 child: Hero(
-                    tag: 'animal',
+                    tag: animal,
                     child: Image.asset(
                       animal.foto.toString(),
                       fit: BoxFit.cover,
@@ -180,4 +181,8 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
     );
   }
+}
+
+String formatWeight(double weight) {
+  return weight.toStringAsFixed(weight.truncateToDouble() == weight ? 0 : 1);
 }

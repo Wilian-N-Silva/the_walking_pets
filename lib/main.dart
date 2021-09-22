@@ -11,8 +11,8 @@ Future<void> main() async {
 
   runApp(MyApp(
     route: prefs.getBool('onboarding') == null
-        ? const LoginPage()
-        : const OnboardingStepOne(),
+        ? const OnboardingStepOne()
+        : const LoginPage(),
   ));
 }
 

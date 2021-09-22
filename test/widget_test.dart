@@ -14,7 +14,7 @@ import 'package:the_walking_pets/screens/onboarding/step_one.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp(route: const OnboardingStepOne()));
+    await tester.pumpWidget(const MyApp(route: OnboardingStepOne()));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
