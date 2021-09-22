@@ -1,13 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_walking_pets/data/settings.dart';
+import 'package:the_walking_pets/screens/login.dart';
 import 'package:the_walking_pets/screens/onboarding/step_one.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  bool isOnboardingComplete =
+      prefs.getBool('onboarding') == null ? false : true;
+
+  runApp(MyApp(
+    route: isOnboardingComplete ? const LoginPage() : const OnboardingStepOne(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.route}) : super(key: key);
+
+  final route;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const OnboardingStepOne(),
+      home: route,
     );
   }
 }

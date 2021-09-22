@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:the_walking_pets/model/animal.dart';
+import 'package:the_walking_pets/model/animalProfileTile.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
+import 'package:the_walking_pets/widgets/animal_profile_share.dart';
 
 class AnimalProfile extends StatefulWidget {
   const AnimalProfile({Key? key, required this.animal}) : super(key: key);
@@ -13,81 +15,69 @@ class AnimalProfile extends StatefulWidget {
   _AnimalProfileState createState() => _AnimalProfileState();
 }
 
-class _Tile {
-  _Tile({
-    required this.title,
-    required this.subtitle,
-    required this.leading,
-  });
-
-  final String title;
-  final String subtitle;
-  final IconData leading;
-}
-
 class _AnimalProfileState extends State<AnimalProfile> {
   @override
   Widget build(BuildContext context) {
     final animal = widget.animal;
 
-    final List<_Tile> tileDataSource = [
-      _Tile(
+    final List<AnimalProfileTile> tileDataSource = [
+      AnimalProfileTile(
           title: 'Localização',
           subtitle: 'São Paulo - SP',
           leading: Icons.location_on),
-      _Tile(
+      AnimalProfileTile(
         title: 'Espécie',
         subtitle: animal.especie.toString(),
         leading: Icons.local_offer,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Raça',
         subtitle: animal.raca.toString(),
         leading: Icons.invert_colors_rounded,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Idade',
         subtitle: animal.idade.toString(),
         leading: Icons.cake,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Temperamento',
         subtitle: animal.temperamento ?? 'Sem informações',
         leading: Icons.mood,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Castrado',
         subtitle: (animal.castrado ? 'Sim' : 'Não'),
         leading: Icons.local_hospital,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Vacinado',
         subtitle: (animal.castrado ? 'Sim' : 'Não'),
         leading: Icons.health_and_safety,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Sexo',
         subtitle: animal.sexo.toString(),
         leading: animal.sexo.toString().toLowerCase() == 'macho'
             ? Icons.male
             : Icons.female,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Porte',
         subtitle: animal.porte.toString(),
         leading: Icons.swap_horiz_outlined,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Altura',
         subtitle: (animal.altura ?? 'Sem informações').toString(),
         leading: Icons.height,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Peso',
         subtitle: (animal.peso ?? 'Sem informações').toString(),
         leading: Icons.monitor_weight,
       ),
-      _Tile(
+      AnimalProfileTile(
         title: 'Pelagem',
         subtitle: animal.pelagem ?? 'Sem informações',
         leading: Icons.color_lens_outlined,
@@ -139,7 +129,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
                     ),
                     IconButton(
                       onPressed: () async {
-                        shareProfile(context, animal.nome.toString());
+                        shareAnimalProfile(context, animal.nome.toString());
                       },
                       icon: const Icon(
                         Icons.share,
@@ -190,10 +180,4 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
     );
   }
-}
-
-Future<void> shareProfile(BuildContext context, String animalName) {
-  return Share.share(
-    'O "$animalName" está a procura de um lar no projeto The Walking Pets!\nhttps://www.thewalkingpets.com.br/adoption/id',
-  );
 }

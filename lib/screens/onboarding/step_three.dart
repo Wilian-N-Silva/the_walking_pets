@@ -47,8 +47,10 @@ class OnboardingStepThree extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  stepButton(context, const OnboardingStepTwo(), 'Voltar'),
-                  stepButton(context, const LoginPage(), 'Próximo'),
+                  onboardingStepButton(
+                      context, const OnboardingStepTwo(), 'Voltar', false),
+                  onboardingStepButton(
+                      context, const LoginPage(), 'Próximo', true),
                 ],
               ),
             )

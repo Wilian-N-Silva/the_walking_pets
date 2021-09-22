@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomeFilter extends StatefulWidget {
-  const HomeFilter({Key? key}) : super(key: key);
+class AdoptionFilter extends StatefulWidget {
+  const AdoptionFilter({Key? key}) : super(key: key);
 
   @override
-  _HomeFilterState createState() => _HomeFilterState();
+  _AdoptionFilterState createState() => _AdoptionFilterState();
 }
 
-class _HomeFilterState extends State<HomeFilter> {
+class _AdoptionFilterState extends State<AdoptionFilter> {
   double _currentSliderValue = 0;
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/data/animal.dart';
 import 'package:the_walking_pets/screens/animal_profile.dart';
-import 'package:the_walking_pets/screens/home_filter.dart';
+import 'package:the_walking_pets/screens/adoption_filter.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class Adoption extends StatefulWidget {
+  const Adoption({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _AdoptionState createState() => _AdoptionState();
 }
 
-class _HomeState extends State<Home> {
+class _AdoptionState extends State<Adoption> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,14 +111,14 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeFilter(),
+                        builder: (context) => const AdoptionFilter(),
                       ),
                     );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Icon(Icons.filter),
+                      Icon(Icons.filter_list_alt),
                       Text('Filtro'),
                     ],
                   ),

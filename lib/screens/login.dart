@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:rive/rive.dart';
-import 'package:the_walking_pets/screens/home.dart';
+import 'package:the_walking_pets/screens/adoption.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -69,10 +69,11 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 16.0),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
+                            Navigator.pushReplacement<void, void>(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => const Home(),
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    const Adoption(),
                               ),
                             );
                           },
