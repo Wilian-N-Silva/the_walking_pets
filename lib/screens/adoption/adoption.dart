@@ -27,25 +27,30 @@ class _AdoptionState extends State<Adoption> {
       body: SafeArea(
         child: Stack(
           children: [
+            // BOTTOM CLIPPATH
             ClipPath(
               clipper: CurveClipper(),
               child: Container(
-                height: 120,
+                height: MediaQuery.of(context).size.height / 7,
                 color: Colors.lightBlueAccent.shade700,
               ),
             ),
+
+            // GRID ANIMALS
             Container(
-              margin: const EdgeInsets.only(top: 70.0),
+              margin: EdgeInsets.only(
+                top: ((MediaQuery.of(context).size.height / 7) - 24),
+              ),
               child: GridView.count(
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
                 crossAxisCount: 2,
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 15.0,
-                  vertical: 50,
+                  horizontal: 16.0,
+                  vertical: 48,
                 ),
-                mainAxisSpacing: 15.0,
-                crossAxisSpacing: 15.0,
+                mainAxisSpacing: 16.0,
+                crossAxisSpacing: 16.0,
                 children: animalData(context).map<Widget>((animal) {
                   return GestureDetector(
                     onTap: () {
@@ -61,7 +66,7 @@ class _AdoptionState extends State<Adoption> {
                         color: Colors.transparent,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.vertical(
-                            bottom: Radius.circular(15.0),
+                            bottom: Radius.circular(16.0),
                           ),
                         ),
                         clipBehavior: Clip.antiAlias,
@@ -78,7 +83,7 @@ class _AdoptionState extends State<Adoption> {
                       ),
                       child: Material(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(16.0),
                         ),
                         clipBehavior: Clip.antiAlias,
                         child: Hero(
@@ -95,14 +100,18 @@ class _AdoptionState extends State<Adoption> {
                 }).toList(),
               ),
             ),
+
+            // TOP CLIPPATH
             ClipPath(
               clipper: CurveClipper(),
               child: Container(
-                height: 105,
+                height: (MediaQuery.of(context).size.height / 7) - 16.0,
                 width: double.infinity,
                 color: Colors.lightBlueAccent.shade400,
               ),
             ),
+
+            // FILTER BUTTON CONTAINER
             SizedBox(
               height: 50.0,
               child: Center(
