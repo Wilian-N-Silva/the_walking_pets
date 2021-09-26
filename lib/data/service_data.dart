@@ -6,6 +6,7 @@ List<Service> serviceData(BuildContext context) {
   return [
     Service(
       nome: 'UniVet',
+      // UNINOVE CAMPUS SANTO AMARO
       coordLat: -23.65326430615493,
       coordLng: -46.71171568804511,
       categoria: serviceCategoryData(context).elementAt(0),
