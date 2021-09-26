@@ -38,7 +38,9 @@ class _ServicesState extends State<Services> {
         });
       });
     }).catchError((e) {
-      print(e);
+      const SnackBar(
+        content: Text('Erro ao capturar localização atual'),
+      );
     });
   }
 
@@ -149,21 +151,12 @@ serviceInfoTile(
   currentPosition,
   Service data,
 ) {
-  final formatter = NumberFormat.decimalPattern();
   return ListTile(
     leading: Icon(data.categoria.icone),
     title: Text(data.nome),
     subtitle: Text(data.categoria.titulo),
     trailing: Text(
-      formatter
-          .format(
-            _positionDistance(
-              currentPosition,
-              data.coordLat,
-              data.coordLng,
-            ).floor(),
-          )
-          .toString(),
+      '${_positionDistance(currentPosition, data.coordLat, data.coordLng).toString()} km',
     ),
 
     // trailing: Text(''),
@@ -179,11 +172,17 @@ serviceInfoTile(
   );
 }
 
-double _positionDistance(currentPosition, serviceLat, serviceLng) {
-  return Geolocator.distanceBetween(
+int _positionDistance(currentPosition, serviceLat, serviceLng) {
+  final formatter = NumberFormat.decimalPattern();
+
+  final calculate = Geolocator.distanceBetween(
     currentPosition.latitude,
     currentPosition.longitude,
     serviceLat,
     serviceLng,
-  );
+  ).floor();
+
+  int formattedNumber = double.parse(formatter.format(calculate)).round();
+
+  return formattedNumber;
 }
