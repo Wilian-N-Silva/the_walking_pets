@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/data/service_data.dart';
 import 'package:the_walking_pets/model/service.dart';
@@ -109,7 +107,7 @@ class _ServicesState extends State<Services> {
   }
 }
 
-Widget serviceInfoTile(
+serviceInfoTile(
   BuildContext context,
   Service data,
 ) {
@@ -117,8 +115,8 @@ Widget serviceInfoTile(
     leading: Icon(data.categoria.icone),
     title: Text(data.nome),
     subtitle: Text(data.categoria.titulo),
-    // trailing: Text(distance),
-    trailing: Text('${Random().nextInt(10).toString()} km'),
+    trailing: const Text('0 km'),
+    // trailing: Text(''),
     contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
     onTap: () {
       Navigator.push(
