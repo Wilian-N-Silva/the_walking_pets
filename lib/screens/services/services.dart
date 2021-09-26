@@ -1,5 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/data/service_data.dart';
+import 'package:the_walking_pets/model/service.dart';
 import 'package:the_walking_pets/screens/services/services_filter.dart';
+import 'package:the_walking_pets/screens/services/services_page.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
@@ -39,7 +44,19 @@ class _ServicesState extends State<Services> {
               margin: EdgeInsets.only(
                 top: ((MediaQuery.of(context).size.height / 7) - 24),
               ),
-              color: Colors.red,
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemCount: serviceData(context).length,
+                itemBuilder: (BuildContext context, int index) {
+                  return serviceInfoTile(
+                    context,
+                    serviceData(context).elementAt(index),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+              ),
             ),
 
             // TOP CLIPPATH
@@ -90,4 +107,26 @@ class _ServicesState extends State<Services> {
       ),
     );
   }
+}
+
+Widget serviceInfoTile(
+  BuildContext context,
+  Service data,
+) {
+  return ListTile(
+    leading: Icon(data.categoria.icone),
+    title: Text(data.nome),
+    subtitle: Text(data.categoria.titulo),
+    // trailing: Text(distance),
+    trailing: Text('${Random().nextInt(10).toString()} km'),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ServicesPage(serviceData: data),
+        ),
+      );
+    },
+  );
 }

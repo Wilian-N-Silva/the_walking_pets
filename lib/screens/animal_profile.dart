@@ -1,9 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal.dart';
-import 'package:the_walking_pets/model/animal_profile_tile.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/widgets/animal_profile_share.dart';
+
+class AnimalProfileTile {
+  AnimalProfileTile({
+    required this.title,
+    required this.subtitle,
+    required this.leading,
+  });
+
+  final String title;
+  final String subtitle;
+  final IconData leading;
+}
 
 class AnimalProfile extends StatefulWidget {
   const AnimalProfile({Key? key, required this.animal}) : super(key: key);
@@ -19,11 +30,12 @@ class _AnimalProfileState extends State<AnimalProfile> {
   Widget build(BuildContext context) {
     final animal = widget.animal;
 
-    final List<AnimalProfileTile> tileDataSource = [
+    final List<AnimalProfileTile> animalProfileTileDatasource = [
       AnimalProfileTile(
-          title: 'Localização',
-          subtitle: 'São Paulo - SP',
-          leading: Icons.location_on),
+        title: 'Localização',
+        subtitle: 'São Paulo - SP',
+        leading: Icons.location_on,
+      ),
       AnimalProfileTile(
         title: 'Espécie',
         subtitle: animal.especie.toString(),
@@ -166,12 +178,12 @@ class _AnimalProfileState extends State<AnimalProfile> {
             margin: EdgeInsets.only(top: (screenHeight / 2) + 25),
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
-              itemCount: tileDataSource.length,
+              itemCount: animalProfileTileDatasource.length,
               itemBuilder: (BuildContext context, int index) {
                 return animalProfileInfoTile(
-                    tileDataSource[index].title,
-                    tileDataSource[index].subtitle,
-                    tileDataSource[index].leading);
+                    animalProfileTileDatasource[index].title,
+                    animalProfileTileDatasource[index].subtitle,
+                    animalProfileTileDatasource[index].leading);
               },
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_walking_pets/screens/login.dart';
 import 'package:the_walking_pets/screens/onboarding/step_one.dart';
+import 'package:the_walking_pets/screens/services/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: route,
+      // home: route,
+      home: const Services(),
     );
   }
 }
