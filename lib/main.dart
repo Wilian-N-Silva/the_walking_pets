@@ -14,6 +14,7 @@ Future<void> main() async {
     route: prefs.getBool('onboarding') == null
         ? const OnboardingStepOne()
         : const LoginPage(),
+    // route: OnboardingStepOne(),
   ));
 }
 
@@ -30,8 +31,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: route,
-      home: const Services(),
+      home: route,
+      // home: const Services(),
     );
   }
 }

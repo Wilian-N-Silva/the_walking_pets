@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:the_walking_pets/data/service_category_data.dart';
 import 'package:the_walking_pets/data/service_data.dart';
 import 'package:the_walking_pets/model/service.dart';
+import 'package:the_walking_pets/model/service_filter.dart';
 import 'package:the_walking_pets/screens/services/services_filter.dart';
 import 'package:the_walking_pets/screens/services/services_page.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
@@ -20,7 +21,9 @@ class _ServicesState extends State<Services> {
   final Geolocator geolocator = Geolocator();
   Position? _currentPosition;
   bool loading = true;
-  int limitDistance = 50;
+  final Filter defaultFilter = Filter(maxDistance: 100);
+
+  Filter currentFilter = Filter(maxDistance: 50);
 
   @override
   void initState() {
@@ -55,7 +58,7 @@ class _ServicesState extends State<Services> {
                 element.coordLat,
                 element.coordLng,
               ) <
-              limitDistance)
+              currentFilter.maxDistance)
           .toList();
 
       return Container(
@@ -83,13 +86,15 @@ class _ServicesState extends State<Services> {
   }
 
   _openFilter(BuildContext context) async {
-    limitDistance = await Navigator.push(
+    currentFilter = await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const ServicesFilter(),
+            builder: (context) => ServicesFilter(
+              currentFilter: currentFilter,
+            ),
           ),
         ) ??
-        limitDistance;
+        defaultFilter;
 
     setState(() {
       _servicesList();

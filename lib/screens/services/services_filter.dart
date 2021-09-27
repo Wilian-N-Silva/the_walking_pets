@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/model/service_filter.dart';
 
 class ServicesFilter extends StatefulWidget {
-  const ServicesFilter({Key? key}) : super(key: key);
+  const ServicesFilter({Key? key, required this.currentFilter})
+      : super(key: key);
 
+  final Filter currentFilter;
   @override
   _ServicesFilterState createState() => _ServicesFilterState();
 }
 
 class _ServicesFilterState extends State<ServicesFilter> {
-  double _currentSliderValue = 1;
+  final Filter defaultFilter = Filter(maxDistance: 1);
+
   @override
   Widget build(BuildContext context) {
+    Filter _currentFilter = widget.currentFilter;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Filtro'),
         centerTitle: true,
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                _currentFilter = defaultFilter;
+              });
+            },
             child: const Text(
               'Limpar',
               style: TextStyle(color: Colors.white),
@@ -45,7 +54,7 @@ class _ServicesFilterState extends State<ServicesFilter> {
               foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
             ),
             onPressed: () {
-              Navigator.pop(context, _currentSliderValue.round());
+              Navigator.pop(context, _currentFilter);
             },
           ),
         ),
@@ -70,7 +79,7 @@ class _ServicesFilterState extends State<ServicesFilter> {
                           style: TextStyle(fontSize: 20.0),
                         ),
                         Text(
-                          '${_currentSliderValue.round()} km',
+                          '${_currentFilter.maxDistance.round()} km',
                           style: const TextStyle(color: Colors.black54),
                         ),
                       ],
@@ -85,12 +94,12 @@ class _ServicesFilterState extends State<ServicesFilter> {
                           ],
                         ),
                         Slider(
-                          value: _currentSliderValue,
+                          value: _currentFilter.maxDistance,
                           min: 1,
                           max: 100,
                           onChanged: (double value) {
                             setState(() {
-                              _currentSliderValue = value;
+                              _currentFilter.maxDistance = value;
                             });
                           },
                         ),
