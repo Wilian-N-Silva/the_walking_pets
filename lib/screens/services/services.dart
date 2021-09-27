@@ -1,8 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
+import 'package:the_walking_pets/data/service_category_data.dart';
 import 'package:the_walking_pets/data/service_data.dart';
 import 'package:the_walking_pets/model/service.dart';
 import 'package:the_walking_pets/screens/services/services_filter.dart';
@@ -85,11 +84,12 @@ class _ServicesState extends State<Services> {
 
   _openFilter(BuildContext context) async {
     limitDistance = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ServicesFilter(),
-      ),
-    );
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ServicesFilter(),
+          ),
+        ) ??
+        limitDistance;
 
     setState(() {
       _servicesList();
@@ -119,7 +119,7 @@ class _ServicesState extends State<Services> {
               ),
             ),
 
-            // GRID ANIMALS
+            // LIST SERVICES
             _servicesList(),
 
             // TOP CLIPPATH
@@ -179,8 +179,6 @@ serviceInfoTile(
     trailing: Text(
       '${_positionDistance(currentPosition, data.coordLat, data.coordLng).toString()} km',
     ),
-
-    // trailing: Text(''),
     contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
     onTap: () {
       Navigator.push(
