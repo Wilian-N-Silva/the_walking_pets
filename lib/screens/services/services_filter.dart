@@ -8,7 +8,7 @@ class ServicesFilter extends StatefulWidget {
 }
 
 class _ServicesFilterState extends State<ServicesFilter> {
-  double _currentSliderValue = 0;
+  double _currentSliderValue = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +24,31 @@ class _ServicesFilterState extends State<ServicesFilter> {
             ),
           )
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: 80.0,
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(color: Colors.grey.shade300),
+          ),
+        ),
+        child: Center(
+          child: ElevatedButton(
+            child: const Text('Filtrar'),
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all<Size>(
+                const Size(128, 48.0),
+              ),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                Colors.blue.shade400,
+              ),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            ),
+            onPressed: () {
+              Navigator.pop(context, _currentSliderValue.round());
+            },
+          ),
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -45,9 +70,7 @@ class _ServicesFilterState extends State<ServicesFilter> {
                           style: TextStyle(fontSize: 20.0),
                         ),
                         Text(
-                          _currentSliderValue.round() < 100
-                              ? 'Até ${(_currentSliderValue.round() == 0 ? 5 : _currentSliderValue.round()).toString()} km'
-                              : 'Até ou acima de 100 km',
+                          '${_currentSliderValue.round()} km',
                           style: const TextStyle(color: Colors.black54),
                         ),
                       ],
@@ -57,15 +80,14 @@ class _ServicesFilterState extends State<ServicesFilter> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
-                            Text('5 km'),
-                            Text('100+ km'),
+                            Text('1 km'),
+                            Text('100 km'),
                           ],
                         ),
                         Slider(
                           value: _currentSliderValue,
-                          min: 0,
+                          min: 1,
                           max: 100,
-                          divisions: 10,
                           onChanged: (double value) {
                             setState(() {
                               _currentSliderValue = value;

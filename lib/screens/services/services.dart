@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -19,6 +21,7 @@ class _ServicesState extends State<Services> {
   final Geolocator geolocator = Geolocator();
   Position? _currentPosition;
   bool loading = true;
+  int limitDistance = 50;
 
   @override
   void initState() {
@@ -46,6 +49,16 @@ class _ServicesState extends State<Services> {
 
   _servicesList() {
     if (!loading) {
+      List<Service> list = serviceData(context)
+          .where((element) =>
+              _positionDistance(
+                _currentPosition,
+                element.coordLat,
+                element.coordLng,
+              ) <
+              limitDistance)
+          .toList();
+
       return Container(
         margin: EdgeInsets.only(
           top: ((MediaQuery.of(context).size.height / 7) - 24),
@@ -53,12 +66,12 @@ class _ServicesState extends State<Services> {
         padding: const EdgeInsets.only(top: 16.0),
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemCount: serviceData(context).length,
+          itemCount: list.length,
           itemBuilder: (BuildContext context, int index) {
             return serviceInfoTile(
               context,
               _currentPosition,
-              serviceData(context).elementAt(index),
+              list.elementAt(index),
             );
           },
           separatorBuilder: (BuildContext context, int index) =>
@@ -68,6 +81,19 @@ class _ServicesState extends State<Services> {
     } else {
       return const Center(child: CircularProgressIndicator());
     }
+  }
+
+  _openFilter(BuildContext context) async {
+    limitDistance = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ServicesFilter(),
+      ),
+    );
+
+    setState(() {
+      _servicesList();
+    });
   }
 
   @override
@@ -112,12 +138,7 @@ class _ServicesState extends State<Services> {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ServicesFilter(),
-                      ),
-                    );
+                    _openFilter(context);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
