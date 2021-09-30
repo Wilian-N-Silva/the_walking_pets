@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/animal.dart';
+import 'package:the_walking_pets/model/animal/animal.dart';
 
 List<Animal> animalData(BuildContext context) {
   return [

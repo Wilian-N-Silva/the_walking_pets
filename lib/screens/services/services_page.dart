@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:the_walking_pets/model/service.dart';
+import 'package:the_walking_pets/model/services/service.dart';
 
 class ServicesPage extends StatefulWidget {
   const ServicesPage({Key? key, required this.serviceData}) : super(key: key);

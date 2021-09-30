@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_walking_pets/screens/login.dart';
+import 'package:the_walking_pets/screens/signin.dart';
 import 'package:the_walking_pets/screens/onboarding/step_one.dart';
-import 'package:the_walking_pets/screens/services/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +12,7 @@ Future<void> main() async {
   runApp(MyApp(
     route: prefs.getBool('onboarding') == null
         ? const OnboardingStepOne()
-        : const LoginPage(),
+        : const SigninPage(),
     // route: OnboardingStepOne(),
   ));
 }
@@ -32,7 +31,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: route,
-      // home: const Services(),
     );
   }
 }

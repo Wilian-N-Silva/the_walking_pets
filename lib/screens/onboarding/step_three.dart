@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:the_walking_pets/screens/login.dart';
+import 'package:the_walking_pets/screens/signin.dart';
 import 'package:the_walking_pets/screens/onboarding/step_two.dart';
 import 'package:the_walking_pets/widgets/step_button.dart';
 
@@ -50,7 +50,7 @@ class OnboardingStepThree extends StatelessWidget {
                   onboardingStepButton(
                       context, const OnboardingStepTwo(), 'Voltar', false),
                   onboardingStepButton(
-                      context, const LoginPage(), 'Próximo', true),
+                      context, const SigninPage(), 'Próximo', true),
                 ],
               ),
             )

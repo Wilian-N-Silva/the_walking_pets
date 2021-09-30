@@ -1,4 +1,4 @@
-import 'package:the_walking_pets/model/service_category.dart';
+import 'package:the_walking_pets/model/services/service_category.dart';
 
 class Service {
   Service({

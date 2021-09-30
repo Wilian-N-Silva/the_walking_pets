@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
-import 'package:the_walking_pets/data/service_category_data.dart';
-import 'package:the_walking_pets/data/service_data.dart';
-import 'package:the_walking_pets/model/service.dart';
-import 'package:the_walking_pets/model/service_filter.dart';
+import 'package:the_walking_pets/data/services/service_data.dart';
+import 'package:the_walking_pets/model/services/service.dart';
+import 'package:the_walking_pets/model/services/service_filter.dart';
 import 'package:the_walking_pets/screens/services/services_filter.dart';
 import 'package:the_walking_pets/screens/services/services_page.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';

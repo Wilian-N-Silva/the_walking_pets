@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:the_walking_pets/screens/login.dart';
+import 'package:the_walking_pets/screens/signin.dart';
 import 'package:the_walking_pets/screens/onboarding/step_two.dart';
 import 'package:the_walking_pets/widgets/step_button.dart';
 
@@ -57,7 +57,6 @@ class OnboardingStepOne extends StatelessWidget {
               child: const RiveAnimation.asset(
                 'assets/animations/blue/good_doggy_pana.riv',
                 animations: ['intro', 'idle'],
-                controllers: [],
               ),
             ),
 
@@ -70,7 +69,7 @@ class OnboardingStepOne extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   onboardingStepButton(
-                      context, const LoginPage(), 'Pular', true),
+                      context, const SigninPage(), 'Pular', true),
                   onboardingStepButton(
                       context, const OnboardingStepTwo(), 'Próximo', false),
                 ],

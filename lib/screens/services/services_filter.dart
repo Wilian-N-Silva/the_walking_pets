@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/service_filter.dart';
+import 'package:the_walking_pets/model/services/service_filter.dart';
 
 class ServicesFilter extends StatefulWidget {
   const ServicesFilter({Key? key, required this.currentFilter})

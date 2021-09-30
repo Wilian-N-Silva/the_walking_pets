@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/service_category.dart';
+import 'package:the_walking_pets/model/services/service_category.dart';
 
 List<ServiceCategory> serviceCategoryData(BuildContext context) {
   return [
