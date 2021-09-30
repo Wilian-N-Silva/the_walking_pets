@@ -1,19 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/screens/adoption/adoption.dart';
 import 'package:the_walking_pets/screens/services/services.dart';
+import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
 
 class _Tile {
   _Tile({
     required this.title,
     required this.leading,
-    this.route,
+    required this.route,
   });
 
   final String title;
   final IconData leading;
-  final Widget? route;
+  final Widget route;
 }
 
 class CustomDrawer extends StatefulWidget {
@@ -26,6 +26,11 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer> {
   final List<_Tile> tileDataSource = [
     _Tile(
+      title: 'Meu Perfil',
+      leading: Icons.person,
+      route: const UserProfile(),
+    ),
+    _Tile(
       title: 'Adoção',
       leading: Icons.favorite,
       route: const Adoption(),
@@ -33,12 +38,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
     _Tile(
       title: 'Doação',
       leading: Icons.home,
-      route: null,
+      route: const Adoption(),
     ),
     _Tile(
       title: 'Achados e Perdidos',
       leading: Icons.screen_search_desktop_outlined,
-      route: null,
+      route: const Adoption(),
     ),
     _Tile(
       title: 'Serviços',
@@ -48,7 +53,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     _Tile(
       title: 'Configurações',
       leading: Icons.settings,
-      route: null,
+      route: const Adoption(),
     ),
   ];
   @override
@@ -102,14 +107,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Text(
-                      'P',
-                      style: TextStyle(fontSize: 32.0),
-                    ),
-                    radius: 50.0,
-                  ),
+                  // USER IMAGE
+                  // const CircleAvatar(
+                  //   backgroundColor: Colors.white,
+                  //   child: Text(
+                  //     'P',
+                  //     style: TextStyle(fontSize: 32.0),
+                  //   ),
+                  //   radius: 50.0,
+                  // ),
                   Container(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -143,20 +149,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 }
 
-Widget drawerItemTile(BuildContext context, String title, IconData leading,
-    [route]) {
+Widget drawerItemTile(
+  BuildContext context,
+  String title,
+  IconData leading,
+  Widget route,
+) {
   return ListTile(
     leading: Icon(leading),
     title: Text(title),
     onTap: () {
-      if (route != null) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => route,
-          ),
-        );
-      }
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => route,
+        ),
+      );
     },
   );
 }

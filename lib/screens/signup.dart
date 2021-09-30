@@ -10,8 +10,8 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   @override
-  bool commonForm = true;
   Widget build(BuildContext context) {
+    bool commonForm = true;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
