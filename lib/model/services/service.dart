@@ -1,7 +1,7 @@
 import 'package:the_walking_pets/model/services/service_category.dart';
 
-class Service {
-  Service({
+class Partner {
+  Partner({
     required this.nome,
     required this.coordLat,
     required this.coordLng,
@@ -11,5 +11,5 @@ class Service {
   final String nome;
   final double coordLat;
   final double coordLng;
-  final ServiceCategory categoria;
+  final PartnerCategory categoria;
 }

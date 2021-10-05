@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ServiceCategory {
-  ServiceCategory({
+class PartnerCategory {
+  PartnerCategory({
     required this.id,
     required this.titulo,
     required this.icone,

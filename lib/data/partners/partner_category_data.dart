@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/services/service_category.dart';
 
-List<ServiceCategory> serviceCategoryData(BuildContext context) {
+List<PartnerCategory> partnerCategoryData(BuildContext context) {
   return [
-    ServiceCategory(
+    PartnerCategory(
       id: 1,
       titulo: 'Veterinário',
       icone: Icons.local_hospital,
     ),
-    ServiceCategory(
+    PartnerCategory(
       id: 2,
       titulo: 'Veterinário de Exóticos',
       icone: Icons.local_hospital_outlined,
     ),
-    ServiceCategory(
+    PartnerCategory(
       id: 3,
       titulo: 'Transporte',
       icone: Icons.delivery_dining,
     ),
-    ServiceCategory(
+    PartnerCategory(
       id: 4,
       titulo: 'Banho e Tosa',
       icone: Icons.shower,
     ),
-    ServiceCategory(
+    PartnerCategory(
       id: 5,
       titulo: 'Pet Shop',
       icone: Icons.store,

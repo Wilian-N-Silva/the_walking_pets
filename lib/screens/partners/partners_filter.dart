@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
 
-class ServicesFilter extends StatefulWidget {
-  const ServicesFilter({Key? key, required this.currentFilter})
+class PartnersFilter extends StatefulWidget {
+  const PartnersFilter({Key? key, required this.currentFilter})
       : super(key: key);
 
   final Filter currentFilter;
   @override
-  _ServicesFilterState createState() => _ServicesFilterState();
+  _PartnersFilterState createState() => _PartnersFilterState();
 }
 
-class _ServicesFilterState extends State<ServicesFilter> {
+class _PartnersFilterState extends State<PartnersFilter> {
   final Filter defaultFilter = Filter(maxDistance: 1);
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/screens/adoption/adoption.dart';
-import 'package:the_walking_pets/screens/services/services.dart';
+import 'package:the_walking_pets/screens/partners/partners.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
 
@@ -48,7 +48,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     _Tile(
       title: 'Serviços',
       leading: Icons.store,
-      route: const Services(),
+      route: const Partners(),
     ),
     _Tile(
       title: 'Configurações',

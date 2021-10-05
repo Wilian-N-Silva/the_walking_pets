@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
-import 'package:the_walking_pets/data/services/service_data.dart';
+import 'package:the_walking_pets/data/partners/partner_data.dart';
 import 'package:the_walking_pets/model/services/service.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
-import 'package:the_walking_pets/screens/services/services_filter.dart';
-import 'package:the_walking_pets/screens/services/services_page.dart';
+import 'package:the_walking_pets/screens/partners/partners_filter.dart';
+import 'package:the_walking_pets/screens/partners/partners_page.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
-class Services extends StatefulWidget {
-  const Services({Key? key}) : super(key: key);
+class Partners extends StatefulWidget {
+  const Partners({Key? key}) : super(key: key);
 
   @override
-  _ServicesState createState() => _ServicesState();
+  _PartnersState createState() => _PartnersState();
 }
 
-class _ServicesState extends State<Services> {
+class _PartnersState extends State<Partners> {
   final Geolocator geolocator = Geolocator();
   Position? _currentPosition;
   bool loading = true;
@@ -48,9 +48,9 @@ class _ServicesState extends State<Services> {
     });
   }
 
-  _servicesList() {
+  _partnersList() {
     if (!loading) {
-      List<Service> list = serviceData(context)
+      List<Partner> list = partnerData(context)
           .where((element) =>
               _positionDistance(
                 _currentPosition,
@@ -69,7 +69,7 @@ class _ServicesState extends State<Services> {
           physics: const BouncingScrollPhysics(),
           itemCount: list.length,
           itemBuilder: (BuildContext context, int index) {
-            return serviceInfoTile(
+            return partnerInfoTile(
               context,
               _currentPosition,
               list.elementAt(index),
@@ -88,7 +88,7 @@ class _ServicesState extends State<Services> {
     currentFilter = await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ServicesFilter(
+            builder: (context) => PartnersFilter(
               currentFilter: currentFilter,
             ),
           ),
@@ -96,7 +96,7 @@ class _ServicesState extends State<Services> {
         defaultFilter;
 
     setState(() {
-      _servicesList();
+      _partnersList();
     });
   }
 
@@ -124,7 +124,7 @@ class _ServicesState extends State<Services> {
             ),
 
             // LIST SERVICES
-            _servicesList(),
+            _partnersList(),
 
             // TOP CLIPPATH
             ClipPath(
@@ -171,10 +171,10 @@ class _ServicesState extends State<Services> {
   }
 }
 
-serviceInfoTile(
+partnerInfoTile(
   BuildContext context,
   currentPosition,
-  Service data,
+  Partner data,
 ) {
   return ListTile(
     leading: Icon(data.categoria.icone),
@@ -188,21 +188,21 @@ serviceInfoTile(
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ServicesPage(serviceData: data),
+          builder: (context) => PartnersPage(partnerData: data),
         ),
       );
     },
   );
 }
 
-int _positionDistance(currentPosition, serviceLat, serviceLng) {
+int _positionDistance(currentPosition, partnerPosLat, partnerPosLng) {
   final formatter = NumberFormat.decimalPattern();
 
   final calculate = Geolocator.distanceBetween(
     currentPosition.latitude,
     currentPosition.longitude,
-    serviceLat,
-    serviceLng,
+    partnerPosLat,
+    partnerPosLng,
   ).floor();
 
   int formattedNumber = double.parse(formatter.format(calculate)).round();

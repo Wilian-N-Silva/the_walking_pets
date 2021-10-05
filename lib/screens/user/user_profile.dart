@@ -29,6 +29,11 @@ List<ProfileSettings> profileSettings(BuildContext context) {
       route: const UserProfile(),
     ),
     ProfileSettings(
+      title: 'Meus Locais',
+      icon: Icons.pin_drop,
+      route: const UserProfile(),
+    ),
+    ProfileSettings(
       title: 'Adoção',
       icon: Icons.favorite,
       route: const UserProfile(),

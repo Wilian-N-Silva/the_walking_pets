@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:the_walking_pets/model/services/service.dart';
 
-class ServicesPage extends StatefulWidget {
-  const ServicesPage({Key? key, required this.serviceData}) : super(key: key);
+class PartnersPage extends StatefulWidget {
+  const PartnersPage({Key? key, required this.partnerData}) : super(key: key);
 
-  final Service serviceData;
+  final Partner partnerData;
 
   @override
-  _ServicesPageState createState() => _ServicesPageState();
+  _PartnersPageState createState() => _PartnersPageState();
 }
 
-class _ServicesPageState extends State<ServicesPage> {
+class _PartnersPageState extends State<PartnersPage> {
   @override
   Widget build(BuildContext context) {
-    final serviceData = widget.serviceData;
+    final serviceData = widget.partnerData;
     return Scaffold(
       appBar: AppBar(
         title: Text(serviceData.nome),

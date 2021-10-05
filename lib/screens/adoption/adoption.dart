@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/data/animal_data.dart';
 import 'package:the_walking_pets/screens/adoption/adoption_filter.dart';
-import 'package:the_walking_pets/screens/animal_profile.dart';
+import 'package:the_walking_pets/widgets/animal_profile.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
