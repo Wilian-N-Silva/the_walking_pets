@@ -28,7 +28,13 @@ class MyApp extends StatelessWidget {
       title: 'The Walking Pets',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.lightBlueAccent.shade400,
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.lightBlueAccent.shade400,
+          foregroundColor: Colors.white,
+        ),
       ),
       home: route,
     );

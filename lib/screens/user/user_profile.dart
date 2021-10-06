@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/widgets/curve_clipper.dart';
+import 'package:the_walking_pets/screens/user/my_pets.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
 class UserProfile extends StatefulWidget {
@@ -26,7 +26,7 @@ List<ProfileSettings> profileSettings(BuildContext context) {
     ProfileSettings(
       title: 'Meus Pets',
       icon: Icons.pets,
-      route: const UserProfile(),
+      route: const MyPets(),
     ),
     ProfileSettings(
       title: 'Meus Locais',
@@ -56,6 +56,8 @@ class _UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Meu Perfil'),
+        centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.lightBlueAccent.shade400,
         foregroundColor: Colors.white,
@@ -76,12 +78,12 @@ class _UserProfileState extends State<UserProfile> {
               children: profileSettings(context).map<Widget>((option) {
                 return GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => Widget,
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => option.route,
+                      ),
+                    );
                   },
                   child: GridTile(
                     footer: Material(
