@@ -41,6 +41,14 @@ class _AddPetState extends State<AddPet> {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
+          var snackBar = SnackBar(
+            content: Text(_pickImageError.toString()),
+          );
+
+          if (_pickImageError != null) {
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+
           return SafeArea(
             child: Wrap(
               children: <Widget>[
@@ -71,7 +79,7 @@ class _AddPetState extends State<AddPet> {
         });
   }
 
-  Widget _PetPhoto() {
+  Widget _petPhoto() {
     return Center(
       child: GestureDetector(
         child: Container(
@@ -124,7 +132,7 @@ class _AddPetState extends State<AddPet> {
     );
   }
 
-  late String dropdownValue = "";
+  late String dropdownValue = "Canino";
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +157,7 @@ class _AddPetState extends State<AddPet> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _PetPhoto(),
+                _petPhoto(),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: TextField(
@@ -168,7 +176,7 @@ class _AddPetState extends State<AddPet> {
                       border: OutlineInputBorder(),
                       labelText: 'Espécie',
                     ),
-                    items: <String>['', 'Canino', 'Felino', 'Exótico']
+                    items: <String>['Canino', 'Felino', 'Exótico']
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,

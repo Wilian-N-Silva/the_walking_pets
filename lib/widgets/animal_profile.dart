@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/widgets/animal_profile_share.dart';
+import 'package:the_walking_pets/widgets/view_image.dart';
 
 class AnimalProfileTile {
   AnimalProfileTile({
@@ -108,12 +109,25 @@ class _AnimalProfileState extends State<AnimalProfile> {
               SizedBox(
                 height: screenHeight / 2,
                 width: double.infinity,
-                child: Hero(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ViewImage(
+                          path: animal.foto.toString(),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Hero(
                     tag: animal,
                     child: Image.asset(
                       animal.foto.toString(),
                       fit: BoxFit.cover,
-                    )),
+                    ),
+                  ),
+                ),
               ),
               Container(
                 padding: const EdgeInsets.fromLTRB(

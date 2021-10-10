@@ -11,7 +11,6 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
-    bool commonForm = true;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
@@ -20,7 +19,7 @@ class _SignupPageState extends State<SignupPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              commonForm ? commonUserForm() : partnerUserForm(),
+              commonUserForm(),
             ],
           ),
         ),

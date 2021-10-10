@@ -18,10 +18,6 @@ class _AdoptionState extends State<Adoption> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Encontre seu novo amigo!'),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.lightBlueAccent.shade400,
-        foregroundColor: Colors.white,
       ),
       drawer: const CustomDrawer(),
       body: SafeArea(

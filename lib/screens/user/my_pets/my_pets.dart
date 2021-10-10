@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/screens/user/add_pet.dart';
+import 'package:the_walking_pets/screens/user/my_pets/add_pet.dart';
 
 class MyPets extends StatefulWidget {
   const MyPets({Key? key}) : super(key: key);

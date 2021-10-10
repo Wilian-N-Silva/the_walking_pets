@@ -80,69 +80,36 @@ class _SigninPageState extends State<SigninPage> {
                             MaterialStateProperty.all<Color>(Colors.white),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8.0),
-                      width: 200.0,
-                      child: const Divider(),
-                    ),
-                    platformLoginButton(context, TargetPlatform.android),
-                    const SizedBox(height: 16.0),
-                    platformLoginButton(context, TargetPlatform.iOS),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 16.0),
-                      width: 200.0,
-                      child: const Divider(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Não tem uma conta?'),
-                        TextButton(
-                          child: const Text(
-                            'Cadastre-se',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignupPage(),
-                              ),
-                            );
-                          },
-                        )
-                      ],
-                    )
                   ],
                 ),
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Não tem uma conta?'),
+                  TextButton(
+                    child: const Text(
+                      'Cadastre-se',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignupPage(),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
             ],
           ),
         ),
       ),
     );
   }
-}
-
-Widget platformLoginButton(BuildContext context, TargetPlatform platform) {
-  return ElevatedButton(
-    onPressed: null,
-    child: Text(
-      'Entrar com ${platform == TargetPlatform.iOS ? 'Apple' : 'Google'}',
-    ),
-    style: ButtonStyle(
-      fixedSize: MaterialStateProperty.all<Size>(
-        const Size(256, 48),
-      ),
-      backgroundColor: MaterialStateProperty.all<Color>(
-        Colors.lightBlueAccent.shade400,
-      ),
-      foregroundColor: MaterialStateProperty.all<Color>(
-        Colors.white,
-      ),
-    ),
-  );
 }
