@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/core/settings/settings.dart';
 import 'package:the_walking_pets/screens/adoption/adoption.dart';
+import 'package:the_walking_pets/screens/lost_and_found/lost_and_found.dart';
 import 'package:the_walking_pets/screens/partners/partners.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/widgets/curve_clipper.dart';
@@ -43,7 +45,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     _Tile(
       title: 'Achados e Perdidos',
       leading: Icons.screen_search_desktop_outlined,
-      route: const Adoption(),
+      route: const LostAndFound(),
     ),
     _Tile(
       title: 'Serviços',
@@ -53,7 +55,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     _Tile(
       title: 'Configurações',
       leading: Icons.settings,
-      route: const Adoption(),
+      route: const Settings(),
     ),
   ];
   @override

@@ -16,6 +16,8 @@ List<Animal> animalData(BuildContext context) {
       foto: 'assets/placeholder_pets/dog/3.jpg',
       pelagem: null,
       peso: 20.5,
+      perdido: false,
+      achado: false,
     ),
     Animal(
       nome: 'Juninho',
@@ -30,6 +32,8 @@ List<Animal> animalData(BuildContext context) {
       foto: 'assets/placeholder_pets/dog/5.jpg',
       pelagem: null,
       peso: 5.0,
+      perdido: false,
+      achado: false,
     ),
   ];
 }

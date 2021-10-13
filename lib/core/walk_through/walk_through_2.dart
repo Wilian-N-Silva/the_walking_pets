@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:the_walking_pets/screens/onboarding/step_one.dart';
-import 'package:the_walking_pets/screens/onboarding/step_three.dart';
+import 'package:the_walking_pets/core/walk_through/walk_through_1.dart';
+import 'package:the_walking_pets/core/walk_through/walk_through_3.dart';
 import 'package:the_walking_pets/widgets/step_button.dart';
 
-class OnboardingStepTwo extends StatelessWidget {
-  const OnboardingStepTwo({Key? key}) : super(key: key);
+class WalkThrough2 extends StatelessWidget {
+  const WalkThrough2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +91,9 @@ class OnboardingStepTwo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   onboardingStepButton(
-                      context, const OnboardingStepOne(), 'Voltar', false),
+                      context, const WalkThrough1(), 'Voltar', false),
                   onboardingStepButton(
-                      context, const OnboardingStepThree(), 'Próximo', false),
+                      context, const WalkThrough3(), 'Próximo', false),
                 ],
               ),
             )

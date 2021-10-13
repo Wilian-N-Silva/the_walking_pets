@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_walking_pets/screens/signin.dart';
-import 'package:the_walking_pets/screens/onboarding/step_one.dart';
+import 'package:the_walking_pets/config/themes/default_theme.dart';
+import 'package:the_walking_pets/config/themes/dark_theme.dart';
+import 'package:the_walking_pets/core/walk_through/walk_through_1.dart';
+import 'package:the_walking_pets/core/auth/signin.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,7 +13,7 @@ Future<void> main() async {
 
   runApp(MyApp(
     route: prefs.getBool('onboarding') == null
-        ? const OnboardingStepOne()
+        ? const WalkThrough1()
         : const SigninPage(),
     // route: OnboardingStepOne(),
   ));
@@ -24,32 +26,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkTheme = false;
     return MaterialApp(
       title: 'The Walking Pets',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        // colorScheme: ColorScheme(
-        //     // Theme.of(context).colorScheme.primary
-        //     primary: Colors.lightBlueAccent.shade400,
-        //     primaryVariant: Colors.lightBlueAccent.shade700,
-        //     secondary: Colors.lightBlueAccent.shade700,
-        //     secondaryVariant: Colors.lightBlueAccent.shade700,
-        //     surface: Colors.lightBlueAccent.shade400,
-        //     background: Colors.lightBlueAccent.shade400,
-        //     error: Colors.lightBlueAccent.shade400,
-        //     onPrimary: Colors.lightBlueAccent.shade400,
-        //     onSecondary: Colors.lightBlueAccent.shade400,
-        //     onSurface: Colors.lightBlueAccent.shade400,
-        //     onBackground: Colors.lightBlueAccent.shade400,
-        //     onError: Colors.lightBlueAccent.shade400,
-        //     brightness: Brightness.light),
-        appBarTheme: AppBarTheme(
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: Colors.lightBlueAccent.shade400,
-          foregroundColor: Colors.white,
-        ),
-      ),
+      theme: isDarkTheme ? darkThemeData : defaultThemeData,
       home: route,
     );
   }

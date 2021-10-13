@@ -36,12 +36,12 @@ class _PartnersState extends State<Partners> {
         .then((Position position) {
       setState(() {
         _currentPosition = position;
-
         setState(() {
           loading = false;
         });
       });
     }).catchError((e) {
+      // print(e);
       const SnackBar(
         content: Text('Erro ao capturar localização atual'),
       );

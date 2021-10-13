@@ -7,14 +7,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:the_walking_pets/core/walk_through/walk_through_1.dart';
 
 import 'package:the_walking_pets/main.dart';
-import 'package:the_walking_pets/screens/onboarding/step_one.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp(route: OnboardingStepOne()));
+    await tester.pumpWidget(const MyApp(route: WalkThrough1()));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

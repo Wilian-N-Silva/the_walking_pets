@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:the_walking_pets/screens/signin.dart';
-import 'package:the_walking_pets/screens/onboarding/step_two.dart';
+import 'package:the_walking_pets/core/walk_through/walk_through_2.dart';
+import 'package:the_walking_pets/core/auth/signin.dart';
 import 'package:the_walking_pets/widgets/step_button.dart';
 
-class OnboardingStepOne extends StatelessWidget {
-  const OnboardingStepOne({Key? key}) : super(key: key);
+class WalkThrough1 extends StatelessWidget {
+  const WalkThrough1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class OnboardingStepOne extends StatelessWidget {
                   onboardingStepButton(
                       context, const SigninPage(), 'Pular', true),
                   onboardingStepButton(
-                      context, const OnboardingStepTwo(), 'Próximo', false),
+                      context, const WalkThrough2(), 'Próximo', false),
                 ],
               ),
             )

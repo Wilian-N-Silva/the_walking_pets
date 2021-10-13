@@ -13,7 +13,8 @@ class Animal {
     required this.castrado,
     required this.vacinado,
     required this.foto,
-    this.perdido,
+    required this.perdido,
+    required this.achado,
     this.identificacao,
   });
 
@@ -30,6 +31,7 @@ class Animal {
   final bool castrado;
   final bool vacinado;
   final String foto;
-  final bool? perdido;
+  final bool perdido;
+  final bool achado;
   final String? identificacao;
 }

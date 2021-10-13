@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:rive/rive.dart';
 import 'package:the_walking_pets/screens/adoption/adoption.dart';
-import 'package:the_walking_pets/screens/signup.dart';
+import 'package:the_walking_pets/core/auth/signup.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _SigninPageState extends State<SigninPage> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 4,
+                    height: MediaQuery.of(context).size.height / 3,
                     child: const RiveAnimation.asset(
                       'assets/animations/blue/cautious_dog_bro.riv',
                     ),
