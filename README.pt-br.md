@@ -2,6 +2,8 @@
 
 <p align="center">Encontre seu mais novo amigo Pet!</p>
 
+<p align="center"><img src="readme_assets/walkthrough_screenshot.png"></p>
+
 ## Sobre o projeto
 
 Um projeto que tem como premissa, facilitar a adoção de animais domésticos, nos quais foram cadastrados através de doadores como ONGs ou pessoas físicas que desejam doar seus pets. Além disso, o projeto tem como objetivo secundário, auxiliar tutores de pets a encontrarem seus animais perdidos, através de anúncio feito por ele ou por terceiros que o tenham encontrado algum animal em situação de rua

@@ -2,6 +2,8 @@
 
 <p align="center">Find Your Newest Pet Friend!</p>
 
+<p align="center"><img src="readme_assets/walkthrough_screenshot.png"></p>
+
 ## About The Project
 
 A project whose premise is to facilitate the adoption of domestic animals, which have been registered through donors such as NGOs or individuals who wish to donate their pets. In addition, the project's secondary objective is to help pet tutors find their lost animals, through an advertisement made by him or by third parties who have found him a homeless animal.
