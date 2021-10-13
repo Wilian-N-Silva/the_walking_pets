@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Widget onboardingStepButton(
+Widget walkThroughStepButton(
   BuildContext context,
   route,
   String title,
@@ -13,7 +13,6 @@ Widget onboardingStepButton(
       if (replace) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool('onboarding', true);
-
         Navigator.pushReplacement<void, void>(
           context,
           MaterialPageRoute<void>(
@@ -23,7 +22,9 @@ Widget onboardingStepButton(
       } else {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => route),
+          MaterialPageRoute<void>(
+            builder: (context) => route,
+          ),
         );
       }
     },

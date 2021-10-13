@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/data/animal_data.dart';
-import 'package:the_walking_pets/screens/adoption/adoption_filter.dart';
-import 'package:the_walking_pets/widgets/animal_tile.dart';
-import 'package:the_walking_pets/widgets/curve_clipper.dart';
+import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
+import 'package:the_walking_pets/util/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
-class Adoption extends StatefulWidget {
-  const Adoption({Key? key}) : super(key: key);
+class LostAndFound extends StatefulWidget {
+  const LostAndFound({Key? key}) : super(key: key);
 
   @override
-  _AdoptionState createState() => _AdoptionState();
+  _LostAndFoundState createState() => _LostAndFoundState();
 }
 
-class _AdoptionState extends State<Adoption> {
+class _LostAndFoundState extends State<LostAndFound> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Encontre seu novo amigo!'),
+        title: const Text('Achados e Perdidos'),
       ),
       drawer: const CustomDrawer(),
       body: SafeArea(
@@ -35,7 +34,7 @@ class _AdoptionState extends State<Adoption> {
             // GRID ANIMALS
             Container(
               margin: EdgeInsets.only(
-                top: ((MediaQuery.of(context).size.height / 7) - 24),
+                top: ((MediaQuery.of(context).size.height / 7) - 24.0),
               ),
               child: GridView.count(
                 physics: const BouncingScrollPhysics(),
@@ -68,14 +67,7 @@ class _AdoptionState extends State<Adoption> {
               height: 50.0,
               child: Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AdoptionFilter(),
-                      ),
-                    );
-                  },
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [

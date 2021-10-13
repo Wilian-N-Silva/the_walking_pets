@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/screens/user/my_locals/my_locals.dart';
-import 'package:the_walking_pets/screens/user/my_pets/my_pets.dart';
+import 'package:the_walking_pets/ui/user/my_locals/my_locals.dart';
+import 'package:the_walking_pets/ui/user/my_pets/my_pets.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
 class UserProfile extends StatefulWidget {

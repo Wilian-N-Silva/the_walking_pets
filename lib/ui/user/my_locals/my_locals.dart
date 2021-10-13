@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/screens/user/my_locals/add_local.dart';
+import 'package:the_walking_pets/ui/user/my_locals/add_local.dart';
 
 class MyLocals extends StatefulWidget {
   const MyLocals({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:the_walking_pets/core/auth/signin.dart';
 import 'package:the_walking_pets/core/walk_through/walk_through_2.dart';
-import 'package:the_walking_pets/widgets/step_button.dart';
+import 'package:the_walking_pets/widgets/walk_through_step_button.dart';
 
 class WalkThrough3 extends StatelessWidget {
   const WalkThrough3({Key? key}) : super(key: key);
@@ -47,9 +47,9 @@ class WalkThrough3 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  onboardingStepButton(
+                  walkThroughStepButton(
                       context, const WalkThrough2(), 'Voltar', false),
-                  onboardingStepButton(
+                  walkThroughStepButton(
                       context, const SigninPage(), 'Próximo', true),
                 ],
               ),
