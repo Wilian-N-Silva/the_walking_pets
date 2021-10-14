@@ -15,7 +15,7 @@ Future<void> main() async {
     route: prefs.getBool('onboarding') == null
         ? const WalkThrough1()
         : const SigninPage(),
-    // route: OnboardingStepOne(),
+    // route: WalkThrough1(),
   ));
 }
 

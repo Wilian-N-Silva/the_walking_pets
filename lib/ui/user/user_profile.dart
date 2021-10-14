@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/ui/user/my_adoptions/adoption_list.dart';
 import 'package:the_walking_pets/ui/user/my_locals/my_locals.dart';
 import 'package:the_walking_pets/ui/user/my_pets/my_pets.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
@@ -37,7 +38,7 @@ List<ProfileSettings> profileSettings(BuildContext context) {
     ProfileSettings(
       title: 'Adoção',
       icon: Icons.favorite,
-      route: const UserProfile(),
+      route: const AdoptionList(),
     ),
     ProfileSettings(
       title: 'Doação',

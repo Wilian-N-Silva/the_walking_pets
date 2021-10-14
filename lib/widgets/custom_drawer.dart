@@ -37,11 +37,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
       leading: Icons.favorite,
       route: const Adoption(),
     ),
-    _Tile(
-      title: 'Doação',
-      leading: Icons.home,
-      route: const Adoption(),
-    ),
+    // _Tile(
+    //   title: 'Doação',
+    //   leading: Icons.home,
+    //   route: const Adoption(),
+    // ),
     _Tile(
       title: 'Achados e Perdidos',
       leading: Icons.screen_search_desktop_outlined,
