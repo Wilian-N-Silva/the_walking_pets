@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/data/partners/partner_category_data.dart';
+import 'package:the_walking_pets/model/services/service_category.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
 
 class PartnersFilter extends StatefulWidget {
@@ -11,11 +13,47 @@ class PartnersFilter extends StatefulWidget {
 }
 
 class _PartnersFilterState extends State<PartnersFilter> {
-  final Filter defaultFilter = Filter(maxDistance: 1);
+  final Filter defaultFilter = Filter(maxDistance: 1, categories: []);
 
   @override
   Widget build(BuildContext context) {
     Filter _currentFilter = widget.currentFilter;
+
+    Widget customFilterChip(String label, IconData icon) {
+      return FilterChip(
+        avatar: CircleAvatar(
+          child: Icon(
+            icon,
+            color: _currentFilter.categories.contains(label)
+                ? Colors.white
+                : Colors.black,
+          ),
+          backgroundColor: Colors.transparent,
+        ),
+        label: Text(
+          label,
+          style: TextStyle(
+            color: _currentFilter.categories.contains(label)
+                ? Colors.white
+                : Colors.black,
+          ),
+        ),
+        selectedColor: Colors.blue,
+        selected: _currentFilter.categories.contains(label),
+        onSelected: (bool selected) {
+          setState(() {
+            if (selected) {
+              _currentFilter.categories.add(label);
+            } else {
+              _currentFilter.categories.removeWhere((String name) {
+                return name == label;
+              });
+            }
+          });
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Filtro'),
@@ -65,49 +103,56 @@ class _PartnersFilterState extends State<PartnersFilter> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 6,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Distância',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        Text(
-                          '${_currentFilter.maxDistance.round()} km',
-                          style: const TextStyle(color: Colors.black54),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text('1 km'),
-                            Text('100 km'),
-                          ],
-                        ),
-                        Slider(
-                          value: _currentFilter.maxDistance,
-                          min: 1,
-                          max: 100,
-                          onChanged: (double value) {
-                            setState(() {
-                              _currentFilter.maxDistance = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Distância',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                  Text(
+                    '${_currentFilter.maxDistance.round()} km',
+                    style: const TextStyle(color: Colors.black54),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text('1 km'),
+                      Text('100 km'),
+                    ],
+                  ),
+                  Slider(
+                    value: _currentFilter.maxDistance,
+                    min: 1,
+                    max: 100,
+                    onChanged: (double value) {
+                      setState(() {
+                        _currentFilter.maxDistance = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Tipos de Serviços',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Wrap(
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    children: partnerCategoryData(context)
+                        .map(
+                          (e) => customFilterChip(e.titulo, e.icone),
+                        )
+                        .toList(),
+                  )
+                ],
+              ),
             ],
           ),
         ),

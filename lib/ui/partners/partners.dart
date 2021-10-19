@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
+import 'package:the_walking_pets/data/partners/partner_category_data.dart';
 import 'package:the_walking_pets/data/partners/partner_data.dart';
 import 'package:the_walking_pets/model/services/service.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
@@ -20,9 +22,9 @@ class _PartnersState extends State<Partners> {
   final Geolocator geolocator = Geolocator();
   Position? _currentPosition;
   bool loading = true;
-  final Filter defaultFilter = Filter(maxDistance: 100);
+  final Filter defaultFilter = Filter(maxDistance: 100, categories: []);
 
-  Filter currentFilter = Filter(maxDistance: 50);
+  Filter currentFilter = Filter(maxDistance: 50, categories: []);
 
   @override
   void initState() {
@@ -51,34 +53,41 @@ class _PartnersState extends State<Partners> {
   _partnersList() {
     if (!loading) {
       List<Partner> list = partnerData(context)
-          .where((element) =>
+          .where((e) =>
               _positionDistance(
                 _currentPosition,
-                element.coordLat,
-                element.coordLng,
+                e.coordLat,
+                e.coordLng,
               ) <
               currentFilter.maxDistance)
+          .where((e) => currentFilter.categories.isNotEmpty
+              ? currentFilter.categories.contains(e.categoria.titulo)
+              : true)
           .toList();
 
-      return Container(
-        margin: EdgeInsets.only(
-          top: ((MediaQuery.of(context).size.height / 7) - 24),
-        ),
-        padding: const EdgeInsets.only(top: 16.0),
-        child: ListView.separated(
-          physics: const BouncingScrollPhysics(),
-          itemCount: list.length,
-          itemBuilder: (BuildContext context, int index) {
-            return partnerInfoTile(
-              context,
-              _currentPosition,
-              list.elementAt(index),
+      return list.isEmpty
+          ? const Center(
+              child: Text('Nenhum resultado encontrado'),
+            )
+          : Container(
+              margin: EdgeInsets.only(
+                top: ((MediaQuery.of(context).size.height / 7) - 24),
+              ),
+              padding: const EdgeInsets.only(top: 16.0),
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemCount: list.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return partnerInfoTile(
+                    context,
+                    _currentPosition,
+                    list.elementAt(index),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+              ),
             );
-          },
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
-        ),
-      );
     } else {
       return const Center(child: CircularProgressIndicator());
     }
