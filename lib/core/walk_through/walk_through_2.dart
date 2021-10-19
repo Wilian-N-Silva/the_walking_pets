@@ -55,49 +55,52 @@ class WalkThrough2 extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            // Textos
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Ajudar ou pedir ajuda com algum pet perdido',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 40.0,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // Textos
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      'Ajudar ou pedir ajuda com algum pet perdido',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 40.0,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
 
-            // Animação
-            const SizedBox(
-              height: 300.0,
-              child: RiveAnimation.asset(
-                'assets/animations/blue/good_doggy_bro.riv',
+              // Animação
+              const SizedBox(
+                height: 300.0,
+                child: RiveAnimation.asset(
+                  'assets/animations/blue/good_doggy_bro.riv',
+                ),
               ),
-            ),
 
-            // Botões
-            SizedBox(
-              height: 50.0,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  walkThroughStepButton(
-                      context, const WalkThrough1(), 'Voltar', false),
-                  walkThroughStepButton(
-                      context, const WalkThrough3(), 'Próximo', false),
-                ],
-              ),
-            )
-          ],
+              // Botões
+              SizedBox(
+                height: 50.0,
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    walkThroughStepButton(
+                        context, const WalkThrough1(), 'Voltar', false),
+                    walkThroughStepButton(
+                        context, const WalkThrough3(), 'Próximo', false),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

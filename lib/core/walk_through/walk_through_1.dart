@@ -11,71 +11,74 @@ class WalkThrough1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            // Textos
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Seja bem-vindo(a) ao',
-                    style: TextStyle(
-                      fontSize: 20.0,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // Textos
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Seja bem-vindo(a) ao',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: const [
-                        Text(
-                          'The Walking Pets',
-                          style: TextStyle(
-                            fontSize: 25.0,
-                            fontWeight: FontWeight.bold,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: const [
+                          Text(
+                            'The Walking Pets',
+                            style: TextStyle(
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'Aqui você pode encontrar seu mais novo amigo pet',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 40.0,
+                          Text(
+                            'Aqui você pode encontrar seu mais novo amigo pet',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 40.0,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
 
-            // Animação
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 3,
-              child: const RiveAnimation.asset(
-                'assets/animations/blue/good_doggy_pana.riv',
-                animations: ['intro', 'idle'],
+              // Animação
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 3,
+                child: const RiveAnimation.asset(
+                  'assets/animations/blue/good_doggy_pana.riv',
+                  animations: ['intro', 'idle'],
+                ),
               ),
-            ),
 
-            // Botões
-            SizedBox(
-              height: 50.0,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  walkThroughStepButton(
-                      context, const SigninPage(), 'Pular', true),
-                  walkThroughStepButton(
-                      context, const WalkThrough2(), 'Próximo', false),
-                ],
-              ),
-            )
-          ],
+              // Botões
+              SizedBox(
+                height: 50.0,
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    walkThroughStepButton(
+                        context, const SigninPage(), 'Pular', true),
+                    walkThroughStepButton(
+                        context, const WalkThrough2(), 'Próximo', false),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
