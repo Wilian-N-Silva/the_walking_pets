@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_walking_pets/config/themes/default_theme.dart';
 import 'package:the_walking_pets/config/themes/dark_theme.dart';
@@ -31,6 +32,13 @@ class MyApp extends StatelessWidget {
       title: 'The Walking Pets',
       debugShowCheckedModeBanner: false,
       theme: isDarkTheme ? darkThemeData : defaultThemeData,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: const [
+        Locale('pt', 'BR'),
+      ],
       home: route,
     );
   }

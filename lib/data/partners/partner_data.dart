@@ -12,6 +12,7 @@ List<Partner> partnerData(BuildContext context) {
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 1)
           .first,
+      premium: false,
     ),
     Partner(
       // UNINOVE CAMPUS VERGUEIRO
@@ -21,6 +22,17 @@ List<Partner> partnerData(BuildContext context) {
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 4)
           .first,
+      premium: false,
+    ),
+    Partner(
+      // UNINOVE CAMPUS VERGUEIRO
+      nome: 'IX vai cedo',
+      coordLat: -23.564080268829915,
+      coordLng: -46.638072393193546,
+      categoria: partnerCategoryData(context)
+          .where((element) => element.id == 4)
+          .first,
+      premium: true,
     ),
     Partner(
       // UNINOVE CAMPUS MEMORIAL
@@ -30,6 +42,7 @@ List<Partner> partnerData(BuildContext context) {
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 2)
           .first,
+      premium: false,
     ),
     Partner(
       // UNINOVE CAMPUS VILA PRUDENTE
@@ -39,6 +52,7 @@ List<Partner> partnerData(BuildContext context) {
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 3)
           .first,
+      premium: false,
     ),
   ];
 }

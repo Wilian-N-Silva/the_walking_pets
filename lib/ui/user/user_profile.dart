@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/ui/user/my_adoptions/adoption_list.dart';
+import 'package:the_walking_pets/ui/user/my_data.dart';
 import 'package:the_walking_pets/ui/user/my_locals/my_locals.dart';
 import 'package:the_walking_pets/ui/user/my_pets/my_pets.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
@@ -25,6 +26,11 @@ class ProfileSettings {
 
 List<ProfileSettings> profileSettings(BuildContext context) {
   return [
+    ProfileSettings(
+      title: 'Meus Dados',
+      icon: Icons.person,
+      route: const MyData(),
+    ),
     ProfileSettings(
       title: 'Meus Pets',
       icon: Icons.pets,

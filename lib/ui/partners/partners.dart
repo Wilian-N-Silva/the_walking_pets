@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
-import 'package:the_walking_pets/data/partners/partner_category_data.dart';
 import 'package:the_walking_pets/data/partners/partner_data.dart';
 import 'package:the_walking_pets/model/services/service.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
@@ -34,6 +33,7 @@ class _PartnersState extends State<Partners> {
   }
 
   _getCurrentLocation() {
+    loading = true;
     Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
         .then((Position position) {
       setState(() {
@@ -53,17 +53,36 @@ class _PartnersState extends State<Partners> {
   _partnersList() {
     if (!loading) {
       List<Partner> list = partnerData(context)
-          .where((e) =>
-              _positionDistance(
-                _currentPosition,
-                e.coordLat,
-                e.coordLng,
-              ) <
-              currentFilter.maxDistance)
+          .where((e) {
+            int distance = _positionDistance(
+              _currentPosition,
+              e.coordLat,
+              e.coordLng,
+            );
+
+            return distance >= 0 && distance < currentFilter.maxDistance;
+          })
           .where((e) => currentFilter.categories.isNotEmpty
               ? currentFilter.categories.contains(e.categoria.titulo)
               : true)
+          .where((e) => e.premium)
           .toList();
+
+      list.addAll(partnerData(context)
+          .where((e) {
+            int distance = _positionDistance(
+              _currentPosition,
+              e.coordLat,
+              e.coordLng,
+            );
+
+            return distance >= 0 && distance < currentFilter.maxDistance;
+          })
+          .where((e) => currentFilter.categories.isNotEmpty
+              ? currentFilter.categories.contains(e.categoria.titulo)
+              : true)
+          .where((e) => !e.premium)
+          .toList());
 
       return list.isEmpty
           ? const Center(
@@ -93,6 +112,72 @@ class _PartnersState extends State<Partners> {
     }
   }
 
+  _partnersListPremium() {
+    if (!loading) {
+      List<Partner> listPremium = partnerData(context)
+          .where((e) {
+            int distance = _positionDistance(
+              _currentPosition,
+              e.coordLat,
+              e.coordLng,
+            );
+
+            return distance >= 0 && distance < currentFilter.maxDistance;
+          })
+          .where((e) => currentFilter.categories.isNotEmpty
+              ? currentFilter.categories.contains(e.categoria.titulo)
+              : true)
+          .where((e) => e.premium)
+          .toList();
+
+      List<Partner> list = partnerData(context)
+          .where((e) {
+            int distance = _positionDistance(
+              _currentPosition,
+              e.coordLat,
+              e.coordLng,
+            );
+
+            return distance >= 0 && distance < currentFilter.maxDistance;
+          })
+          .where((e) => currentFilter.categories.isNotEmpty
+              ? currentFilter.categories.contains(e.categoria.titulo)
+              : true)
+          .where((e) => !e.premium)
+          .toList();
+
+      return list.isEmpty && listPremium.isEmpty
+          ? const Center(
+              child: Text('Nenhum resultado encontrado'),
+            )
+          : Container(
+              margin: EdgeInsets.only(
+                top: ((MediaQuery.of(context).size.height / 7) - 24),
+              ),
+              width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.only(top: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text('Parceiros destaque'),
+                  CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return partnerInfoTile(
+                              context, _currentPosition, listPremium[index]);
+                        }, childCount: listPremium.length),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            );
+    } else {
+      return const Center(child: CircularProgressIndicator());
+    }
+  }
+
   _openFilter(BuildContext context) async {
     currentFilter = await Navigator.push(
           context,
@@ -105,7 +190,8 @@ class _PartnersState extends State<Partners> {
         defaultFilter;
 
     setState(() {
-      _partnersList();
+      _getCurrentLocation();
+      _partnersListPremium();
     });
   }
 
@@ -133,7 +219,7 @@ class _PartnersState extends State<Partners> {
             ),
 
             // LIST SERVICES
-            _partnersList(),
+            // _partnersListPremium(),
 
             // TOP CLIPPATH
             ClipPath(
@@ -185,10 +271,26 @@ partnerInfoTile(
   currentPosition,
   Partner data,
 ) {
+  Widget isPremium = data.premium
+      ? Row(
+          children: [
+            const Icon(
+              Icons.star,
+              size: 16.0,
+              color: Colors.black54,
+            ),
+            const SizedBox(
+              width: 8.0,
+            ),
+            Text(data.nome),
+          ],
+        )
+      : Text(data.nome);
   return ListTile(
     leading: Icon(data.categoria.icone),
-    title: Text(data.nome),
+    title: isPremium,
     subtitle: Text(data.categoria.titulo),
+    isThreeLine: false,
     trailing: Text(
       '${_positionDistance(currentPosition, data.coordLat, data.coordLng).toString()} km',
     ),
@@ -214,7 +316,11 @@ int _positionDistance(currentPosition, partnerPosLat, partnerPosLng) {
     partnerPosLng,
   ).floor();
 
-  int formattedNumber = double.parse(formatter.format(calculate)).round();
+  try {
+    int formattedNumber = double.parse(formatter.format(calculate)).round();
 
-  return formattedNumber;
+    return formattedNumber;
+  } catch (e) {
+    return -1;
+  }
 }
