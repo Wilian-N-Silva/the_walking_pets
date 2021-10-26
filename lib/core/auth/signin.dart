@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:rive/rive.dart';
+import 'package:the_walking_pets/core/signup/onboarding.dart';
 import 'package:the_walking_pets/ui/adoption/adoption.dart';
-import 'package:the_walking_pets/core/auth/signup.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
@@ -99,7 +99,7 @@ class _SigninPageState extends State<SigninPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SignupPage(),
+                          builder: (context) => const SignupOnboarding(),
                         ),
                       );
                     },

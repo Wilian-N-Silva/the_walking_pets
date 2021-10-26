@@ -4,6 +4,11 @@ import 'package:the_walking_pets/model/animal/animal.dart';
 List<Animal> animalData(BuildContext context) {
   return [
     Animal(
+      perdido: false,
+      achado: false,
+      foto: 'assets/placeholder_pets/dog/1.jpg',
+    ),
+    Animal(
       nome: 'Mel',
       especie: 'Canino',
       raca: 'SRD',
@@ -20,6 +25,7 @@ List<Animal> animalData(BuildContext context) {
       achado: false,
     ),
     Animal(
+      userId: 1,
       nome: 'Juninho',
       especie: 'Canino',
       raca: 'SRD',

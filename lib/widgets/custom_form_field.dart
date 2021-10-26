@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 Widget customFormField(
     {required String label,
@@ -10,7 +9,11 @@ Widget customFormField(
     String? hint,
     TextInputType? inputType,
     List<TextInputFormatter>? formatterList,
-    String? value}) {
+    String? value,
+    TextInputAction? action,
+    Function()? onTap,
+    Function(String)? onChanged,
+    Function(String)? onSubmited}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: TextFormField(
@@ -19,6 +22,11 @@ Widget customFormField(
       initialValue: value,
       readOnly: isReadOnly ?? false,
       inputFormatters: formatterList,
+      textInputAction: action,
+      onFieldSubmitted: onSubmited,
+      controller: controller,
+      onTap: onTap,
+      onChanged: onChanged,
       decoration: InputDecoration(
         label: Text(label),
         border: const OutlineInputBorder(),
@@ -30,7 +38,6 @@ Widget customFormField(
         }
         return null;
       },
-      controller: controller,
     ),
   );
 }

@@ -41,11 +41,13 @@ Widget animalTile(BuildContext context, Animal animal) {
         clipBehavior: Clip.antiAlias,
         child: GridTileBar(
           backgroundColor: Colors.black45,
-          title: Text(animal.nome.toString()),
+          title: Text(animal.nome ?? 'Sem nome'),
           trailing: Icon(
-            animal.sexo.toString().toLowerCase() == 'macho'
-                ? Icons.male
-                : Icons.female,
+            animal.sexo != null
+                ? animal.sexo.toString().toLowerCase() == 'macho'
+                    ? Icons.male
+                    : Icons.female
+                : Icons.help,
             color: Colors.white,
           ),
         ),

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:the_walking_pets/data/user_data.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/util/age_helpers.dart';
+import 'package:the_walking_pets/util/data_formatter.dart';
+import 'package:the_walking_pets/util/date_picker.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
 class AdoptionForm extends StatefulWidget {
@@ -13,8 +18,27 @@ class AdoptionForm extends StatefulWidget {
 
 class _AdoptionFormState extends State<AdoptionForm> {
   final TextEditingController _userName = TextEditingController();
+  final TextEditingController _userBirthday = TextEditingController();
+  final TextEditingController _userEmail = TextEditingController();
+  final TextEditingController _userPhone = TextEditingController();
+  final TextEditingController _userCellphone = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _userName.text = currentUser.nome;
+    _userEmail.text = currentUser.email;
+    _userBirthday.text =
+        DateFormat('dd/MM/yyyy').format(currentUser.dtNasc!).toString();
+    _userPhone.text = DataFormatters()
+        .brazilianPhoneMask
+        .maskText(currentUser.telefone.toString());
+    _userCellphone.text = DataFormatters()
+        .brazilianCellphoneMask
+        .maskText(currentUser.celular.toString());
+  }
 
   _saveUser() {
     if (_formKey.currentState!.validate()) {
@@ -27,7 +51,7 @@ class _AdoptionFormState extends State<AdoptionForm> {
     Animal animal = widget.animal;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Formulário de Adoção'),
+        title: const Text('Formulário de Triagem'),
         centerTitle: true,
         actions: [
           TextButton(
@@ -68,8 +92,38 @@ class _AdoptionFormState extends State<AdoptionForm> {
                 ),
               ),
               customFormField(
-                label: 'Nome',
+                label: 'Nome completo',
                 controller: _userName,
+              ),
+              customFormField(
+                label: 'Data de Nascimento',
+                isReadOnly: true,
+                controller: _userBirthday,
+                onTap: () async {
+                  _userBirthday.text = await selectDate(
+                    context,
+                    _userBirthday.text,
+                  );
+                },
+              ),
+              customFormField(
+                label: 'E-mail',
+                isReadOnly: true,
+                controller: _userEmail,
+              ),
+              customFormField(
+                label: 'Telefone Fixo',
+                isReadOnly: false,
+                inputType: TextInputType.number,
+                controller: _userPhone,
+                formatterList: [DataFormatters().brazilianPhoneMask],
+              ),
+              customFormField(
+                label: 'Telefone Celular',
+                isReadOnly: false,
+                inputType: TextInputType.number,
+                controller: _userCellphone,
+                formatterList: [DataFormatters().brazilianCellphoneMask],
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -84,6 +138,14 @@ class _AdoptionFormState extends State<AdoptionForm> {
                 isReadOnly: false,
               ),
               customFormField(label: 'Espécie', value: animal.especie),
+              customFormField(label: 'Sexo', value: animal.sexo),
+              customFormField(label: 'Porte', value: animal.porte),
+              customFormField(
+                label: 'Idade',
+                value: animal.idade != null
+                    ? ageFormatter(animal.idade!)
+                    : 'Sem informações',
+              ),
             ],
           ),
         ),

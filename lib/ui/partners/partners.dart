@@ -219,8 +219,7 @@ class _PartnersState extends State<Partners> {
             ),
 
             // LIST SERVICES
-            // _partnersListPremium(),
-
+            _partnersList(),
             // TOP CLIPPATH
             ClipPath(
               clipper: CurveClipper(),

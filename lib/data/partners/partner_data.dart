@@ -16,23 +16,13 @@ List<Partner> partnerData(BuildContext context) {
     ),
     Partner(
       // UNINOVE CAMPUS VERGUEIRO
-      nome: 'Lava Rápido Bom pra Cachorro',
+      nome: 'Bom pra Cachorro',
       coordLat: -23.564080268829915,
       coordLng: -46.638072393193546,
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 4)
           .first,
       premium: false,
-    ),
-    Partner(
-      // UNINOVE CAMPUS VERGUEIRO
-      nome: 'IX vai cedo',
-      coordLat: -23.564080268829915,
-      coordLng: -46.638072393193546,
-      categoria: partnerCategoryData(context)
-          .where((element) => element.id == 4)
-          .first,
-      premium: true,
     ),
     Partner(
       // UNINOVE CAMPUS MEMORIAL

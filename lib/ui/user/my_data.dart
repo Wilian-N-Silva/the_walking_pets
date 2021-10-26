@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:the_walking_pets/util/cellphone_formatter.dart';
+import 'package:the_walking_pets/data/user_data.dart';
+import 'package:the_walking_pets/util/data_formatter.dart';
+import 'package:the_walking_pets/util/date_picker.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
 class MyData extends StatefulWidget {
@@ -13,12 +14,33 @@ class MyData extends StatefulWidget {
 
 class _MyDataState extends State<MyData> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _birthDay = TextEditingController();
   final TextEditingController _name = TextEditingController();
-  DateTime _selectedDate = DateTime.now();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _birthDay = TextEditingController();
+  final TextEditingController _phone = TextEditingController();
+  final TextEditingController _cellphone = TextEditingController();
 
   _saveData() {
     print(_name.text);
+    print(_email.text);
+    print(DateFormat('dd/MM/yyyy').parse(_birthDay.text));
+    print(_phone.text);
+    print(_cellphone.text);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _name.text = currentUser.nome;
+    _email.text = currentUser.email;
+    _birthDay.text =
+        DateFormat('dd/MM/yyyy').format(currentUser.dtNasc!).toString();
+    _phone.text = DataFormatters().brazilianPhoneMask.maskText(
+          currentUser.telefone.toString(),
+        );
+    _cellphone.text = DataFormatters().brazilianCellphoneMask.maskText(
+          currentUser.celular.toString(),
+        );
   }
 
   @override
@@ -51,57 +73,37 @@ class _MyDataState extends State<MyData> {
                 label: 'Nome completo',
                 controller: _name,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.datetime,
-                  obscureText: false,
-                  decoration: const InputDecoration(
-                      label: Text('Data de Nascimento'),
-                      border: OutlineInputBorder(),
-                      hintText: 'dd/MM/aaaa'),
-                  readOnly: true,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, preencha o campo';
-                    }
-                    return null;
-                  },
-                  controller: _birthDay,
-                  onTap: () {
-                    _selectDate(context);
-                  },
-                ),
+              customFormField(
+                label: 'Data de Nascimento',
+                isReadOnly: true,
+                controller: _birthDay,
+                onTap: () async {
+                  _birthDay.text = await selectDate(context, _birthDay.text);
+                },
               ),
               customFormField(
                 label: 'E-mail',
                 isReadOnly: true,
+                controller: _email,
               ),
               customFormField(
-                  label: 'Celular',
-                  isReadOnly: false,
-                  inputType: TextInputType.number,
-                  formatterList: [brazilianCelphoneMask]),
+                label: 'Telefone Fixo',
+                isReadOnly: false,
+                controller: _phone,
+                inputType: TextInputType.number,
+                formatterList: [DataFormatters().brazilianPhoneMask],
+              ),
+              customFormField(
+                label: 'Telefone Celular',
+                isReadOnly: false,
+                controller: _cellphone,
+                inputType: TextInputType.number,
+                formatterList: [DataFormatters().brazilianCellphoneMask],
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  _selectDate(BuildContext context) async {
-    DateTime? newSelectedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
-    );
-
-    if (newSelectedDate != null) {
-      _selectedDate = newSelectedDate;
-      initializeDateFormatting();
-      _birthDay.text =
-          DateFormat('dd/MM/yyyy').format(_selectedDate).toString();
-    }
   }
 }

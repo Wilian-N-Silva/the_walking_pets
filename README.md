@@ -2,7 +2,7 @@
 
 <p align="center">Find Your Newest Pet Friend!</p>
 
-<p align="center"><img src="readme_assets/walkthrough_screenshot.png"></p>
+<p align="center"><img src="docs/walkthrough_screenshot.png"></p>
 
 ## About The Project
 
@@ -16,6 +16,7 @@ A project whose premise is to facilitate the adoption of domestic animals, which
 
 
 ## Acknowledgements
+* Adote Taboão da Serra - [Facebook](https://www.facebook.com/adotetaboaodaserra/) / [Instagram](https://www.instagram.com/adotetaboaodaserra)
 * [Storyset](https://storyset.com/)
 * [Figma](https://www.figma.com/)
 * [Adobe Colors](https://color.adobe.com/)

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/ui/adoption/adopt_form.dart';
+import 'package:the_walking_pets/util/age_helpers.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/util/animal_profile_share.dart';
 import 'package:the_walking_pets/util/view_image.dart';
@@ -40,17 +41,19 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
       AnimalProfileTile(
         title: 'Espécie',
-        subtitle: animal.especie.toString(),
+        subtitle: animal.especie ?? 'Sem Informações',
         leading: Icons.local_offer,
       ),
       AnimalProfileTile(
         title: 'Raça',
-        subtitle: animal.raca.toString(),
+        subtitle: animal.raca ?? 'Sem Informações',
         leading: Icons.invert_colors_rounded,
       ),
       AnimalProfileTile(
         title: 'Idade',
-        subtitle: animal.idade.toString(),
+        subtitle: animal.idade != null
+            ? ageFormatter(animal.idade!)
+            : 'Sem informações',
         leading: Icons.cake,
       ),
       AnimalProfileTile(
@@ -60,24 +63,30 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
       AnimalProfileTile(
         title: 'Castrado',
-        subtitle: (animal.castrado ? 'Sim' : 'Não'),
+        subtitle: animal.castrado != null
+            ? (animal.castrado! ? 'Sim' : 'Não')
+            : 'Sem informações',
         leading: Icons.local_hospital,
       ),
       AnimalProfileTile(
         title: 'Vacinado',
-        subtitle: (animal.castrado ? 'Sim' : 'Não'),
+        subtitle: animal.vacinado != null
+            ? (animal.vacinado! ? 'Sim' : 'Não')
+            : 'Sem informações',
         leading: Icons.health_and_safety,
       ),
       AnimalProfileTile(
         title: 'Sexo',
-        subtitle: animal.sexo.toString(),
-        leading: animal.sexo.toString().toLowerCase() == 'macho'
-            ? Icons.male
-            : Icons.female,
+        subtitle: animal.sexo ?? 'Sem Informações',
+        leading: animal.sexo != null
+            ? animal.sexo.toString().toLowerCase() == 'macho'
+                ? Icons.male
+                : Icons.female
+            : Icons.help,
       ),
       AnimalProfileTile(
         title: 'Porte',
-        subtitle: animal.porte.toString(),
+        subtitle: animal.porte ?? 'Sem Informações',
         leading: Icons.swap_horiz_outlined,
       ),
       AnimalProfileTile(
@@ -87,7 +96,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
       AnimalProfileTile(
         title: 'Peso',
-        subtitle: animal.peso == null
+        subtitle: animal.peso != null
             ? '${formatWeight(animal.peso!)} kg'
             : 'Sem informações',
         leading: Icons.monitor_weight,
@@ -148,7 +157,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
                       },
                     ),
                     Text(
-                      animal.nome.toString(),
+                      animal.nome ?? 'Sem nome',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,

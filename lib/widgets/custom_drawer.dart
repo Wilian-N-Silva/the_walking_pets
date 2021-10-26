@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/core/settings/settings.dart';
+import 'package:the_walking_pets/data/user_data.dart';
 import 'package:the_walking_pets/ui/adoption/adoption.dart';
 import 'package:the_walking_pets/ui/lost_and_found/lost_and_found.dart';
 import 'package:the_walking_pets/ui/partners/partners.dart';
@@ -123,8 +124,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Olá,',
                           style: TextStyle(
                             color: Colors.white,
@@ -132,8 +133,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           ),
                         ),
                         Text(
-                          'Peter',
-                          style: TextStyle(
+                          currentUser.nome.split(' ')[0].toUpperCase(),
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 32.0,
                               fontWeight: FontWeight.bold),

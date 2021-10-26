@@ -2,7 +2,7 @@
 
 <p align="center">Encontre seu mais novo amigo Pet!</p>
 
-<p align="center"><img src="readme_assets/walkthrough_screenshot.png"></p>
+<p align="center"><img src="docs/walkthrough_screenshot.png"></p>
 
 ## Sobre o projeto
 
@@ -16,6 +16,7 @@ Um projeto que tem como premissa, facilitar a adoção de animais domésticos, n
 * [Rive](https://rive.app/)
 * [Spring Boot](https://spring.io/)
 ## Agradecimentos
+* Adote Taboão da Serra - [Facebook](https://www.facebook.com/adotetaboaodaserra/) / [Instagram](https://www.instagram.com/adotetaboaodaserra)
 * [Storyset](https://storyset.com/)
 * [Figma](https://www.figma.com/)
 * [Adobe Colors](https://color.adobe.com/)
