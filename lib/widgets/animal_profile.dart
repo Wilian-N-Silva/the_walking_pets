@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/ui/adoption/adopt_form.dart';
-import 'package:the_walking_pets/util/age_helpers.dart';
+import 'package:the_walking_pets/screens/adoption/adopt_form.dart';
+import 'package:the_walking_pets/utilities/age_helpers.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
-import 'package:the_walking_pets/util/animal_profile_share.dart';
-import 'package:the_walking_pets/util/view_image.dart';
+import 'package:the_walking_pets/utilities/animal_profile_share.dart';
+import 'package:the_walking_pets/utilities/view_image.dart';
 
 class AnimalProfileTile {
   AnimalProfileTile({

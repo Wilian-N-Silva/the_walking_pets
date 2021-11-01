@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/services/via_cep_service.dart';
-import 'package:the_walking_pets/util/data_formatter.dart';
+import 'package:the_walking_pets/providers/via_cep_service.dart';
+import 'package:the_walking_pets/utilities/data_formatter.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
 class AddLocal extends StatefulWidget {

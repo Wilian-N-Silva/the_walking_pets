@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/ui/user/my_adoptions/adoption_progress.dart';
+import 'package:the_walking_pets/screens/user/my_adoptions/adoption_progress.dart';
 
 class AdoptionList extends StatefulWidget {
   const AdoptionList({Key? key}) : super(key: key);

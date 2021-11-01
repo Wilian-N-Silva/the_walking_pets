@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/profile_options.dart';
-import 'package:the_walking_pets/ui/user/my_adoptions/adoption_list.dart';
-import 'package:the_walking_pets/ui/user/my_data.dart';
-import 'package:the_walking_pets/ui/user/my_locals/my_locals.dart';
-import 'package:the_walking_pets/ui/user/my_pets/my_pets.dart';
-import 'package:the_walking_pets/ui/user/user_profile.dart';
+import 'package:the_walking_pets/screens/user/my_adoptions/adoption_list.dart';
+import 'package:the_walking_pets/screens/user/my_data.dart';
+import 'package:the_walking_pets/screens/user/my_locals/my_locals.dart';
+import 'package:the_walking_pets/screens/user/my_pets/my_pets.dart';
+import 'package:the_walking_pets/screens/user/user_profile.dart';
 
 List<ProfileSettings> profileOptions = [
   ProfileSettings(

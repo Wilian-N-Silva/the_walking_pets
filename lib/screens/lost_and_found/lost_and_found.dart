@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/data/animal_data.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
-import 'package:the_walking_pets/util/curve_clipper.dart';
+import 'package:the_walking_pets/utilities/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
 class LostAndFound extends StatefulWidget {

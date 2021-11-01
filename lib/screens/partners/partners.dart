@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:the_walking_pets/data/partners/partner_data.dart';
 import 'package:the_walking_pets/model/services/service.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
-import 'package:the_walking_pets/ui/partners/partners_filter.dart';
-import 'package:the_walking_pets/ui/partners/partners_page.dart';
-import 'package:the_walking_pets/util/curve_clipper.dart';
+import 'package:the_walking_pets/screens/partners/partners_filter.dart';
+import 'package:the_walking_pets/screens/partners/partners_page.dart';
+import 'package:the_walking_pets/utilities/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
 class Partners extends StatefulWidget {

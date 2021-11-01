@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:the_walking_pets/config/themes/default_theme.dart';
-import 'package:the_walking_pets/config/themes/dark_theme.dart';
-import 'package:the_walking_pets/core/walk_through/walk_through_1.dart';
-import 'package:the_walking_pets/core/auth/signin.dart';
+import 'package:the_walking_pets/utilities/themes/default_theme.dart';
+import 'package:the_walking_pets/utilities/themes/dark_theme.dart';
+import 'package:the_walking_pets/screens/core/walk_through/walk_through_1.dart';
+import 'package:the_walking_pets/screens/core/auth/signin.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

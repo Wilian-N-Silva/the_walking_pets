@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:the_walking_pets/data/user_data.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/util/age_helpers.dart';
-import 'package:the_walking_pets/util/data_formatter.dart';
-import 'package:the_walking_pets/util/date_picker.dart';
+import 'package:the_walking_pets/utilities/age_helpers.dart';
+import 'package:the_walking_pets/utilities/data_formatter.dart';
+import 'package:the_walking_pets/utilities/date_picker.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
 class AdoptionForm extends StatefulWidget {

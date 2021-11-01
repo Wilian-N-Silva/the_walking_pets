@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:the_walking_pets/core/auth/signin.dart';
-import 'package:the_walking_pets/core/walk_through/walk_through_2.dart';
+import 'package:the_walking_pets/screens/core/auth/signin.dart';
+import 'package:the_walking_pets/screens/core/walk_through/walk_through_2.dart';
 import 'package:the_walking_pets/widgets/walk_through_step_button.dart';
 
 class WalkThrough3 extends StatelessWidget {

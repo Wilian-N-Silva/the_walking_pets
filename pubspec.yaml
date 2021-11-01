@@ -80,11 +80,11 @@ flutter:
   - assets/animations/blue/good_doggy_bro.riv
   - assets/animations/blue/veterinary_pana.riv
   - assets/animations/blue/cautious_dog_bro.riv
-  - assets/placeholder_pets/dog/1.jpg
-  - assets/placeholder_pets/dog/2.jpg
-  - assets/placeholder_pets/dog/3.jpg
-  - assets/placeholder_pets/dog/4.jpg
-  - assets/placeholder_pets/dog/5.jpg
+  - assets/images/placeholder_pets/dog/1.jpg
+  - assets/images/placeholder_pets/dog/2.jpg
+  - assets/images/placeholder_pets/dog/3.jpg
+  - assets/images/placeholder_pets/dog/4.jpg
+  - assets/images/placeholder_pets/dog/5.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
