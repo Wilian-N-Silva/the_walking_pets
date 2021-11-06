@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:the_walking_pets/screens/walk_through/walk_through_1.dart';
+import 'package:the_walking_pets/core/walk_through/screens/walk_through_1.dart';
 
 import 'package:the_walking_pets/main.dart';
 

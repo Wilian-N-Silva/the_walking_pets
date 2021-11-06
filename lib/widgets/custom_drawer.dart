@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/screens/settings/settings.dart';
-import 'package:the_walking_pets/data/user_data.dart';
+import 'package:the_walking_pets/core/settings/settings.dart';
+import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/screens/adoption/adoption.dart';
 import 'package:the_walking_pets/screens/lost_and_found/lost_and_found.dart';
 import 'package:the_walking_pets/screens/partners/partners.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
-import 'package:the_walking_pets/utilities/curve_clipper.dart';
+import 'package:the_walking_pets/utilities/ui/curve_clipper.dart';
 
 class _Tile {
   _Tile({

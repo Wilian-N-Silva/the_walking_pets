@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:the_walking_pets/data/user_data.dart';
+import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/utilities/age_helpers.dart';
-import 'package:the_walking_pets/utilities/data_formatter.dart';
+import 'package:the_walking_pets/utilities/helpers/age_helpers.dart';
+import 'package:the_walking_pets/utilities/helpers/data_formatter.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
@@ -23,16 +23,16 @@ class _AdoptionFormState extends State<AdoptionForm> {
   final TextEditingController _userPhone = TextEditingController();
   final TextEditingController _userCellphone = TextEditingController();
 
-  final _formKey = GlobalKey<FormState>();
+  // final _formKey = GlobalKey<FormState>();
 
   late PageController _pageController;
   int currentIndex = 0;
 
-  _saveUser() {
-    if (_formKey.currentState!.validate()) {
-      print("Name ${_userName.text}");
-    }
-  }
+  // _saveUser() {
+  //   if (_formKey.currentState!.validate()) {
+  //     // _userName.text
+  //   }
+  // }
 
   @override
   void initState() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:the_walking_pets/data/user_data.dart';
-import 'package:the_walking_pets/utilities/data_formatter.dart';
+import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
+import 'package:the_walking_pets/utilities/helpers/data_formatter.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
@@ -21,11 +21,11 @@ class _MyDataState extends State<MyData> {
   final TextEditingController _cellphone = TextEditingController();
 
   _saveData() {
-    print(_name.text);
-    print(_email.text);
-    print(DateFormat('dd/MM/yyyy').parse(_birthDay.text));
-    print(_phone.text);
-    print(_cellphone.text);
+    // _name.text
+    // _email.text
+    // DateFormat('dd/MM/yyyy').parse(_birthDay.text)
+    // _phone.text
+    // _cellphone.text
   }
 
   @override

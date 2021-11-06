@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/providers/via_cep_service.dart';
-import 'package:the_walking_pets/utilities/data_formatter.dart';
+import 'package:the_walking_pets/utilities/services/via_cep_service.dart';
+import 'package:the_walking_pets/utilities/helpers/data_formatter.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
 class AddLocal extends StatefulWidget {
@@ -11,8 +13,8 @@ class AddLocal extends StatefulWidget {
 }
 
 class _AddLocalState extends State<AddLocal> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _cep = TextEditingController();
+  // final _formKey = GlobalKey<FormState>();
+  // final TextEditingController _cep = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,8 @@ class _AddLocalState extends State<AddLocal> {
                       final result = await ViaCepService.fetchCep(
                         cep: value.replaceAll('-', ''),
                       );
+
+                      log(result.logradouro.toString());
                     }
                   }),
             ],

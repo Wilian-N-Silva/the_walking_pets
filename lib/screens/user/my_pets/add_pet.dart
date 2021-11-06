@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:the_walking_pets/utilities/consts/animal_consts.dart';
+import 'package:the_walking_pets/constants/animal_consts.dart';
 import 'package:the_walking_pets/widgets/custom_dropdown_form_field.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
@@ -14,13 +14,13 @@ class AddPet extends StatefulWidget {
 }
 
 class _AddPetState extends State<AddPet> {
-  String? petSpecie;
-  String? petGender;
-  String? petSize;
-  String? petTemperament;
-  String? petCoat;
+  String? _petSpecie, _petGender, _petSize, _petTemperament, _petCoat;
 
+  final TextEditingController _petColor = TextEditingController();
+  final TextEditingController _petMicrochip = TextEditingController();
+  final TextEditingController _petName = TextEditingController();
   List<XFile>? _imageFileList;
+
   dynamic _pickImageError;
 
   set _imageFile(XFile? value) {
@@ -37,59 +37,12 @@ class _AddPetState extends State<AddPet> {
       );
       setState(() {
         _imageFile = pickedFile;
-
-        // log(base64Encode(File(pickedFile!.path).readAsBytesSync()));
       });
     } catch (e) {
       setState(() {
         _pickImageError = e;
       });
     }
-  }
-
-  void _showPicker(context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          var snackBar = SnackBar(
-            content: Text(_pickImageError.toString()),
-          );
-
-          if (_pickImageError != null) {
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          }
-
-          return SafeArea(
-            child: Wrap(
-              children: <Widget>[
-                const ListTile(
-                  title: Text('Adicione uma foto de seu pet!'),
-                ),
-                ListTile(
-                    leading: const Icon(Icons.photo_library),
-                    title: const Text('Escolher da galeria'),
-                    onTap: () {
-                      _onImageButtonPressed(
-                        ImageSource.gallery,
-                        context: context,
-                      );
-                      Navigator.of(context).pop();
-                    }),
-                ListTile(
-                  leading: const Icon(Icons.photo_camera),
-                  title: const Text('Usar a Câmera'),
-                  onTap: () {
-                    _onImageButtonPressed(
-                      ImageSource.camera,
-                      context: context,
-                    );
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          );
-        });
   }
 
   Widget _petPhoto() {
@@ -139,30 +92,89 @@ class _AddPetState extends State<AddPet> {
                 ),
         ),
         onTap: () {
-          _showPicker(context);
+          imagePickerModal();
         },
       ),
     );
   }
 
+  Future<dynamic> imagePickerModal() {
+    return showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        var snackBar = SnackBar(
+          content: Text(_pickImageError.toString()),
+        );
+
+        if (_pickImageError != null) {
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+
+        return SafeArea(
+          child: Wrap(
+            children: <Widget>[
+              const ListTile(
+                title: Text('Adicione uma foto de seu pet!'),
+              ),
+              ListTile(
+                  leading: const Icon(Icons.photo_library),
+                  title: const Text('Escolher da galeria'),
+                  onTap: () {
+                    _onImageButtonPressed(
+                      ImageSource.gallery,
+                      context: context,
+                    );
+
+                    Navigator.of(context).pop();
+                  }),
+              ListTile(
+                leading: const Icon(Icons.photo_camera),
+                title: const Text('Usar a Câmera'),
+                onTap: () {
+                  _onImageButtonPressed(
+                    ImageSource.camera,
+                    context: context,
+                  );
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   _handleSize(String? value) {
-    petSize = value;
+    _petSize = value;
   }
 
   _handleTemperament(String? value) {
-    petTemperament = value;
+    _petTemperament = value;
   }
 
   _handleCoat(String? value) {
-    petCoat = value;
+    _petCoat = value;
   }
 
   _handleSpecie(String? value) {
-    petSpecie = value!;
+    _petSpecie = value;
   }
 
   _handleGender(String? value) {
-    petGender = value!;
+    _petGender = value;
+  }
+
+  _saveData() {
+    // _petSpecie
+    // _petGender
+    // _petSize
+    // _petTemperament
+    // _petCoat
+    // _petColor.text
+    // _petMicrochip.text
+    // _petName.text
+    // _imageFileList![0].path
   }
 
   @override
@@ -172,11 +184,11 @@ class _AddPetState extends State<AddPet> {
         title: const Text('Novo Pet'),
         actions: [
           TextButton(
-            onPressed: () {},
             child: const Text(
               'Salvar',
               style: TextStyle(color: Colors.white),
             ),
+            onPressed: () => _saveData(),
           )
         ],
       ),
@@ -188,44 +200,50 @@ class _AddPetState extends State<AddPet> {
           children: [
             _petPhoto(),
             const SizedBox(height: 16.0),
-            const CustomFormField(
+            CustomFormField(
               label: 'Nome',
               isOptional: false,
+              controller: _petName,
             ),
             CustomDropdown(
               label: 'Espécie',
-              selected: petSpecie,
+              selected: _petSpecie,
               items: AnimalConsts.species,
               handler: _handleSpecie,
               isOptional: false,
             ),
             CustomDropdown(
               label: 'Sexo',
-              selected: petGender,
+              selected: _petGender,
               items: AnimalConsts.gender,
               handler: _handleGender,
             ),
             CustomDropdown(
               label: 'Porte',
-              selected: petSize,
+              selected: _petSize,
               items: AnimalConsts.size,
               handler: _handleSize,
             ),
             CustomDropdown(
               label: 'Temperamento',
-              selected: petTemperament,
+              selected: _petTemperament,
               items: AnimalConsts.temperament,
               handler: _handleTemperament,
             ),
             CustomDropdown(
               label: 'Pelagem',
-              selected: petCoat,
+              selected: _petCoat,
               items: AnimalConsts.coat,
               handler: _handleCoat,
             ),
-            const CustomFormField(label: 'Cor', isOptional: true),
-            const CustomFormField(
+            CustomFormField(
+              label: 'Cor',
+              isOptional: true,
+              controller: _petColor,
+            ),
+            CustomFormField(
               label: 'Código do Microchip',
+              controller: _petMicrochip,
             ),
           ],
         ),

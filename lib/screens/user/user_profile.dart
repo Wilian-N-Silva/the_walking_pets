@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/data/profile_options.dart';
+import 'package:the_walking_pets/utilities/helpers/fakedata/profile_options.dart';
 import 'package:the_walking_pets/model/profile_options.dart';
 
 import 'package:the_walking_pets/widgets/custom_drawer.dart';

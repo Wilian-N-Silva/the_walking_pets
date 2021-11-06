@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/data/partners/partner_category_data.dart';
+import 'package:the_walking_pets/utilities/helpers/fakedata/partners/partner_category_data.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
 
 class PartnersFilter extends StatefulWidget {

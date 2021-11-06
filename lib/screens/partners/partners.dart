@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
-import 'package:the_walking_pets/data/partners/partner_data.dart';
+import 'package:the_walking_pets/utilities/helpers/fakedata/partners/partner_data.dart';
 import 'package:the_walking_pets/model/services/service.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
 import 'package:the_walking_pets/screens/partners/partners_filter.dart';
 import 'package:the_walking_pets/screens/partners/partners_page.dart';
-import 'package:the_walking_pets/utilities/curve_clipper.dart';
+import 'package:the_walking_pets/utilities/ui/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
 class Partners extends StatefulWidget {
