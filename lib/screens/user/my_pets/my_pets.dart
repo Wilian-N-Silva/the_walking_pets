@@ -29,8 +29,25 @@ class _MyPetsState extends State<MyPets> {
           )
         ],
       ),
-      body: SafeArea(
-        child: Container(),
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Não há Pets cadastrados'),
+            ElevatedButton(
+              child: const Text('Adicionar Pet'),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddPet(),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

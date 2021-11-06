@@ -4,8 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_walking_pets/utilities/themes/default_theme.dart';
 import 'package:the_walking_pets/utilities/themes/dark_theme.dart';
-import 'package:the_walking_pets/screens/core/walk_through/walk_through_1.dart';
-import 'package:the_walking_pets/screens/core/auth/signin.dart';
+import 'package:the_walking_pets/screens/walk_through/walk_through_1.dart';
+import 'package:the_walking_pets/screens/auth/signin.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,18 +28,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDarkTheme = false;
-    return MaterialApp(
-      title: 'The Walking Pets',
-      debugShowCheckedModeBanner: false,
-      theme: isDarkTheme ? darkThemeData : defaultThemeData,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: const [
-        Locale('pt', 'BR'),
-      ],
-      home: route,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: MaterialApp(
+        title: 'The Walking Pets',
+        debugShowCheckedModeBanner: false,
+        theme: isDarkTheme ? darkThemeData : defaultThemeData,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        supportedLocales: const [
+          Locale('pt', 'BR'),
+        ],
+        home: route,
+      ),
     );
   }
 }

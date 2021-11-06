@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:the_walking_pets/screens/core/walk_through/walk_through_2.dart';
-import 'package:the_walking_pets/screens/core/auth/signin.dart';
+import 'package:the_walking_pets/screens/walk_through/walk_through_2.dart';
+import 'package:the_walking_pets/screens/auth/signin.dart';
 import 'package:the_walking_pets/widgets/walk_through_step_button.dart';
 
 class WalkThrough1 extends StatelessWidget {
@@ -28,7 +28,7 @@ class WalkThrough1 extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height / 2,
+                      height: (MediaQuery.of(context).size.height - 50.0) / 2,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: const [
@@ -55,7 +55,7 @@ class WalkThrough1 extends StatelessWidget {
 
               // Animação
               SizedBox(
-                height: MediaQuery.of(context).size.height / 3,
+                height: (MediaQuery.of(context).size.height - 50.0) / 3,
                 child: const RiveAnimation.asset(
                   'assets/animations/blue/good_doggy_pana.riv',
                   animations: ['intro', 'idle'],

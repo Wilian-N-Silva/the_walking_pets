@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/screens/core/settings/settings.dart';
+import 'package:the_walking_pets/screens/settings/settings.dart';
 import 'package:the_walking_pets/data/user_data.dart';
 import 'package:the_walking_pets/screens/adoption/adoption.dart';
 import 'package:the_walking_pets/screens/lost_and_found/lost_and_found.dart';

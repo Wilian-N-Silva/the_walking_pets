@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:rive/rive.dart';
-import 'package:the_walking_pets/screens/core/signup/onboarding.dart';
+import 'package:the_walking_pets/screens/signup/onboarding.dart';
 import 'package:the_walking_pets/screens/adoption/adoption.dart';
 
 class SigninPage extends StatefulWidget {

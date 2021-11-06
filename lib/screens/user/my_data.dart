@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:the_walking_pets/data/user_data.dart';
 import 'package:the_walking_pets/utilities/data_formatter.dart';
-import 'package:the_walking_pets/utilities/date_picker.dart';
+import 'package:the_walking_pets/widgets/date_picker.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 
 class MyData extends StatefulWidget {
@@ -69,11 +69,11 @@ class _MyDataState extends State<MyData> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              customFormField(
+              CustomFormField(
                 label: 'Nome completo',
                 controller: _name,
               ),
-              customFormField(
+              CustomFormField(
                 label: 'Data de Nascimento',
                 isReadOnly: true,
                 controller: _birthDay,
@@ -81,19 +81,19 @@ class _MyDataState extends State<MyData> {
                   _birthDay.text = await selectDate(context, _birthDay.text);
                 },
               ),
-              customFormField(
+              CustomFormField(
                 label: 'E-mail',
                 isReadOnly: true,
                 controller: _email,
               ),
-              customFormField(
+              CustomFormField(
                 label: 'Telefone Fixo',
                 isReadOnly: false,
                 controller: _phone,
                 inputType: TextInputType.number,
                 formatterList: [DataFormatters().brazilianPhoneMask],
               ),
-              customFormField(
+              CustomFormField(
                 label: 'Telefone Celular',
                 isReadOnly: false,
                 controller: _cellphone,

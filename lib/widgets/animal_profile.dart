@@ -5,7 +5,7 @@ import 'package:the_walking_pets/screens/adoption/adopt_form.dart';
 import 'package:the_walking_pets/utilities/age_helpers.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/utilities/animal_profile_share.dart';
-import 'package:the_walking_pets/utilities/view_image.dart';
+import 'package:the_walking_pets/widgets/view_image.dart';
 
 class AnimalProfileTile {
   AnimalProfileTile({
@@ -111,6 +111,24 @@ class _AnimalProfileState extends State<AnimalProfile> {
     int screenHeight = MediaQuery.of(context).size.height.toInt();
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          animal.nome ?? 'Sem nome',
+        ),
+        backgroundColor: Colors.black38,
+        actions: [
+          IconButton(
+            onPressed: () async {
+              shareAnimalProfile(context, animal.nome.toString());
+            },
+            icon: const Icon(
+              Icons.share,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+      extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
@@ -137,43 +155,6 @@ class _AnimalProfileState extends State<AnimalProfile> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.fromLTRB(
-                  18.0,
-                  36.0,
-                  18.0,
-                  0.0,
-                ),
-                color: Colors.black38,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BackButton(
-                      color: Colors.white,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    Text(
-                      animal.nome ?? 'Sem nome',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () async {
-                        shareAnimalProfile(context, animal.nome.toString());
-                      },
-                      icon: const Icon(
-                        Icons.share,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
                 ),
               ),
               Container(

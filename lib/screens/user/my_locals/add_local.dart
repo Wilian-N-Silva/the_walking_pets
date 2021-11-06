@@ -36,7 +36,7 @@ class _AddLocalState extends State<AddLocal> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              customFormField(
+              CustomFormField(
                   label: 'CEP',
                   action: TextInputAction.search,
                   formatterList: [DataFormatters().brazilianPostalCode],
