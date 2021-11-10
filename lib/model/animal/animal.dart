@@ -1,5 +1,28 @@
 class Animal {
+  final int? id;
+  final int? userId;
+  final String? nome;
+  final double? altura;
+  final double? peso;
+  final String? especie;
+  final String? raca;
+  final String? sexo;
+  final int? idade;
+  final String? pelagem;
+  final String? porte;
+  final String? temperamento;
+  final String? identificacao;
+  final bool? castrado;
+  final bool? vacinado;
+  final bool? hasOwner;
+  final String foto;
+  final bool perdido;
+  final bool achado;
+  final bool? doacaoconjunta;
+  final bool? lartemporario;
+
   Animal({
+    this.id,
     this.userId,
     this.hasOwner,
     this.nome,
@@ -21,25 +44,4 @@ class Animal {
     this.doacaoconjunta,
     this.lartemporario,
   });
-
-  final int? userId;
-  final String? nome;
-  final double? altura;
-  final double? peso;
-  final String? especie;
-  final String? raca;
-  final String? sexo;
-  final int? idade;
-  final String? pelagem;
-  final String? porte;
-  final String? temperamento;
-  final String? identificacao;
-  final bool? castrado;
-  final bool? vacinado;
-  final bool? hasOwner;
-  final String foto;
-  final bool perdido;
-  final bool achado;
-  final bool? doacaoconjunta;
-  final bool? lartemporario;
 }

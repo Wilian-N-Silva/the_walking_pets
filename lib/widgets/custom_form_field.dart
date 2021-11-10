@@ -1,51 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Widget CustomFormField(
-//     {required String label,
-//     TextEditingController? controller,
-//     bool? isObscure,
-//     bool? isReadOnly,
-//     String? hint,
-//     TextInputType? inputType,
-//     List<TextInputFormatter>? formatterList,
-//     String? value,
-//     TextInputAction? action,
-//     Function()? onTap,
-//     Function(String)? onChanged,
-//     Function(String)? onSubmited}) {
-//   return TextFormField(
-//     keyboardType: inputType ?? TextInputType.name,
-//     obscureText: isObscure ?? false,
-//     initialValue: value,
-//     readOnly: isReadOnly ?? false,
-//     inputFormatters: formatterList,
-//     textInputAction: action,
-//     onFieldSubmitted: onSubmited,
-//     controller: controller,
-//     onTap: onTap,
-//     onChanged: onChanged,
-//     decoration: InputDecoration(
-//       label: Text(
-//         label,
-//         style: const TextStyle(
-//           fontSize: 16.0,
-//         ),
-//       ),
-//       // constraints: const BoxConstraints(minHeight: 64.0, maxHeight: 64.0),
-//       border: const OutlineInputBorder(),
-//       hintText: hint,
-//       // isDense: true,
-//       contentPadding: const EdgeInsets.all(22.5),
-//     ),
-//     validator: (value) {
-//       if (value == null || value.isEmpty) {
-//         return 'Por favor, preencha o campo';
-//       }
-//       return null;
-//     },
-//   );
-// }
 class CustomFormField extends StatefulWidget {
   const CustomFormField({
     Key? key,
@@ -61,7 +16,8 @@ class CustomFormField extends StatefulWidget {
     this.onTap,
     this.onChanged,
     this.onSubmited,
-    this.isOptional,
+    this.isRequired,
+    this.useOptionalLabel,
   }) : super(key: key);
 
   final String label;
@@ -76,7 +32,8 @@ class CustomFormField extends StatefulWidget {
   final Function()? onTap;
   final Function(String)? onChanged;
   final Function(String)? onSubmited;
-  final bool? isOptional;
+  final bool? isRequired;
+  final bool? useOptionalLabel;
 
   @override
   _CustomFormFieldState createState() => _CustomFormFieldState();
@@ -100,7 +57,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
         onChanged: widget.onChanged,
         decoration: InputDecoration(
           label: Text(
-            '${widget.label}${widget.isOptional != null ? widget.isOptional! ? ' (Opcional)' : '' : ''}',
+            '${widget.label}${widget.useOptionalLabel != null ? widget.useOptionalLabel! ? ' (Opcional)' : '' : ''}',
             style: const TextStyle(
               fontSize: 16.0,
             ),
@@ -113,8 +70,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
           ),
         ),
         validator: (value) {
-          if (widget.isOptional == null ||
-              widget.isOptional == true && value == null ||
+          if ((widget.isRequired == null || widget.isRequired == true) &&
               value!.isEmpty) {
             return 'Por favor, preencha o campo';
           }

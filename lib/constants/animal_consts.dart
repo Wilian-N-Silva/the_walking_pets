@@ -11,13 +11,22 @@ class AnimalConsts {
     'Grande',
     'Gigante'
   ];
-  static const List<String> coat = [
+  static const List<String> dogCoat = [
     'Curta',
-    'Dupla Pelagem',
+    'Dupla pelagem',
     'Dura e ou pelo de arame',
     'Longa e encaracolada',
     'Longa e lisa',
-    'Longa, Sedosa e sem Ondulações',
+    'Longa, Sedosa e sem ondulações',
+    'Outras'
+  ];
+
+  static const List<String> catCoat = [
+    'Curta',
+    'Muito curta',
+    'Semi-Longo',
+    'Longa',
+    'Encaracolado',
     'Outras'
   ];
   static const List<String> temperament = [

@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/model/animal/animal_api.dart';
 import 'package:the_walking_pets/screens/user/my_pets/add_pet.dart';
+import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 
 class MyPets extends StatefulWidget {
   const MyPets({Key? key}) : super(key: key);
@@ -9,6 +13,34 @@ class MyPets extends StatefulWidget {
 }
 
 class _MyPetsState extends State<MyPets> {
+  bool? isLoading;
+  List _pets = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getPetList();
+  }
+
+  _getPetList() {
+    isLoading = true;
+
+    AnimalAPI.getTasks().then((response) {
+      var body = json.decode(response.body);
+
+      setState(() {
+        _pets = body['animal'] != null
+            ? body['animal']
+                .map<AnimalClass>((json) => AnimalClass.fromJson(json))
+                .toList()
+            : [];
+
+        // print(_pets);
+        isLoading = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,23 +63,29 @@ class _MyPetsState extends State<MyPets> {
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Não há Pets cadastrados'),
-            ElevatedButton(
-              child: const Text('Adicionar Pet'),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AddPet(),
-                ),
-              ),
-            )
-          ],
-        ),
+        child: isLoading!
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : _pets.isNotEmpty
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Não há Pets cadastrados'),
+                      ElevatedButton(
+                        child: const Text('Adicionar Pet'),
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AddPet(),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                : Text(_pets.length.toString()),
       ),
     );
   }

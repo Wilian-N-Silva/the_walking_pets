@@ -7,12 +7,12 @@ class CustomDropdown extends StatefulWidget {
     required this.selected,
     required this.items,
     required this.handler,
-    this.isOptional,
+    this.isRequired,
   }) : super(key: key);
 
   final String label;
   final String? selected;
-  final bool? isOptional;
+  final bool? isRequired;
   final List<String> items;
 
   final Function(String?) handler;
@@ -37,10 +37,17 @@ class _CustomDropdownState extends State<CustomDropdown> {
       child: DropdownButtonFormField(
           value: sel,
           isDense: true,
+          validator: (value) {
+            if ((widget.isRequired == null || widget.isRequired == true) &&
+                value == null) {
+              return 'Por favor, preencha o campo';
+            }
+            return null;
+          },
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
             labelText:
-                '${widget.label}${widget.isOptional != null ? widget.isOptional! ? ' (Opcional)' : '' : ''}',
+                '${widget.label}${widget.isRequired != null ? widget.isRequired! ? ' (Opcional)' : '' : ''}',
           ),
           items: widget.items.map<DropdownMenuItem<String>>(
             (String value) {
