@@ -157,13 +157,6 @@ class _AdoptionFormState extends State<AdoptionForm> {
                       value: animal.porte,
                       isReadOnly: true,
                     ),
-                    CustomFormField(
-                      label: 'Idade',
-                      value: animal.idade != null
-                          ? ageFormatter(animal.idade!)
-                          : 'Sem informações',
-                      isReadOnly: true,
-                    ),
                   ],
                 ),
               )

@@ -61,7 +61,7 @@ Widget animalTile(BuildContext context, Animal animal) {
           transitionOnUserGestures: false,
           tag: animal,
           child: Image.asset(
-            animal.foto,
+            animal.foto!,
             fit: BoxFit.cover,
           ),
         ),

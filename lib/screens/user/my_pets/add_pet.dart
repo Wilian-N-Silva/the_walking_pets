@@ -28,7 +28,7 @@ class _AddPetState extends State<AddPet> {
   final TextEditingController _petBirthday = TextEditingController();
   final TextEditingController _petCastratedDate = TextEditingController();
 
-  String? _petSpecie, _petGender, _petSize, _petTemperament, _petCoat;
+  String? _petSpecie, _petGender, _petSize, _petTemperament, _catCoat, _dogCoat;
   bool _isCastrated = false, _isVacinated = false;
 
   List<XFile>? _imageFileList;
@@ -164,8 +164,12 @@ class _AddPetState extends State<AddPet> {
     _petTemperament = value;
   }
 
-  _handleCoat(String? value) {
-    _petCoat = value;
+  _handleCatCoat(String? value) {
+    _catCoat = value;
+  }
+
+  _handleDogCoat(String? value) {
+    _dogCoat = value;
   }
 
   _handleSpecie(String? value) {
@@ -249,13 +253,23 @@ class _AddPetState extends State<AddPet> {
                 items: AnimalConsts.temperament,
                 handler: _handleTemperament,
               ),
-              CustomDropdown(
-                label: 'Pelagem',
-                selected: _petCoat,
-                items: _petSpecie == AnimalConsts.species[0]
-                    ? AnimalConsts.dogCoat
-                    : AnimalConsts.catCoat,
-                handler: _handleCoat,
+              Visibility(
+                visible: _petSpecie == AnimalConsts.species[0],
+                child: CustomDropdown(
+                  label: 'Pelagem',
+                  selected: _dogCoat,
+                  items: AnimalConsts.dogCoat,
+                  handler: _handleDogCoat,
+                ),
+              ),
+              Visibility(
+                visible: _petSpecie == AnimalConsts.species[1],
+                child: CustomDropdown(
+                  label: 'Pelagem',
+                  selected: _catCoat,
+                  items: AnimalConsts.catCoat,
+                  handler: _handleCatCoat,
+                ),
               ),
               CustomFormField(
                 label: 'Cor',

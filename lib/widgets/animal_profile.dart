@@ -44,18 +44,14 @@ class _AnimalProfileState extends State<AnimalProfile> {
         subtitle: animal.especie ?? 'Sem Informações',
         leading: Icons.local_offer,
       ),
-      AnimalProfileTile(
-        title: 'Raça',
-        subtitle: animal.raca ?? 'Sem Informações',
-        leading: Icons.invert_colors_rounded,
-      ),
-      AnimalProfileTile(
-        title: 'Idade',
-        subtitle: animal.idade != null
-            ? ageFormatter(animal.idade!)
-            : 'Sem informações',
-        leading: Icons.cake,
-      ),
+
+      // AnimalProfileTile(
+      //   title: 'Idade',
+      //   subtitle: animal.idade != null
+      //       ? ageFormatter(animal.idade!)
+      //       : 'Sem informações',
+      //   leading: Icons.cake,
+      // ),
       AnimalProfileTile(
         title: 'Temperamento',
         subtitle: animal.temperamento ?? 'Sem informações',
@@ -89,18 +85,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
         subtitle: animal.porte ?? 'Sem Informações',
         leading: Icons.swap_horiz_outlined,
       ),
-      AnimalProfileTile(
-        title: 'Altura',
-        subtitle: (animal.altura ?? 'Sem informações').toString(),
-        leading: Icons.height,
-      ),
-      AnimalProfileTile(
-        title: 'Peso',
-        subtitle: animal.peso != null
-            ? '${formatWeight(animal.peso!)} kg'
-            : 'Sem informações',
-        leading: Icons.monitor_weight,
-      ),
+
       AnimalProfileTile(
         title: 'Pelagem',
         subtitle: animal.pelagem ?? 'Sem informações',

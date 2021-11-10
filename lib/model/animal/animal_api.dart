@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 class AnimalClass {
   AnimalClass({
     this.id,
-    this.specie,
     this.name,
+    this.specie,
     this.knownBirthday,
     this.birth,
     this.ownerId,
