@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -7,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:the_walking_pets/constants/animal_consts.dart';
 import 'package:the_walking_pets/model/animal/animal_api.dart';
+import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/widgets/custom_dropdown_form_field.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
@@ -29,7 +29,7 @@ class _AddPetState extends State<AddPet> {
   final TextEditingController _petCastratedDate = TextEditingController();
 
   String? _petSpecie, _petGender, _petSize, _petTemperament, _catCoat, _dogCoat;
-  bool _isCastrated = false, _isVacinated = false;
+  bool _isCastrated = false, _isVacinated = false, _isLoading = false;
 
   List<XFile>? _imageFileList;
   dynamic _pickImageError;
@@ -184,6 +184,9 @@ class _AddPetState extends State<AddPet> {
 
   _saveData() {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
       // _imageFileList![0].path;
       // _petName.text;
       // _petSpecie;
@@ -196,7 +199,24 @@ class _AddPetState extends State<AddPet> {
       // _petMicrochip.text;
       // _isCastrated;
       // _isVacinated;
-      log(AnimalClass(name: _petName.text).toJson());
+
+      AnimalClass animalFormData = AnimalClass(
+        name: _petName.text,
+        specie: AnimalConsts.species
+                .indexWhere((element) => element == _petSpecie) +
+            1,
+        birth: DateFormat('dd/MM/yyyy').parse(_petBirthday.text),
+        uid: currentUser.id,
+      );
+
+      AnimalAPI.insertPet(animalFormData).then((response) {
+        // var body = json.decode(response.body);
+
+        log(response.body);
+        setState(() {
+          _isLoading = false;
+        });
+      });
     }
   }
 
@@ -206,147 +226,170 @@ class _AddPetState extends State<AddPet> {
       appBar: AppBar(
         title: const Text('Novo Pet'),
         actions: [
-          TextButton(
-            child: const Text(
-              'Salvar',
-              style: TextStyle(color: Colors.white),
+          Visibility(
+            visible: !_isLoading,
+            child: TextButton(
+              child: const Text(
+                'Salvar',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () => _saveData(),
             ),
-            onPressed: () => _saveData(),
           )
         ],
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _petPhoto(),
-              const SizedBox(height: 16.0),
-              CustomFormField(
-                label: 'Nome',
-                controller: _petName,
-              ),
-              CustomDropdown(
-                label: 'Espécie',
-                selected: _petSpecie,
-                items: AnimalConsts.species,
-                handler: _handleSpecie,
-              ),
-              CustomDropdown(
-                label: 'Sexo',
-                selected: _petGender,
-                items: AnimalConsts.gender,
-                handler: _handleGender,
-              ),
-              CustomDropdown(
-                label: 'Porte',
-                selected: _petSize,
-                items: AnimalConsts.size,
-                handler: _handleSize,
-              ),
-              CustomDropdown(
-                label: 'Temperamento',
-                selected: _petTemperament,
-                items: AnimalConsts.temperament,
-                handler: _handleTemperament,
-              ),
-              Visibility(
-                visible: _petSpecie == AnimalConsts.species[0],
-                child: CustomDropdown(
-                  label: 'Pelagem',
-                  selected: _dogCoat,
-                  items: AnimalConsts.dogCoat,
-                  handler: _handleDogCoat,
-                ),
-              ),
-              Visibility(
-                visible: _petSpecie == AnimalConsts.species[1],
-                child: CustomDropdown(
-                  label: 'Pelagem',
-                  selected: _catCoat,
-                  items: AnimalConsts.catCoat,
-                  handler: _handleCatCoat,
-                ),
-              ),
-              CustomFormField(
-                label: 'Cor',
-                isRequired: true,
-                controller: _petColor,
-              ),
-              CustomFormField(
-                label: 'Data de Nascimento Aproximada',
-                isReadOnly: true,
-                controller: _petBirthday,
-                onTap: () async {
-                  _petBirthday.text = await selectDate(
-                    context,
-                    DateFormat('dd/MM/yyyy').format(DateTime.now()).toString(),
-                  );
-                },
-              ),
-              CustomFormField(
-                label: 'Código do Microchip',
-                isRequired: false,
-                useOptionalLabel: true,
-                controller: _petMicrochip,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Castrado',
-                    style: TextStyle(fontSize: 16.0),
+      body: _isLoading
+          ? SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  CircularProgressIndicator(),
+                  SizedBox(
+                    height: 16.0,
                   ),
-                  Switch(
-                    value: _isCastrated,
-                    onChanged: (bool value) {
-                      setState(() {
-                        _isCastrated = value;
-                        _petCastratedDate.text =
-                            !_isCastrated ? '' : _petCastratedDate.text;
-                      });
-                    },
+                  Text(
+                    'Inserindo novo pet!',
+                    style: TextStyle(fontSize: 24.0),
                   )
                 ],
               ),
-              if (_isCastrated)
-                CustomFormField(
-                  label: 'Data da castração',
-                  isReadOnly: true,
-                  controller: _petCastratedDate,
-                  onTap: () async {
-                    _petCastratedDate.text = await selectDate(
-                      context,
-                      DateFormat('dd/MM/yyyy')
-                          .format(DateTime.now())
-                          .toString(),
-                    );
-                  },
+            )
+          : SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.all(16.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _petPhoto(),
+                    const SizedBox(height: 16.0),
+                    CustomFormField(
+                      label: 'Nome',
+                      controller: _petName,
+                    ),
+                    CustomDropdown(
+                      label: 'Espécie',
+                      selected: _petSpecie,
+                      items: AnimalConsts.species,
+                      handler: _handleSpecie,
+                    ),
+                    CustomDropdown(
+                      label: 'Sexo',
+                      selected: _petGender,
+                      items: AnimalConsts.gender,
+                      handler: _handleGender,
+                    ),
+                    CustomDropdown(
+                      label: 'Porte',
+                      selected: _petSize,
+                      items: AnimalConsts.size,
+                      handler: _handleSize,
+                    ),
+                    CustomDropdown(
+                      label: 'Temperamento',
+                      selected: _petTemperament,
+                      items: AnimalConsts.temperament,
+                      handler: _handleTemperament,
+                    ),
+                    Visibility(
+                      visible: _petSpecie == AnimalConsts.species[0],
+                      child: CustomDropdown(
+                        label: 'Pelagem',
+                        selected: _dogCoat,
+                        items: AnimalConsts.dogCoat,
+                        handler: _handleDogCoat,
+                      ),
+                    ),
+                    Visibility(
+                      visible: _petSpecie == AnimalConsts.species[1],
+                      child: CustomDropdown(
+                        label: 'Pelagem',
+                        selected: _catCoat,
+                        items: AnimalConsts.catCoat,
+                        handler: _handleCatCoat,
+                      ),
+                    ),
+                    CustomFormField(
+                      label: 'Cor',
+                      isRequired: true,
+                      controller: _petColor,
+                    ),
+                    CustomFormField(
+                      label: 'Data de Nascimento Aproximada',
+                      isReadOnly: true,
+                      controller: _petBirthday,
+                      onTap: () async {
+                        _petBirthday.text = await selectDate(
+                          context,
+                          DateFormat('dd/MM/yyyy')
+                              .format(DateTime.now())
+                              .toString(),
+                        );
+                      },
+                    ),
+                    CustomFormField(
+                      label: 'Código do Microchip',
+                      isRequired: false,
+                      useOptionalLabel: true,
+                      controller: _petMicrochip,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Castrado',
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                        Switch(
+                          value: _isCastrated,
+                          onChanged: (bool value) {
+                            setState(() {
+                              _isCastrated = value;
+                              _petCastratedDate.text =
+                                  !_isCastrated ? '' : _petCastratedDate.text;
+                            });
+                          },
+                        )
+                      ],
+                    ),
+                    if (_isCastrated)
+                      CustomFormField(
+                        label: 'Data da castração',
+                        isReadOnly: true,
+                        controller: _petCastratedDate,
+                        onTap: () async {
+                          _petCastratedDate.text = await selectDate(
+                            context,
+                            DateFormat('dd/MM/yyyy')
+                                .format(DateTime.now())
+                                .toString(),
+                          );
+                        },
+                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Vacinado',
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                        Switch(
+                          value: _isVacinated,
+                          onChanged: (bool value) {
+                            setState(() {
+                              _isVacinated = value;
+                            });
+                          },
+                        )
+                      ],
+                    ),
+                  ],
                 ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Vacinado',
-                    style: TextStyle(fontSize: 16.0),
-                  ),
-                  Switch(
-                    value: _isVacinated,
-                    onChanged: (bool value) {
-                      setState(() {
-                        _isVacinated = value;
-                      });
-                    },
-                  )
-                ],
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/animal_api.dart';
@@ -25,7 +26,7 @@ class _MyPetsState extends State<MyPets> {
   _getPetList() {
     isLoading = true;
 
-    AnimalAPI.getTasks().then((response) {
+    AnimalAPI.getPetsByUser().then((response) {
       var body = json.decode(response.body);
 
       setState(() {
@@ -35,7 +36,6 @@ class _MyPetsState extends State<MyPets> {
                 .toList()
             : [];
 
-        // print(_pets);
         isLoading = false;
       });
     });
@@ -67,7 +67,7 @@ class _MyPetsState extends State<MyPets> {
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : _pets.isNotEmpty
+            : _pets.isEmpty
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
