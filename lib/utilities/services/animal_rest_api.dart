@@ -1,6 +1,6 @@
 import 'package:the_walking_pets/constants/app_constants.dart';
 import 'package:http/http.dart' as http;
-import 'package:the_walking_pets/model/animal/animal_api.dart';
+import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 
 class AnimalAPI {
@@ -16,7 +16,7 @@ class AnimalAPI {
     );
   }
 
-  static Future insertPet(AnimalClass animalData) async {
+  static Future insertPet(Animal animalData) async {
     Map<String, String> requestHeaders = {
       'content-type': 'application/json',
       'x-hasura-admin-secret': hasuraSecret,

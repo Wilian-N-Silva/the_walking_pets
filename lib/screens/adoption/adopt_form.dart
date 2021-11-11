@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
-import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/model/animal/animal_old.dart';
 import 'package:the_walking_pets/utilities/helpers/data_formatter.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
@@ -9,7 +9,7 @@ import 'package:the_walking_pets/widgets/custom_form_field.dart';
 class AdoptionForm extends StatefulWidget {
   const AdoptionForm({Key? key, required this.animal}) : super(key: key);
 
-  final Animal animal;
+  final AnimalOld animal;
 
   @override
   _AdoptionFormState createState() => _AdoptionFormState();
@@ -58,7 +58,7 @@ class _AdoptionFormState extends State<AdoptionForm> {
 
   @override
   Widget build(BuildContext context) {
-    Animal animal = widget.animal;
+    AnimalOld animal = widget.animal;
 
     return Scaffold(
       appBar: AppBar(

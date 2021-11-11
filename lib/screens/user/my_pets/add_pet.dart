@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:the_walking_pets/constants/animal_consts.dart';
-import 'package:the_walking_pets/model/animal/animal_api.dart';
+import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/widgets/custom_dropdown_form_field.dart';
@@ -207,36 +208,42 @@ class _AddPetState extends State<AddPet> {
         _blurhash = await generateBlurhash();
       }
 
-      AnimalClass animalFormData = AnimalClass(
-          uid: currentUser.id,
-          photo: _photoUrl,
-          name: _petName.text,
-          specie: AnimalConsts.species
-                  .indexWhere((element) => element == _petSpecie) +
-              1,
-          gender: AnimalConsts.gender
-                  .indexWhere((element) => element == _petGender) +
-              1,
-          birth: DateFormat('dd/MM/yyyy').parse(_petBirthday.text),
-          photoBlurhash: _blurhash
-          // TODO:
-          // _petSize;
-          // _petTemperament;
-          // _petCoat;
-          // _petColor.text;
-          // _petMicrochip.text;
-          // _isCastrated;
-          // _isVacinated;
-          );
+      Animal animalFormData = Animal(
+        uid: currentUser.id,
+        photo: _photoUrl,
+        photoBlurhash: _blurhash,
+        name: _petName.text,
+        color: _petColor.text,
+        microchip: _petMicrochip.text,
+        isCastrated: _isCastrated,
+        isVacinated: _isVacinated,
+        birth: DateFormat('dd/MM/yyyy').parse(_petBirthday.text),
+        specie:
+            AnimalConsts.species.indexWhere((value) => value == _petSpecie) + 1,
+        gender:
+            AnimalConsts.gender.indexWhere((value) => value == _petGender) + 1,
+        size: AnimalConsts.size.indexWhere((value) => value == _petSize) + 1,
+        temperament: AnimalConsts.temperament
+                .indexWhere((value) => value == _petTemperament) +
+            1,
+        coat: AnimalConsts.coats.indexWhere((element) =>
+                element == (_petSpecie == 'Cachorro' ? _dogCoat : _catCoat)) +
+            1,
+      );
 
       AnimalAPI.insertPet(animalFormData).then((response) {
-        // TODO:
-        // var body = json.decode(response.body);
+        var body = json.decode(response.body);
 
-        log(response.body);
         setState(() {
           _isLoading = false;
         });
+
+        if (response.statusCode == 200) {
+          Navigator.pop(context);
+        } else {
+          // TODO: popupmessage
+          log(body);
+        }
       });
     }
   }

@@ -4,9 +4,9 @@ import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
-import 'package:the_walking_pets/model/animal/animal_api.dart';
+import 'package:the_walking_pets/model/animal/animal.dart';
 
-Widget animalGridTile(BuildContext context, AnimalClass animal) {
+Widget animalGridTile(BuildContext context, Animal animal) {
   // print(animal.photoBlurhash!.isEmpty);
 
   return GestureDetector(

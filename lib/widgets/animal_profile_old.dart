@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/model/animal/animal_old.dart';
+import 'package:the_walking_pets/screens/adoption/adopt_form.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/utilities/helpers/animal_profile_share.dart';
+import 'package:the_walking_pets/widgets/view_image.dart';
 
 class AnimalProfileTile {
   AnimalProfileTile({
@@ -15,16 +18,20 @@ class AnimalProfileTile {
   final IconData leading;
 }
 
-class AnimalProfile extends StatefulWidget {
-  const AnimalProfile({Key? key}) : super(key: key);
+class AnimalProfileOld extends StatefulWidget {
+  const AnimalProfileOld({Key? key, required this.animal}) : super(key: key);
+
+  final AnimalOld animal;
 
   @override
-  _AnimalProfileState createState() => _AnimalProfileState();
+  _AnimalProfileOldState createState() => _AnimalProfileOldState();
 }
 
-class _AnimalProfileState extends State<AnimalProfile> {
+class _AnimalProfileOldState extends State<AnimalProfileOld> {
   @override
   Widget build(BuildContext context) {
+    final animal = widget.animal;
+
     final List<AnimalProfileTile> animalProfileTileDatasource = [
       AnimalProfileTile(
         title: 'Localização',
@@ -33,7 +40,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
       AnimalProfileTile(
         title: 'Espécie',
-        subtitle: 'info',
+        subtitle: animal.especie ?? 'Sem Informações',
         leading: Icons.local_offer,
       ),
 
@@ -46,33 +53,41 @@ class _AnimalProfileState extends State<AnimalProfile> {
       // ),
       AnimalProfileTile(
         title: 'Temperamento',
-        subtitle: 'info',
+        subtitle: animal.temperamento ?? 'Sem informações',
         leading: Icons.mood,
       ),
       AnimalProfileTile(
         title: 'Castrado',
-        subtitle: 'info',
+        subtitle: animal.castrado != null
+            ? (animal.castrado! ? 'Sim' : 'Não')
+            : 'Sem informações',
         leading: Icons.local_hospital,
       ),
       AnimalProfileTile(
         title: 'Vacinado',
-        subtitle: 'info',
+        subtitle: animal.vacinado != null
+            ? (animal.vacinado! ? 'Sim' : 'Não')
+            : 'Sem informações',
         leading: Icons.health_and_safety,
       ),
       AnimalProfileTile(
         title: 'Sexo',
-        subtitle: 'info',
-        leading: Icons.help,
+        subtitle: animal.sexo ?? 'Sem Informações',
+        leading: animal.sexo != null
+            ? animal.sexo.toString().toLowerCase() == 'macho'
+                ? Icons.male
+                : Icons.female
+            : Icons.help,
       ),
       AnimalProfileTile(
         title: 'Porte',
-        subtitle: 'info',
+        subtitle: animal.porte ?? 'Sem Informações',
         leading: Icons.swap_horiz_outlined,
       ),
 
       AnimalProfileTile(
         title: 'Pelagem',
-        subtitle: 'info',
+        subtitle: animal.pelagem ?? 'Sem informações',
         leading: Icons.color_lens_outlined,
       ),
     ];
@@ -81,17 +96,14 @@ class _AnimalProfileState extends State<AnimalProfile> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'info',
+        title: Text(
+          animal.nome ?? 'Sem nome',
         ),
         backgroundColor: Colors.black38,
         actions: [
           IconButton(
             onPressed: () async {
-              shareAnimalProfile(
-                context,
-                'info',
-              );
+              shareAnimalProfile(context, animal.nome.toString());
             },
             icon: const Icon(
               Icons.share,
@@ -111,22 +123,22 @@ class _AnimalProfileState extends State<AnimalProfile> {
                 width: double.infinity,
                 child: GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => ViewImage(
-                    //       path: animal.foto.toString(),
-                    //     ),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ViewImage(
+                          path: animal.foto.toString(),
+                        ),
+                      ),
+                    );
                   },
-                  // child: Hero(
-                  //   tag: animal,
-                  //   child: Image.asset(
-                  //     animal.foto.toString(),
-                  //     fit: BoxFit.cover,
-                  //   ),
-                  // ),
+                  child: Hero(
+                    tag: animal,
+                    child: Image.asset(
+                      animal.foto.toString(),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
               Container(
@@ -146,14 +158,14 @@ class _AnimalProfileState extends State<AnimalProfile> {
                           MaterialStateProperty.all<Color>(Colors.white),
                     ),
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => AdoptionForm(
-                      //       animal: animal,
-                      //     ),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AdoptionForm(
+                            animal: animal,
+                          ),
+                        ),
+                      );
                     },
                   ),
                 ),

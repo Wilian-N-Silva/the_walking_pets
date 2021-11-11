@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/widgets/animal_profile.dart';
+import 'package:the_walking_pets/model/animal/animal_old.dart';
+import 'package:the_walking_pets/widgets/animal_profile_old.dart';
 
-Widget animalTileOld(BuildContext context, Animal animal) {
+Widget animalTileOld(BuildContext context, AnimalOld animal) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => AnimalProfile(animal: animal),
+          builder: (context) => AnimalProfileOld(animal: animal),
         ),
       );
     },

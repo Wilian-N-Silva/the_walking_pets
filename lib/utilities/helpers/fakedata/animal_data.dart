@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/model/animal/animal_old.dart';
 
-List<Animal> animalData(BuildContext context) {
+List<AnimalOld> animalData(BuildContext context) {
   return [
-    Animal(
+    AnimalOld(
       foto: 'assets/images/placeholder_pets/dog/1.jpg',
       achado: false,
       perdido: false,
     ),
-    Animal(
+    AnimalOld(
       nome: 'Mel',
       especie: 'Canino',
       porte: 'Médio',
@@ -21,7 +21,7 @@ List<Animal> animalData(BuildContext context) {
       achado: false,
       perdido: false,
     ),
-    Animal(
+    AnimalOld(
       userId: 1,
       nome: 'Juninho',
       especie: 'Canino',

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/animal/animal_api.dart';
+import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/screens/user/my_pets/add_pet.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
@@ -31,7 +31,7 @@ class _MyPetsState extends State<MyPets> {
       setState(() {
         _pets = body['animal'] != null
             ? body['animal']
-                .map<AnimalClass>((json) => AnimalClass.fromJson(json))
+                .map<Animal>((json) => Animal.fromJson(json))
                 .toList()
             : [];
 
