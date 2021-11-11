@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/animal_data.dart';
-import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
+import 'package:the_walking_pets/widgets/animal_grid_tile_old.dart';
 import 'package:the_walking_pets/utilities/ui/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
@@ -47,7 +47,7 @@ class _LostAndFoundState extends State<LostAndFound> {
                 mainAxisSpacing: 16.0,
                 crossAxisSpacing: 16.0,
                 children: animalData(context).map<Widget>((animal) {
-                  return animalTile(context, animal);
+                  return animalTileOld(context, animal);
                 }).toList(),
               ),
             ),

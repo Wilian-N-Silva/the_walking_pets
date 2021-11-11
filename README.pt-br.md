@@ -15,6 +15,9 @@ Um projeto que tem como premissa, facilitar a adoção de animais domésticos, n
 * [Flutter](http://flutter.dev/)
 * [Rive](https://rive.app/)
 * [Spring Boot](https://spring.io/)
+* [Hasura](https://hasura.io/) (Durante o desenvolvimento)
+* [Firebase Cloud Storage](https://firebase.google.com/docs/storage)
+
 ## Agradecimentos
 * Adote Taboão da Serra - [Facebook](https://www.facebook.com/adotetaboaodaserra/) / [Instagram](https://www.instagram.com/adotetaboaodaserra)
 * [Storyset](https://storyset.com/)

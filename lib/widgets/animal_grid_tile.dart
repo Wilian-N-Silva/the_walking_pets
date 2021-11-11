@@ -1,36 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/widgets/animal_profile.dart';
+import 'package:the_walking_pets/model/animal/animal_api.dart';
 
-Widget animalTile(BuildContext context, Animal animal) {
+Widget animalGridTile(BuildContext context, AnimalClass animal) {
   return GestureDetector(
     onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AnimalProfile(animal: animal),
-        ),
-      );
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => AnimalProfile(animal: animal),
+      //   ),
+      // );
     },
     child: GridTile(
-      header: animal.perdido || animal.achado
-          ? Material(
-              color: Colors.transparent,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(16.0),
-                ),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: GridTileBar(
-                backgroundColor: Colors.black45,
-                title: Text(
-                  animal.perdido ? 'Perdido' : 'Encontrado',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            )
-          : null,
+      // header: animal.perdido || animal.achado
+      //     ? Material(
+      //         color: Colors.transparent,
+      //         shape: const RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.vertical(
+      //             top: Radius.circular(16.0),
+      //           ),
+      //         ),
+      //         clipBehavior: Clip.antiAlias,
+      //         child: GridTileBar(
+      //           backgroundColor: Colors.black45,
+      //           title: Text(
+      //             animal.perdido ? 'Perdido' : 'Encontrado',
+      //             textAlign: TextAlign.center,
+      //           ),
+      //         ),
+      //       )
+      //     : null,
       footer: Material(
         color: Colors.transparent,
         shape: const RoundedRectangleBorder(
@@ -41,10 +40,10 @@ Widget animalTile(BuildContext context, Animal animal) {
         clipBehavior: Clip.antiAlias,
         child: GridTileBar(
           backgroundColor: Colors.black45,
-          title: Text(animal.nome ?? 'Sem nome'),
+          title: Text(animal.name ?? 'Sem nome'),
           trailing: Icon(
-            animal.sexo != null
-                ? animal.sexo.toString().toLowerCase() == 'macho'
+            animal.gender != null
+                ? animal.gender == 1
                     ? Icons.male
                     : Icons.female
                 : Icons.help,
@@ -60,8 +59,10 @@ Widget animalTile(BuildContext context, Animal animal) {
         child: Hero(
           transitionOnUserGestures: false,
           tag: animal,
-          child: Image.asset(
-            animal.foto!,
+          child: Image.network(
+            animal.photo!,
+            height: 150.0,
+            width: 150.0,
             fit: BoxFit.cover,
           ),
         ),

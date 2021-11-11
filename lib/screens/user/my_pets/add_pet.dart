@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -11,6 +12,7 @@ import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/widgets/custom_dropdown_form_field.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class AddPet extends StatefulWidget {
   const AddPet({Key? key}) : super(key: key);
@@ -28,7 +30,13 @@ class _AddPetState extends State<AddPet> {
   final TextEditingController _petBirthday = TextEditingController();
   final TextEditingController _petCastratedDate = TextEditingController();
 
-  String? _petSpecie, _petGender, _petSize, _petTemperament, _catCoat, _dogCoat;
+  String? _petSpecie,
+      _petGender,
+      _petSize,
+      _petTemperament,
+      _catCoat,
+      _dogCoat,
+      _photoUrl;
   bool _isCastrated = false, _isVacinated = false, _isLoading = false;
 
   List<XFile>? _imageFileList;
@@ -46,6 +54,7 @@ class _AddPetState extends State<AddPet> {
       final pickedFile = await _picker.pickImage(
         source: source,
       );
+
       setState(() {
         _imageFile = pickedFile;
       });
@@ -182,34 +191,38 @@ class _AddPetState extends State<AddPet> {
     _petGender = value;
   }
 
-  _saveData() {
+  _saveData() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
-      // _imageFileList![0].path;
-      // _petName.text;
-      // _petSpecie;
-      // _petGender;
-      // _petSize;
-      // _petTemperament;
-      // _petCoat;
-      // _petColor.text;
-      // _petBirthday.text;
-      // _petMicrochip.text;
-      // _isCastrated;
-      // _isVacinated;
+
+      _photoUrl = _photoUrl ?? await uploadPhoto();
 
       AnimalClass animalFormData = AnimalClass(
+        uid: currentUser.id,
+        photo: _photoUrl,
         name: _petName.text,
         specie: AnimalConsts.species
                 .indexWhere((element) => element == _petSpecie) +
             1,
+        gender:
+            AnimalConsts.gender.indexWhere((element) => element == _petGender) +
+                1,
         birth: DateFormat('dd/MM/yyyy').parse(_petBirthday.text),
-        uid: currentUser.id,
+
+        // TODO:
+        // _petSize;
+        // _petTemperament;
+        // _petCoat;
+        // _petColor.text;
+        // _petMicrochip.text;
+        // _isCastrated;
+        // _isVacinated;
       );
 
       AnimalAPI.insertPet(animalFormData).then((response) {
+        // TODO:
         // var body = json.decode(response.body);
 
         log(response.body);
@@ -218,6 +231,16 @@ class _AddPetState extends State<AddPet> {
         });
       });
     }
+  }
+
+  Future<String> uploadPhoto() async {
+    await Firebase.initializeApp();
+    var task = await firebase_storage.FirebaseStorage.instance
+        .ref()
+        .child(DateTime.now().millisecondsSinceEpoch.toString())
+        .putFile(File(_imageFileList![0].path));
+
+    return await task.ref.getDownloadURL();
   }
 
   @override

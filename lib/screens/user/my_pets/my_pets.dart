@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/animal_api.dart';
 import 'package:the_walking_pets/screens/user/my_pets/add_pet.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
+import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
 
 class MyPets extends StatefulWidget {
   const MyPets({Key? key}) : super(key: key);
@@ -85,7 +85,17 @@ class _MyPetsState extends State<MyPets> {
                       )
                     ],
                   )
-                : Text(_pets.length.toString()),
+                : GridView.count(
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    padding: const EdgeInsets.all(16.0),
+                    mainAxisSpacing: 16.0,
+                    crossAxisSpacing: 16.0,
+                    children: _pets.map<Widget>((animal) {
+                      return animalGridTile(context, animal);
+                    }).toList(),
+                  ),
       ),
     );
   }

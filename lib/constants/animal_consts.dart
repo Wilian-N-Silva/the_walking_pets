@@ -11,17 +11,17 @@ class AnimalConsts {
     'Grande',
     'Gigante'
   ];
-  static const List<String> dogCoat = [
+
+  static const List<String> coats = [
+    // dog
     'Curta',
     'Dupla pelagem',
     'Dura e ou pelo de arame',
     'Longa e encaracolada',
     'Longa e lisa',
     'Longa, Sedosa e sem ondulações',
-    'Outras'
-  ];
-
-  static const List<String> catCoat = [
+    'Outras',
+    // cat
     'Curta',
     'Muito curta',
     'Semi-Longo',
@@ -29,6 +29,10 @@ class AnimalConsts {
     'Encaracolado',
     'Outras'
   ];
+
+  static List<String> dogCoat = AnimalConsts.coats.getRange(0, 7).toList();
+  static List<String> catCoat = AnimalConsts.coats.getRange(7, 13).toList();
+
   static const List<String> temperament = [
     'Calmo',
     'Dócil',

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/utilities/helpers/age_helpers.dart';
 import 'package:the_walking_pets/utilities/helpers/data_formatter.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';

@@ -13,7 +13,8 @@ A project whose premise is to facilitate the adoption of domestic animals, which
 * [Flutter](http://flutter.dev/)
 * [Rive](https://rive.app/)
 * [Spring Boot](https://spring.io/)
-
+* [Hasura](https://hasura.io/) (During development)
+* [Firebase Cloud Storage](https://firebase.google.com/docs/storage)
 
 ## Acknowledgements
 * Adote Taboão da Serra - [Facebook](https://www.facebook.com/adotetaboaodaserra/) / [Instagram](https://www.instagram.com/adotetaboaodaserra)
