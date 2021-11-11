@@ -3,19 +3,22 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class AnimalClass {
-  AnimalClass(
-      {this.id,
-      this.photo,
-      required this.specie,
-      required this.name,
-      this.birth,
-      required this.uid,
-      required this.gender});
+  AnimalClass({
+    this.id,
+    this.photo,
+    this.photoBlurhash,
+    required this.specie,
+    required this.name,
+    this.birth,
+    required this.uid,
+    required this.gender,
+  });
 
   final int? id;
   final int? specie;
   final String? name;
   final String? photo;
+  final String? photoBlurhash;
   final DateTime? birth;
   final int? uid;
   final int? gender;
@@ -25,6 +28,7 @@ class AnimalClass {
       specie: json["specie"] as int,
       name: json["name"] as String,
       photo: json["photo"] ?? '',
+      photoBlurhash: json["photo_blurhash"] ?? '',
       birth: DateTime.parse(json["birth"] as String),
       uid: json["uid"] as int,
       gender: json["gender"] as int);
@@ -36,6 +40,7 @@ class AnimalClass {
       specie: json["specie"] as int,
       name: json["name"] as String,
       photo: json["photo"] as String,
+      photoBlurhash: json["photo_blurhash"] as String,
       birth: DateTime.parse(json["birth"] as String),
       uid: json["uid"] as int,
       gender: json["gender"] as int);
@@ -45,6 +50,7 @@ class AnimalClass {
         "specie": specie,
         "name": name,
         "photo": photo,
+        "photo_blurhash": photoBlurhash,
         "birth": DateFormat('yyyy-MM-dd').format(birth!).toString(),
         "uid": uid,
         "gender": gender

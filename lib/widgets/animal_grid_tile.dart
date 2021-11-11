@@ -1,7 +1,14 @@
+import 'dart:typed_data';
+
+import 'package:blurhash_dart/blurhash_dart.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:image/image.dart' as img;
 import 'package:the_walking_pets/model/animal/animal_api.dart';
 
 Widget animalGridTile(BuildContext context, AnimalClass animal) {
+  // print(animal.photoBlurhash!.isEmpty);
+
   return GestureDetector(
     onTap: () {
       // Navigator.push(
@@ -12,24 +19,6 @@ Widget animalGridTile(BuildContext context, AnimalClass animal) {
       // );
     },
     child: GridTile(
-      // header: animal.perdido || animal.achado
-      //     ? Material(
-      //         color: Colors.transparent,
-      //         shape: const RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.vertical(
-      //             top: Radius.circular(16.0),
-      //           ),
-      //         ),
-      //         clipBehavior: Clip.antiAlias,
-      //         child: GridTileBar(
-      //           backgroundColor: Colors.black45,
-      //           title: Text(
-      //             animal.perdido ? 'Perdido' : 'Encontrado',
-      //             textAlign: TextAlign.center,
-      //           ),
-      //         ),
-      //       )
-      //     : null,
       footer: Material(
         color: Colors.transparent,
         shape: const RoundedRectangleBorder(
@@ -59,12 +48,33 @@ Widget animalGridTile(BuildContext context, AnimalClass animal) {
         child: Hero(
           transitionOnUserGestures: false,
           tag: animal,
-          child: Image.network(
-            animal.photo!,
-            height: 150.0,
-            width: 150.0,
-            fit: BoxFit.cover,
-          ),
+          child: animal.photo!.isNotEmpty
+              ? CachedNetworkImage(
+                  imageUrl: animal.photo!,
+                  height: 150.0,
+                  width: 150.0,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      animal.photoBlurhash!.isNotEmpty
+                          ? Image.memory(
+                              Uint8List.fromList(
+                                img.encodeJpg(
+                                  BlurHash.decode(animal.photoBlurhash!)
+                                      .toImage(150, 150),
+                                ),
+                              ),
+                              fit: BoxFit.cover,
+                            )
+                          : const Icon(Icons.photo),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Container(
+                  color: Colors.grey.shade300,
+                  child: const Icon(
+                    Icons.no_photography,
+                    size: 64.0,
+                  ),
+                ),
         ),
       ),
     ),

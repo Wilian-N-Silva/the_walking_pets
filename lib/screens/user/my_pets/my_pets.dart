@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/animal_api.dart';
 import 'package:the_walking_pets/screens/user/my_pets/add_pet.dart';

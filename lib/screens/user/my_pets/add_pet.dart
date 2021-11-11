@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,6 +13,8 @@ import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/widgets/custom_dropdown_form_field.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
+import 'package:image/image.dart' as img;
+
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class AddPet extends StatefulWidget {
@@ -36,7 +39,9 @@ class _AddPetState extends State<AddPet> {
       _petTemperament,
       _catCoat,
       _dogCoat,
-      _photoUrl;
+      _photoUrl,
+      _blurhash;
+
   bool _isCastrated = false, _isVacinated = false, _isLoading = false;
 
   List<XFile>? _imageFileList;
@@ -197,29 +202,32 @@ class _AddPetState extends State<AddPet> {
         _isLoading = true;
       });
 
-      _photoUrl = _photoUrl ?? await uploadPhoto();
+      if (_imageFileList != null) {
+        _photoUrl = _photoUrl ?? await uploadPhoto();
+        _blurhash = await generateBlurhash();
+      }
 
       AnimalClass animalFormData = AnimalClass(
-        uid: currentUser.id,
-        photo: _photoUrl,
-        name: _petName.text,
-        specie: AnimalConsts.species
-                .indexWhere((element) => element == _petSpecie) +
-            1,
-        gender:
-            AnimalConsts.gender.indexWhere((element) => element == _petGender) +
-                1,
-        birth: DateFormat('dd/MM/yyyy').parse(_petBirthday.text),
-
-        // TODO:
-        // _petSize;
-        // _petTemperament;
-        // _petCoat;
-        // _petColor.text;
-        // _petMicrochip.text;
-        // _isCastrated;
-        // _isVacinated;
-      );
+          uid: currentUser.id,
+          photo: _photoUrl,
+          name: _petName.text,
+          specie: AnimalConsts.species
+                  .indexWhere((element) => element == _petSpecie) +
+              1,
+          gender: AnimalConsts.gender
+                  .indexWhere((element) => element == _petGender) +
+              1,
+          birth: DateFormat('dd/MM/yyyy').parse(_petBirthday.text),
+          photoBlurhash: _blurhash
+          // TODO:
+          // _petSize;
+          // _petTemperament;
+          // _petCoat;
+          // _petColor.text;
+          // _petMicrochip.text;
+          // _isCastrated;
+          // _isVacinated;
+          );
 
       AnimalAPI.insertPet(animalFormData).then((response) {
         // TODO:
@@ -241,6 +249,14 @@ class _AddPetState extends State<AddPet> {
         .putFile(File(_imageFileList![0].path));
 
     return await task.ref.getDownloadURL();
+  }
+
+  generateBlurhash() {
+    final data = File(_imageFileList![0].path).readAsBytesSync();
+    final image = img.decodeImage(data.toList());
+    final blurHash = BlurHash.encode(image!, numCompX: 4, numCompY: 3);
+
+    return blurHash.hash;
   }
 
   @override
