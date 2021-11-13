@@ -91,6 +91,7 @@ flutter:
   - assets/images/placeholder_pets/dog/3.jpg
   - assets/images/placeholder_pets/dog/4.jpg
   - assets/images/placeholder_pets/dog/5.jpg
+  - assets/fonts/FA5_Pets.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -115,5 +116,10 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+    - family:  FA5_Pets
+      fonts:
+        - asset: assets/fonts/FA5_Pets.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

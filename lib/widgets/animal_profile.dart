@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:the_walking_pets/constants/animal_consts.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
+import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
 import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/utilities/helpers/animal_profile_share.dart';
@@ -162,8 +163,8 @@ class _AnimalProfileState extends State<AnimalProfile> {
                           )
                         : Container(
                             color: Colors.grey.shade300,
-                            child: const Icon(
-                              Icons.no_photography,
+                            child: Icon(
+                              animal.specie == 1 ? FA5Pets.dog : FA5Pets.cat,
                               size: 64.0,
                             ),
                           ),
