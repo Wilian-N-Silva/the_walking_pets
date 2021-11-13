@@ -8,17 +8,18 @@ class Animal {
     required this.name,
     required this.specie,
     required this.gender,
-    required this.birth,
     required this.size,
     required this.temperament,
     required this.coat,
     required this.color,
+    required this.birth,
     this.id,
     this.photo,
     this.photoBlurhash,
     this.microchip,
     this.isVacinated,
     this.isCastrated,
+    this.castrationDate,
   });
 
   final int? id;
@@ -34,6 +35,7 @@ class Animal {
   final String? color;
   final String? microchip;
   final DateTime? birth;
+  final DateTime? castrationDate;
   final bool? isVacinated;
   final bool? isCastrated;
 
@@ -44,12 +46,17 @@ class Animal {
         photo: json["photo"] ?? '',
         photoBlurhash: json["photo_blurhash"] ?? '',
         birth: DateTime.parse(json["birth"] as String),
+        castrationDate: json["castration_date"] != null
+            ? DateTime.parse(json["castration_date"] as String)
+            : null,
         uid: json["uid"] as int,
         gender: json["gender"] as int,
         size: json["size"] as int,
         temperament: json["temperament"] as int,
         coat: json["coat"] as int,
         color: json["color"] as String,
+        isCastrated: json["is_castrated"] as bool,
+        isVacinated: json["is_vacinated"] as bool,
       );
 
   String toJson() => json.encode(toMap());
@@ -61,12 +68,17 @@ class Animal {
         photo: json["photo"] ?? '',
         photoBlurhash: json["photo_blurhash"] ?? '',
         birth: DateTime.parse(json["birth"] as String),
+        castrationDate: json["castration_date"] != null
+            ? DateTime.parse(json["castration_date"] as String)
+            : null,
         uid: json["uid"] as int,
         gender: json["gender"] as int,
         size: json["size"] as int,
         temperament: json["temperament"] as int,
         coat: json["coat"] as int,
         color: json["color"] as String,
+        isCastrated: json["is_castrated"] as bool,
+        isVacinated: json["is_vacinated"] as bool,
       );
 
   Map<String, dynamic> toMap() => {
@@ -80,6 +92,11 @@ class Animal {
         "photo": photo,
         "photo_blurhash": photoBlurhash,
         "birth": DateFormat('yyyy-MM-dd').format(birth!).toString(),
+        "castration_date": isCastrated != null
+            ? castrationDate != null
+                ? DateFormat('yyyy-MM-dd').format(castrationDate!).toString()
+                : null
+            : null,
         "size": size,
         "temperament": temperament,
         "coat": coat,

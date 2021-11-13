@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
 
 class ViewImage extends StatefulWidget {
-  const ViewImage({Key? key, required this.path}) : super(key: key);
+  const ViewImage({Key? key, required this.animal}) : super(key: key);
 
-  final String path;
+  final Animal animal;
   @override
   _ViewImageState createState() => _ViewImageState();
 }
@@ -11,7 +13,7 @@ class ViewImage extends StatefulWidget {
 class _ViewImageState extends State<ViewImage> {
   @override
   Widget build(BuildContext context) {
-    final animal = widget.path;
+    final animal = widget.animal;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(backgroundColor: Colors.transparent),
@@ -19,8 +21,8 @@ class _ViewImageState extends State<ViewImage> {
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: InteractiveViewer(
-            child: Image.asset(
-              animal,
+            child: NetworkImageHandler(
+              animal: animal,
             ),
           ),
         ),

@@ -123,14 +123,14 @@ class _AnimalProfileOldState extends State<AnimalProfileOld> {
                 width: double.infinity,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ViewImage(
-                          path: animal.foto.toString(),
-                        ),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ViewImage(
+                    //       path: animal.foto.toString(),
+                    //     ),
+                    //   ),
+                    // );
                   },
                   child: Hero(
                     tag: animal,

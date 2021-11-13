@@ -1,22 +1,17 @@
-import 'dart:typed_data';
-
-import 'package:blurhash_dart/blurhash_dart.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:image/image.dart' as img;
 import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
+import 'package:the_walking_pets/widgets/animal_profile.dart';
 
 Widget animalGridTile(BuildContext context, Animal animal) {
-  // print(animal.photoBlurhash!.isEmpty);
-
   return GestureDetector(
     onTap: () {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => AnimalProfile(animal: animal),
-      //   ),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AnimalProfile(animal: animal),
+        ),
+      );
     },
     child: GridTile(
       footer: Material(
@@ -49,24 +44,8 @@ Widget animalGridTile(BuildContext context, Animal animal) {
           transitionOnUserGestures: false,
           tag: animal,
           child: animal.photo!.isNotEmpty
-              ? CachedNetworkImage(
-                  imageUrl: animal.photo!,
-                  height: 150.0,
-                  width: 150.0,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) =>
-                      animal.photoBlurhash!.isNotEmpty
-                          ? Image.memory(
-                              Uint8List.fromList(
-                                img.encodeJpg(
-                                  BlurHash.decode(animal.photoBlurhash!)
-                                      .toImage(150, 150),
-                                ),
-                              ),
-                              fit: BoxFit.cover,
-                            )
-                          : const Icon(Icons.photo),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+              ? NetworkImageHandler(
+                  animal: animal,
                 )
               : Container(
                   color: Colors.grey.shade300,

@@ -218,6 +218,9 @@ class _AddPetState extends State<AddPet> {
         isCastrated: _isCastrated,
         isVacinated: _isVacinated,
         birth: DateFormat('dd/MM/yyyy').parse(_petBirthday.text),
+        castrationDate: _isCastrated
+            ? DateFormat('dd/MM/yyyy').parse(_petCastratedDate.text)
+            : null,
         specie:
             AnimalConsts.species.indexWhere((value) => value == _petSpecie) + 1,
         gender:
@@ -231,6 +234,8 @@ class _AddPetState extends State<AddPet> {
             1,
       );
 
+      log(animalFormData.toJson().toString());
+
       AnimalAPI.insertPet(animalFormData).then((response) {
         var body = json.decode(response.body);
 
@@ -241,8 +246,7 @@ class _AddPetState extends State<AddPet> {
         if (response.statusCode == 200) {
           Navigator.pop(context);
         } else {
-          // TODO: popupmessage
-          log(body);
+          log(response.body);
         }
       });
     }

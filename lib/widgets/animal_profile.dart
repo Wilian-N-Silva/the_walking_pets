@@ -1,7 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/constants/animal_consts.dart';
+import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
+import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/utilities/helpers/animal_profile_share.dart';
+import 'package:the_walking_pets/widgets/view_image.dart';
 
 class AnimalProfileTile {
   AnimalProfileTile({
@@ -16,7 +23,9 @@ class AnimalProfileTile {
 }
 
 class AnimalProfile extends StatefulWidget {
-  const AnimalProfile({Key? key}) : super(key: key);
+  const AnimalProfile({Key? key, required this.animal}) : super(key: key);
+
+  final Animal animal;
 
   @override
   _AnimalProfileState createState() => _AnimalProfileState();
@@ -25,15 +34,19 @@ class AnimalProfile extends StatefulWidget {
 class _AnimalProfileState extends State<AnimalProfile> {
   @override
   Widget build(BuildContext context) {
+    Animal animal = widget.animal;
+
+    log(animal.toJson());
+
     final List<AnimalProfileTile> animalProfileTileDatasource = [
-      AnimalProfileTile(
-        title: 'Localização',
-        subtitle: 'São Paulo - SP',
-        leading: Icons.location_on,
-      ),
+      // AnimalProfileTile(
+      //   title: 'Localização',
+      //   subtitle: 'São Paulo - SP',
+      //   leading: Icons.location_on,
+      // ),
       AnimalProfileTile(
         title: 'Espécie',
-        subtitle: 'info',
+        subtitle: AnimalConsts.species.elementAt(animal.specie! - 1),
         leading: Icons.local_offer,
       ),
 
@@ -46,33 +59,45 @@ class _AnimalProfileState extends State<AnimalProfile> {
       // ),
       AnimalProfileTile(
         title: 'Temperamento',
-        subtitle: 'info',
+        subtitle: AnimalConsts.temperament.elementAt(animal.temperament! - 1),
         leading: Icons.mood,
       ),
       AnimalProfileTile(
         title: 'Castrado',
-        subtitle: 'info',
+        subtitle: animal.isCastrated != null
+            ? animal.isCastrated!
+                ? 'Sim'
+                : 'Não'
+            : 'Sem informações',
         leading: Icons.local_hospital,
       ),
       AnimalProfileTile(
         title: 'Vacinado',
-        subtitle: 'info',
+        subtitle: animal.isVacinated != null
+            ? animal.isVacinated!
+                ? 'Sim'
+                : 'Não'
+            : 'Sem informações',
         leading: Icons.health_and_safety,
       ),
       AnimalProfileTile(
         title: 'Sexo',
-        subtitle: 'info',
-        leading: Icons.help,
+        subtitle: AnimalConsts.gender.elementAt(animal.gender! - 1),
+        leading:
+            AnimalConsts.gender.elementAt(animal.gender! - 1).toLowerCase() ==
+                    'macho'
+                ? Icons.male
+                : Icons.female,
       ),
       AnimalProfileTile(
         title: 'Porte',
-        subtitle: 'info',
+        subtitle: AnimalConsts.size.elementAt(animal.size! - 1),
         leading: Icons.swap_horiz_outlined,
       ),
 
       AnimalProfileTile(
         title: 'Pelagem',
-        subtitle: 'info',
+        subtitle: AnimalConsts.coats.elementAt(animal.coat! - 1),
         leading: Icons.color_lens_outlined,
       ),
     ];
@@ -81,23 +106,32 @@ class _AnimalProfileState extends State<AnimalProfile> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'info',
+        title: Text(
+          animal.name!,
         ),
         backgroundColor: Colors.black38,
         actions: [
-          IconButton(
-            onPressed: () async {
-              shareAnimalProfile(
-                context,
-                'info',
-              );
-            },
-            icon: const Icon(
-              Icons.share,
-              color: Colors.white,
+          if (animal.uid != currentUser.id)
+            IconButton(
+              onPressed: () async {
+                shareAnimalProfile(
+                  context,
+                  'info',
+                );
+              },
+              icon: const Icon(
+                Icons.share,
+                color: Colors.white,
+              ),
+            )
+          else
+            TextButton(
+              onPressed: () {},
+              child: const Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
             ),
-          ),
         ],
       ),
       extendBodyBehindAppBar: true,
@@ -111,65 +145,77 @@ class _AnimalProfileState extends State<AnimalProfile> {
                 width: double.infinity,
                 child: GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => ViewImage(
-                    //       path: animal.foto.toString(),
-                    //     ),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ViewImage(
+                          animal: animal,
+                        ),
+                      ),
+                    );
                   },
-                  // child: Hero(
-                  //   tag: animal,
-                  //   child: Image.asset(
-                  //     animal.foto.toString(),
-                  //     fit: BoxFit.cover,
-                  //   ),
-                  // ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: (screenHeight / 2) - 25),
-                height: 50.0,
-                child: Center(
-                  child: TextButton(
-                    child: const Text('Adote-me!'),
-                    style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all<Size>(
-                        const Size(128, 48.0),
-                      ),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.lightBlueAccent.shade400,
-                      ),
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                    ),
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => AdoptionForm(
-                      //       animal: animal,
-                      //     ),
-                      //   ),
-                      // );
-                    },
+                  child: Hero(
+                    tag: animal,
+                    child: animal.photo!.isNotEmpty
+                        ? NetworkImageHandler(
+                            animal: animal,
+                          )
+                        : Container(
+                            color: Colors.grey.shade300,
+                            child: const Icon(
+                              Icons.no_photography,
+                              size: 64.0,
+                            ),
+                          ),
                   ),
                 ),
-              )
+              ),
+              if (animal.uid != currentUser.id)
+                Container(
+                  margin: EdgeInsets.only(top: (screenHeight / 2) - 25),
+                  height: 50.0,
+                  child: Center(
+                    child: TextButton(
+                      child: const Text('Adote-me!'),
+                      style: ButtonStyle(
+                        fixedSize: MaterialStateProperty.all<Size>(
+                          const Size(128, 48.0),
+                        ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          Colors.lightBlueAccent.shade400,
+                        ),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                      ),
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => AdoptionForm(
+                        //       animal: animal,
+                        //     ),
+                        //   ),
+                        // );
+                      },
+                    ),
+                  ),
+                )
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: (screenHeight / 2) + 25),
+            margin: EdgeInsets.only(
+              top: (screenHeight / 2) + (animal.uid != currentUser.id ? 25 : 0),
+            ),
             child: ListView.separated(
+              padding: EdgeInsets.zero,
               physics: const BouncingScrollPhysics(),
               itemCount: animalProfileTileDatasource.length,
               itemBuilder: (BuildContext context, int index) {
                 return animalProfileInfoTile(
-                    animalProfileTileDatasource[index].title,
-                    animalProfileTileDatasource[index].subtitle,
-                    animalProfileTileDatasource[index].leading);
+                  animalProfileTileDatasource[index].title,
+                  animalProfileTileDatasource[index].subtitle,
+                  animalProfileTileDatasource[index].leading,
+                );
               },
               separatorBuilder: (BuildContext context, int index) =>
                   const Divider(),
@@ -179,8 +225,4 @@ class _AnimalProfileState extends State<AnimalProfile> {
       ),
     );
   }
-}
-
-String formatWeight(double weight) {
-  return weight.toStringAsFixed(weight.truncateToDouble() == weight ? 0 : 1);
 }
