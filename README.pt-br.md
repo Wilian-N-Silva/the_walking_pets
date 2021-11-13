@@ -5,7 +5,6 @@
 <p align="center"><img src="docs/walkthrough_screenshot.png"></p>
 
 ## Sobre o projeto
-
 Um projeto que tem como premissa, facilitar a adoção de animais domésticos, nos quais foram cadastrados através de doadores como ONGs ou pessoas físicas que desejam doar seus pets. Além disso, o projeto tem como objetivo secundário, auxiliar tutores de pets a encontrarem seus animais perdidos, através de anúncio feito por ele ou por terceiros que o tenham encontrado algum animal em situação de rua
 
 ### Back-end
@@ -17,6 +16,7 @@ Um projeto que tem como premissa, facilitar a adoção de animais domésticos, n
 * [Spring Boot](https://spring.io/)
 * [Hasura](https://hasura.io/) (Durante o desenvolvimento)
 * [Firebase Cloud Storage](https://firebase.google.com/docs/storage)
+* [Flutter Icons](fluttericon.com)
 
 ## Agradecimentos
 * Adote Taboão da Serra - [Facebook](https://www.facebook.com/adotetaboaodaserra/) / [Instagram](https://www.instagram.com/adotetaboaodaserra)

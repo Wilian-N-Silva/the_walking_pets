@@ -11,6 +11,7 @@ import 'package:the_walking_pets/constants/animal_consts.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
+import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
 import 'package:the_walking_pets/widgets/custom_dropdown_form_field.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
@@ -82,11 +83,19 @@ class _AddPetState extends State<AddPet> {
             shape: BoxShape.circle,
           ),
           child: _imageFileList == null
-              ? const Icon(
-                  Icons.add_a_photo,
-                  size: 64.0,
-                  color: Colors.white,
-                )
+              ? _petSpecie == null
+                  ? const Icon(
+                      Icons.add_a_photo,
+                      size: 64.0,
+                      color: Colors.white,
+                    )
+                  : Icon(
+                      _petSpecie == AnimalConsts.species[0]
+                          ? FA5Pets.dog
+                          : FA5Pets.cat,
+                      size: 64.0,
+                      color: Colors.white,
+                    )
               : Stack(
                   children: [
                     ClipOval(
