@@ -4,7 +4,6 @@ import 'package:the_walking_pets/model/animal/animal_old.dart';
 import 'package:the_walking_pets/screens/adoption/adopt_form.dart';
 import 'package:the_walking_pets/widgets/animal_profile_info_tile.dart';
 import 'package:the_walking_pets/utilities/helpers/animal_profile_share.dart';
-import 'package:the_walking_pets/widgets/view_image.dart';
 
 class AnimalProfileTile {
   AnimalProfileTile({

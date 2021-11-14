@@ -1,22 +1,20 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:blurhash_dart/blurhash_dart.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:the_walking_pets/constants/animal_consts.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/screens/user/my_pets/my_pets.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
+import 'package:the_walking_pets/utilities/helpers/generate_blurhash.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
+import 'package:the_walking_pets/widgets/animal_profile.dart';
 import 'package:the_walking_pets/widgets/custom_dropdown_form_field.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
-import 'package:image/image.dart' as img;
-
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class AddPet extends StatefulWidget {
@@ -214,7 +212,7 @@ class _AddPetState extends State<AddPet> {
 
       if (_imageFileList != null) {
         _photoUrl = _photoUrl ?? await uploadPhoto();
-        _blurhash = await generateBlurhash();
+        _blurhash = await generateBlurhash(_imageFileList![0].path);
       }
 
       Animal animalFormData = Animal(
@@ -243,19 +241,24 @@ class _AddPetState extends State<AddPet> {
             1,
       );
 
-      log(animalFormData.toJson().toString());
-
       AnimalAPI.insertPet(animalFormData).then((response) {
-        var body = json.decode(response.body);
-
         setState(() {
           _isLoading = false;
         });
 
         if (response.statusCode == 200) {
-          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const MyPets(postInsert: true),
+            ),
+          );
         } else {
-          log(response.body);
+          const snackBar = SnackBar(
+            content: Text('Erro ao salvar dados'),
+          );
+
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       });
     }
@@ -271,13 +274,13 @@ class _AddPetState extends State<AddPet> {
     return await task.ref.getDownloadURL();
   }
 
-  generateBlurhash() {
-    final data = File(_imageFileList![0].path).readAsBytesSync();
-    final image = img.decodeImage(data.toList());
-    final blurHash = BlurHash.encode(image!, numCompX: 4, numCompY: 3);
+  // generateBlurhash() {
+  //   final data = File(_imageFileList![0].path).readAsBytesSync();
+  //   final image = img.decodeImage(data.toList());
+  //   final blurHash = BlurHash.encode(image!, numCompX: 4, numCompY: 3);
 
-    return blurHash.hash;
-  }
+  //   return blurHash.hash;
+  // }
 
   @override
   Widget build(BuildContext context) {

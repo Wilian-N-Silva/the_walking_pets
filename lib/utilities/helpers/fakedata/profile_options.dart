@@ -15,7 +15,9 @@ List<ProfileSettings> profileOptions = [
   ProfileSettings(
     title: 'Meus Pets',
     icon: Icons.pets,
-    route: const MyPets(),
+    route: const MyPets(
+      postInsert: false,
+    ),
   ),
   ProfileSettings(
     title: 'Endereços',

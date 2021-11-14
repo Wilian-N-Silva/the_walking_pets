@@ -10,7 +10,9 @@ Widget animalGridTile(BuildContext context, Animal animal) {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => AnimalProfile(animal: animal),
+          builder: (context) => AnimalProfile(
+            animal: animal,
+          ),
         ),
       );
     },

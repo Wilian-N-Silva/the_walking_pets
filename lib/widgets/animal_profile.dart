@@ -24,7 +24,10 @@ class AnimalProfileTile {
 }
 
 class AnimalProfile extends StatefulWidget {
-  const AnimalProfile({Key? key, required this.animal}) : super(key: key);
+  const AnimalProfile({
+    Key? key,
+    required this.animal,
+  }) : super(key: key);
 
   final Animal animal;
 
@@ -162,10 +165,11 @@ class _AnimalProfileState extends State<AnimalProfile> {
                             animal: animal,
                           )
                         : Container(
-                            color: Colors.grey.shade300,
+                            color: Theme.of(context).primaryColor,
                             child: Icon(
                               animal.specie == 1 ? FA5Pets.dog : FA5Pets.cat,
                               size: 64.0,
+                              color: Colors.white,
                             ),
                           ),
                   ),
