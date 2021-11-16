@@ -16,6 +16,7 @@ class MyPets extends StatefulWidget {
 
 class _MyPetsState extends State<MyPets> {
   bool? isLoading;
+  bool requestError = false;
   List _pets = [];
 
   @override
@@ -31,13 +32,21 @@ class _MyPetsState extends State<MyPets> {
       var body = json.decode(response.body);
 
       setState(() {
-        _pets = body['animal'] != null
-            ? body['animal']
-                .map<Animal>((json) => Animal.fromJson(json))
-                .toList()
-            : [];
-
         isLoading = false;
+        if (response.statusCode == 200) {
+          _pets = body['animal'] != null
+              ? body['animal']
+                  .map<Animal>((json) => Animal.fromJson(json))
+                  .toList()
+              : [];
+        } else {
+          requestError = true;
+          SnackBar snackBar = SnackBar(
+            content: Text('Erro: ${body['error'].toString()}'),
+          );
+
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
       });
     });
   }
@@ -81,16 +90,23 @@ class _MyPetsState extends State<MyPets> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Não há Pets cadastrados'),
-                      ElevatedButton(
-                        child: const Text('Adicionar Pet'),
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AddPet(),
+                      Text(requestError
+                          ? 'Erro ao listar animais cadastrados'
+                          : 'Não há Pets cadastrados'),
+                      if (!requestError)
+                        ElevatedButton(
+                          child: const Text('Adicionar Pet'),
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AddPet(),
+                            ),
                           ),
-                        ),
-                      )
+                        )
+                      else
+                        ElevatedButton(
+                            child: const Text('Voltar'),
+                            onPressed: () => Navigator.pop)
                     ],
                   )
                 : GridView.count(

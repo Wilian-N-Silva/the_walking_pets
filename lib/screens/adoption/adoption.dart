@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/screens/adoption/adoption_filter.dart';
-import 'package:the_walking_pets/utilities/helpers/fakedata/animal_data.dart';
-import 'package:the_walking_pets/widgets/animal_grid_tile_old.dart';
 import 'package:the_walking_pets/utilities/ui/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
@@ -18,20 +16,20 @@ class _AdoptionState extends State<Adoption> {
       margin: EdgeInsets.only(
         top: ((MediaQuery.of(context).size.height / 7) - 32.0),
       ),
-      child: GridView.count(
-        physics: const BouncingScrollPhysics(),
-        shrinkWrap: true,
-        crossAxisCount: 2,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-          vertical: 48,
-        ),
-        mainAxisSpacing: 16.0,
-        crossAxisSpacing: 16.0,
-        children: animalData(context).map<Widget>((animal) {
-          return animalTileOld(context, animal);
-        }).toList(),
-      ),
+      // child: GridView.count(
+      //   physics: const BouncingScrollPhysics(),
+      //   shrinkWrap: true,
+      //   crossAxisCount: 2,
+      //   padding: const EdgeInsets.symmetric(
+      //     horizontal: 16.0,
+      //     vertical: 48,
+      //   ),
+      //   mainAxisSpacing: 16.0,
+      //   crossAxisSpacing: 16.0,
+      //   children: animalData(context).map<Widget>((animal) {
+      //     return animalTileOld(context, animal);
+      //   }).toList(),
+      // ),
     );
   }
 
