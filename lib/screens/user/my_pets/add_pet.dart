@@ -11,7 +11,6 @@ import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/utilities/helpers/generate_blurhash.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
-import 'package:the_walking_pets/widgets/animal_profile.dart';
 import 'package:the_walking_pets/widgets/custom_dropdown_form_field.dart';
 import 'package:the_walking_pets/widgets/custom_form_field.dart';
 import 'package:the_walking_pets/widgets/date_picker.dart';
@@ -273,14 +272,6 @@ class _AddPetState extends State<AddPet> {
 
     return await task.ref.getDownloadURL();
   }
-
-  // generateBlurhash() {
-  //   final data = File(_imageFileList![0].path).readAsBytesSync();
-  //   final image = img.decodeImage(data.toList());
-  //   final blurHash = BlurHash.encode(image!, numCompX: 4, numCompY: 3);
-
-  //   return blurHash.hash;
-  // }
 
   @override
   Widget build(BuildContext context) {

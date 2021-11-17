@@ -86,6 +86,8 @@ flutter:
   - assets/animations/blue/good_doggy_bro.riv
   - assets/animations/blue/veterinary_pana.riv
   - assets/animations/blue/cautious_dog_bro.riv
+  - assets/images/blue/adopt_a_pet_bro.png
+  - assets/images/blue/animal_shelter_bro.png
   - assets/images/placeholder_pets/dog/1.jpg
   - assets/images/placeholder_pets/dog/2.jpg
   - assets/images/placeholder_pets/dog/3.jpg
