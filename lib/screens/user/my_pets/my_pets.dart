@@ -7,9 +7,7 @@ import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
 
 class MyPets extends StatefulWidget {
-  const MyPets({Key? key, required this.postInsert, required this.adoption})
-      : super(key: key);
-  final bool postInsert;
+  const MyPets({Key? key, required this.adoption}) : super(key: key);
   final bool adoption;
 
   @override

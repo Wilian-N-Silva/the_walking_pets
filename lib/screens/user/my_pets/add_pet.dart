@@ -250,7 +250,6 @@ class _AddPetState extends State<AddPet> {
             context,
             MaterialPageRoute(
               builder: (context) => const MyPets(
-                postInsert: true,
                 adoption: false,
               ),
             ),

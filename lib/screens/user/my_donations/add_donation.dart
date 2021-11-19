@@ -107,7 +107,6 @@ class _AddDonationState extends State<AddDonation> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const MyPets(
-                                  postInsert: false,
                                   adoption: true,
                                 ),
                               ),
