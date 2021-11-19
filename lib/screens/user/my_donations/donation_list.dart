@@ -1,44 +1,43 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/screens/user/my_pets/add_pet.dart';
+import 'package:the_walking_pets/model/donation/donation.dart';
+import 'package:the_walking_pets/screens/user/my_donations/add_donation.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
-import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
+import 'package:the_walking_pets/utilities/services/donation_rest_api.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
 
-class MyPets extends StatefulWidget {
-  const MyPets({Key? key, required this.postInsert, required this.adoption})
-      : super(key: key);
-  final bool postInsert;
-  final bool adoption;
+class MyDonations extends StatefulWidget {
+  const MyDonations({Key? key}) : super(key: key);
 
   @override
-  _MyPetsState createState() => _MyPetsState();
+  _MyDonationsState createState() => _MyDonationsState();
 }
 
-class _MyPetsState extends State<MyPets> {
+class _MyDonationsState extends State<MyDonations> {
   bool? isLoading;
   bool requestError = false;
-  List _pets = [];
+  List<AdoptionClass> _pets = [];
 
   @override
   void initState() {
     super.initState();
-    _getPetList();
+    _getDonationList();
   }
 
-  _getPetList() {
+  _getDonationList() {
     isLoading = true;
 
-    AnimalAPI.getPetsByUser().then((response) {
+    DonationAPI.getDonationsByUser().then((response) {
       var body = json.decode(response.body);
 
       setState(() {
         isLoading = false;
+
         if (response.statusCode == 200) {
-          _pets = body['animal'] != null
-              ? body['animal']
-                  .map<Animal>((json) => Animal.fromJson(json))
+          _pets = body['adoption'] != null
+              ? body['adoption']
+                  .map<AdoptionClass>((json) => AdoptionClass.fromJson(json))
                   .toList()
               : [];
         } else {
@@ -57,7 +56,7 @@ class _MyPetsState extends State<MyPets> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meus Pets'),
+        title: const Text('Minhas doações'),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -73,7 +72,7 @@ class _MyPetsState extends State<MyPets> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const AddPet(),
+                  builder: (context) => const AddDonation(),
                 ),
               );
             },
@@ -98,12 +97,14 @@ class _MyPetsState extends State<MyPets> {
                       if (!requestError)
                         ElevatedButton(
                           child: const Text('Adicionar Pet'),
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AddPet(),
-                            ),
-                          ),
+                          onPressed: () {
+                            //   return Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => const AddPet(),
+                            //   ),
+                            // );
+                          },
                         )
                       else
                         ElevatedButton(
@@ -119,11 +120,11 @@ class _MyPetsState extends State<MyPets> {
                     mainAxisSpacing: 16.0,
                     crossAxisSpacing: 16.0,
                     children: _pets.map<Widget>(
-                      (animal) {
+                      (donation) {
                         return animalGridTile(
                           context: context,
-                          animal: animal,
-                          adoption: widget.adoption,
+                          animal: donation.animal!,
+                          adoption: true,
                         );
                       },
                     ).toList(),

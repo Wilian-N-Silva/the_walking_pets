@@ -4,17 +4,25 @@ import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
 import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
 import 'package:the_walking_pets/widgets/animal_profile.dart';
 
-Widget animalGridTile(BuildContext context, Animal animal) {
+Widget animalGridTile(
+    {required BuildContext context,
+    required Animal animal,
+    required bool adoption}) {
   return GestureDetector(
     onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AnimalProfile(
-            animal: animal,
-          ),
-        ),
-      );
+      !adoption
+          ? Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AnimalProfile(
+                  animal: animal,
+                ),
+              ),
+            )
+          : Navigator.pop(
+              context,
+              animal,
+            );
     },
     child: GridTile(
       footer: Material(

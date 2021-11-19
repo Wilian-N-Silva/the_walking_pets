@@ -249,7 +249,10 @@ class _AddPetState extends State<AddPet> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const MyPets(postInsert: true),
+              builder: (context) => const MyPets(
+                postInsert: true,
+                adoption: false,
+              ),
             ),
           );
         } else {
