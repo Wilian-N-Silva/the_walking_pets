@@ -13,8 +13,8 @@ class AddLocal extends StatefulWidget {
 }
 
 class _AddLocalState extends State<AddLocal> {
-  // final _formKey = GlobalKey<FormState>();
-  // final TextEditingController _cep = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _cep = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

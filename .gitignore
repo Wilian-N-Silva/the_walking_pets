@@ -48,3 +48,4 @@ app.*.map.json
 # Sensitive Data
 lib/constants/app_constants.dart
 android/app/google-services.json
+android/app/src/main/AndroidManifest.xml
