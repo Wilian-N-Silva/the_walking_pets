@@ -7,8 +7,8 @@ import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
 
 class MyPets extends StatefulWidget {
-  const MyPets({Key? key, required this.adoption}) : super(key: key);
-  final bool adoption;
+  const MyPets({Key? key, required this.donation}) : super(key: key);
+  final bool donation;
 
   @override
   _MyPetsState createState() => _MyPetsState();
@@ -121,7 +121,7 @@ class _MyPetsState extends State<MyPets> {
                         return animalGridTile(
                           context: context,
                           animal: animal,
-                          adoption: widget.adoption,
+                          adoption: widget.donation,
                         );
                       },
                     ).toList(),

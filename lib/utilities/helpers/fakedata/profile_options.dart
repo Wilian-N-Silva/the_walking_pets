@@ -17,14 +17,16 @@ List<ProfileSettings> profileOptions = [
     title: 'Meus Pets',
     icon: Icons.pets,
     route: const MyPets(
-      adoption: false,
+      donation: false,
     ),
   ),
   ProfileSettings(
     title: 'Endereços',
     subtitle: 'Meus endereços',
     icon: Icons.pin_drop,
-    route: const MyLocals(),
+    route: const MyLocals(
+      donation: false,
+    ),
   ),
   ProfileSettings(
     title: 'Adoção',

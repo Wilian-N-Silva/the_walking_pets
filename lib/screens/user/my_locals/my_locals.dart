@@ -8,8 +8,8 @@ import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/utilities/services/user_rest_api.dart';
 
 class MyLocals extends StatefulWidget {
-  const MyLocals({Key? key}) : super(key: key);
-
+  const MyLocals({Key? key, required this.donation}) : super(key: key);
+  final bool donation;
   @override
   _MyLocalsState createState() => _MyLocalsState();
 }
@@ -64,8 +64,12 @@ class _MyLocalsState extends State<MyLocals> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const UserProfile()));
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const UserProfile(),
+              ),
+            );
           },
         ),
         actions: [
@@ -119,6 +123,14 @@ class _MyLocalsState extends State<MyLocals> {
                     itemBuilder: (BuildContext context, int index) {
                       Address data = _addresses[index];
                       return ListTile(
+                        onTap: () {
+                          widget.donation
+                              ? Navigator.pop(
+                                  context,
+                                  data,
+                                )
+                              : null;
+                        },
                         title: Text(
                           '${data.address}, ${data.number}',
                         ),

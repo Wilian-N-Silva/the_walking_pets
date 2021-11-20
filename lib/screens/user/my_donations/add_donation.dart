@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/model/util/address.dart';
 import 'package:the_walking_pets/screens/user/my_donations/donation_list.dart';
+import 'package:the_walking_pets/screens/user/my_locals/my_locals.dart';
 import 'package:the_walking_pets/screens/user/my_pets/my_pets.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/utilities/services/donation_rest_api.dart';
@@ -19,12 +21,19 @@ class AddDonation extends StatefulWidget {
 
 class _AddDonationState extends State<AddDonation> {
   Animal? choosenAnimal;
+  Address? choosenAddress;
   final TextEditingController _petNameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _observationController = TextEditingController();
 
   _donate() {
     DonationAPI.insertAdoption(
       animalId: choosenAnimal!.id!,
       partnerId: currentUser.id,
+      addressId: choosenAddress!.id!,
+      observations: _observationController.text == ''
+          ? _observationController.text
+          : null,
     ).then((response) {
       var body = json.decode(response.body);
 
@@ -51,6 +60,9 @@ class _AddDonationState extends State<AddDonation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(choosenAnimal == null
+            ? 'Selecione o Pet'
+            : choosenAnimal!.name.toString()),
         actions: [
           TextButton(
             child: const Text(
@@ -107,7 +119,7 @@ class _AddDonationState extends State<AddDonation> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const MyPets(
-                                  adoption: true,
+                                  donation: true,
                                 ),
                               ),
                             );
@@ -150,9 +162,32 @@ class _AddDonationState extends State<AddDonation> {
                 child: Column(
                   children: [
                     CustomFormField(
-                      label: 'Nome',
-                      controller: _petNameController,
+                      label: 'Selecione o Endereço',
                       isReadOnly: true,
+                      controller: _addressController,
+                      onTap: () async {
+                        choosenAddress = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MyLocals(
+                              donation: true,
+                            ),
+                          ),
+                        );
+
+                        setState(() {
+                          _addressController.text = choosenAddress != null
+                              ? '${choosenAddress!.address}, ${choosenAddress!.number}, ${choosenAddress!.neighborhood}, ${choosenAddress!.location} - ${choosenAddress!.state}'
+                              : '';
+                        });
+                      },
+                    ),
+                    CustomFormField(
+                      label: 'Observações',
+                      minlines: 1,
+                      maxlines: 5,
+                      controller: _observationController,
+                      action: TextInputAction.newline,
                     ),
                   ],
                 ),

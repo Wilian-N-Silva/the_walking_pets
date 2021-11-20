@@ -17,10 +17,11 @@ class DonationAPI {
     );
   }
 
-  static Future insertAdoption({
-    required int animalId,
-    required int partnerId,
-  }) async {
+  static Future insertAdoption(
+      {required int animalId,
+      required int partnerId,
+      required int addressId,
+      String? observations}) async {
     Map<String, String> requestHeaders = {
       'content-type': 'application/json',
       'x-hasura-admin-secret': hasuraSecret,
@@ -32,6 +33,8 @@ class DonationAPI {
       body: jsonEncode({
         'id_animal': '$animalId',
         'id_partner': '$partnerId',
+        'id_address': '$addressId',
+        'observations': observations
       }),
     );
   }

@@ -67,7 +67,9 @@ class _AddLocalState extends State<AddLocal> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const MyLocals(),
+              builder: (context) => const MyLocals(
+                donation: false,
+              ),
             ),
           );
         } else {

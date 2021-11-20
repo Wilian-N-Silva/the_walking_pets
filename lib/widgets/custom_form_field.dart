@@ -13,6 +13,8 @@ class CustomFormField extends StatefulWidget {
     this.formatterList,
     this.value,
     this.action,
+    this.minlines,
+    this.maxlines,
     this.onTap,
     this.onChanged,
     this.onSubmited,
@@ -24,6 +26,8 @@ class CustomFormField extends StatefulWidget {
   final TextEditingController? controller;
   final bool? isObscure;
   final bool? isReadOnly;
+  final int? minlines;
+  final int? maxlines;
   final String? hint;
   final TextInputType? inputType;
   final List<TextInputFormatter>? formatterList;
@@ -55,6 +59,8 @@ class _CustomFormFieldState extends State<CustomFormField> {
         controller: widget.controller,
         onTap: widget.onTap,
         onChanged: widget.onChanged,
+        minLines: widget.minlines ?? 1,
+        maxLines: widget.maxlines ?? 1,
         decoration: InputDecoration(
           label: Text(
             '${widget.label}${widget.useOptionalLabel != null ? widget.useOptionalLabel! ? ' (Opcional)' : '' : ''}',
