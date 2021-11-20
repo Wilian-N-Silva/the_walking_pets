@@ -1,8 +1,8 @@
 class AnimalConsts {
   static const List<String> gender = ['Macho', 'Fêmea'];
   static const List<String> species = [
-    'Cachorro',
-    'Gato',
+    'Canina',
+    'Felina',
   ];
   static const List<String> size = [
     'Mini',

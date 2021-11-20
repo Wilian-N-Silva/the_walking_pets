@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:the_walking_pets/constants/animal_consts.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/screens/adoption/adopt_form.dart';
-import 'package:the_walking_pets/screens/adoption/walk_through/adoption_walk_through.dart';
+import 'package:the_walking_pets/screens/adoption/adoption_walk_through.dart';
+import 'package:the_walking_pets/utilities/helpers/age_helpers.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
 import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
@@ -52,13 +53,13 @@ class _AnimalProfileState extends State<AnimalProfile> {
         leading: Icons.local_offer,
       ),
 
-      // AnimalProfileTile(
-      //   title: 'Idade',
-      //   subtitle: animal.idade != null
-      //       ? ageFormatter(animal.idade!)
-      //       : 'Sem informações',
-      //   leading: Icons.cake,
-      // ),
+      AnimalProfileTile(
+        title: 'Idade',
+        subtitle: animal.birth != null
+            ? ageFormatter(animal.birth!)
+            : 'Sem informações',
+        leading: Icons.cake,
+      ),
       AnimalProfileTile(
         title: 'Temperamento',
         subtitle: AnimalConsts.temperament.elementAt(animal.temperament! - 1),

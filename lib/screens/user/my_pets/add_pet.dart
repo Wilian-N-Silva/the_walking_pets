@@ -236,7 +236,7 @@ class _AddPetState extends State<AddPet> {
                 .indexWhere((value) => value == _petTemperament) +
             1,
         coat: AnimalConsts.coats.indexWhere((element) =>
-                element == (_petSpecie == 'Cachorro' ? _dogCoat : _catCoat)) +
+                element == (_petSpecie == 'Canina' ? _dogCoat : _catCoat)) +
             1,
       );
 
