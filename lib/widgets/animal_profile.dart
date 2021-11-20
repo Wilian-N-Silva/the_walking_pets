@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/constants/animal_consts.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/screens/adoption/adopt_form.dart';
+import 'package:the_walking_pets/screens/adoption/walk_through/adoption_walk_through.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
 import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
 import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
@@ -39,8 +39,6 @@ class _AnimalProfileState extends State<AnimalProfile> {
   @override
   Widget build(BuildContext context) {
     Animal animal = widget.animal;
-
-    log(animal.toJson());
 
     final List<AnimalProfileTile> animalProfileTileDatasource = [
       // AnimalProfileTile(
@@ -193,14 +191,14 @@ class _AnimalProfileState extends State<AnimalProfile> {
                             MaterialStateProperty.all<Color>(Colors.white),
                       ),
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => AdoptionForm(
-                        //       animal: animal,
-                        //     ),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AdoptionWalkThrough(
+                              animal: animal,
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),

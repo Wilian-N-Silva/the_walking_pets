@@ -26,7 +26,7 @@ class _SigninPageState extends State<SigninPage> {
               Column(
                 children: [
                   const Text(
-                    'Mas me diga...\nJá nos vimos antes?',
+                    'Já nos conhecemos?',
                     style: TextStyle(
                       fontSize: 20.0,
                     ),

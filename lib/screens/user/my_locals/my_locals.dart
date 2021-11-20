@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/util/address.dart';
@@ -36,7 +35,6 @@ class _MyLocalsState extends State<MyLocals> {
       setState(() {
         isLoading = false;
 
-        log(body['addresses'].toString());
         if (response.statusCode == 200) {
           _addresses = body['addresses'] != null
               ? body['addresses']

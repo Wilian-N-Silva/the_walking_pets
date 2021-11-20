@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:the_walking_pets/model/donation/donation.dart';
+import 'package:the_walking_pets/model/animal/donation.dart';
 import 'package:the_walking_pets/screens/user/my_donations/add_donation.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/utilities/services/donation_rest_api.dart';
@@ -17,7 +17,7 @@ class MyDonations extends StatefulWidget {
 class _MyDonationsState extends State<MyDonations> {
   bool? isLoading;
   bool requestError = false;
-  List<AdoptionClass> _pets = [];
+  List<DonationClass> _pets = [];
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _MyDonationsState extends State<MyDonations> {
         if (response.statusCode == 200) {
           _pets = body['adoption'] != null
               ? body['adoption']
-                  .map<AdoptionClass>((json) => AdoptionClass.fromJson(json))
+                  .map<DonationClass>((json) => DonationClass.fromJson(json))
                   .toList()
               : [];
         } else {
@@ -97,14 +97,7 @@ class _MyDonationsState extends State<MyDonations> {
                       if (!requestError)
                         ElevatedButton(
                           child: const Text('Adicionar Pet'),
-                          onPressed: () {
-                            //   return Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => const AddPet(),
-                            //   ),
-                            // );
-                          },
+                          onPressed: () {},
                         )
                       else
                         ElevatedButton(

@@ -13,10 +13,10 @@ Future<void> main() async {
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
+  bool? onboarding = prefs.getBool('onboarding');
+
   runApp(MyApp(
-    route: prefs.getBool('onboarding') == null
-        ? const WalkThrough1()
-        : const SigninPage(),
+    route: onboarding == null ? const WalkThrough1() : const SigninPage(),
   ));
 }
 

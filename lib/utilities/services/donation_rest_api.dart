@@ -12,7 +12,7 @@ class DonationAPI {
     };
 
     return await http.get(
-      Uri.parse('$baseUrl/api/rest/user/donation/list/${currentUser.id}'),
+      Uri.parse('$baseUrl/user/donation/list/${currentUser.id}'),
       headers: requestHeaders,
     );
   }
@@ -28,7 +28,7 @@ class DonationAPI {
     };
 
     return await http.post(
-      Uri.parse('$baseUrl/api/rest/adoption/insert'),
+      Uri.parse('$baseUrl/adoption/insert'),
       headers: requestHeaders,
       body: jsonEncode({
         'id_animal': '$animalId',

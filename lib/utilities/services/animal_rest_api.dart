@@ -11,7 +11,7 @@ class AnimalAPI {
     };
 
     return await http.get(
-      Uri.parse('$baseUrl/api/rest/user/animal/list/${currentUser.id}'),
+      Uri.parse('$baseUrl/user/animal/list/${currentUser.id}'),
       headers: requestHeaders,
     );
   }
@@ -23,7 +23,7 @@ class AnimalAPI {
     };
 
     return await http.post(
-      Uri.parse('$baseUrl/api/rest/animal/insert'),
+      Uri.parse('$baseUrl/animal/insert'),
       headers: requestHeaders,
       body: animalData.toJson(),
     );

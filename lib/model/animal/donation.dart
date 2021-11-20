@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:the_walking_pets/model/animal/animal.dart';
 
-class AdoptionClass {
-  AdoptionClass({
+class DonationClass {
+  DonationClass({
     required this.animal,
     required this.idAnimal,
     required this.isOpen,
@@ -19,7 +19,7 @@ class AdoptionClass {
   final int? id;
   final String? location;
 
-  factory AdoptionClass.fromJson(Map<String, dynamic> json) => AdoptionClass(
+  factory DonationClass.fromJson(Map<String, dynamic> json) => DonationClass(
         animal: Animal.fromMap(json["animal"]),
         idAnimal: json["id_animal"],
         isOpen: json["is_open"],
@@ -30,7 +30,7 @@ class AdoptionClass {
 
   String toJson() => json.encode(toMap());
 
-  factory AdoptionClass.fromMap(Map<String, dynamic> json) => AdoptionClass(
+  factory DonationClass.fromMap(Map<String, dynamic> json) => DonationClass(
         animal: Animal.fromMap(json["animal"]),
         idAnimal: json["id_animal"],
         isOpen: json["is_open"],

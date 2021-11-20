@@ -78,21 +78,14 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-  # - assets/animations/yellow/good_doggy_pana.riv
-  # - assets/animations/yellow/good_doggy_bro.riv
-  # - assets/animations/yellow/veterinary_pana.riv
-  # - assets/animations/yellow/cautious_dog_bro.riv
   - assets/animations/blue/good_doggy_pana.riv
   - assets/animations/blue/good_doggy_bro.riv
   - assets/animations/blue/veterinary_pana.riv
   - assets/animations/blue/cautious_dog_bro.riv
+  - assets/animations/blue/cat_with_a_witch_hat_cuate.riv
   - assets/images/blue/adopt_a_pet_bro.png
   - assets/images/blue/animal_shelter_bro.png
-  - assets/images/placeholder_pets/dog/1.jpg
-  - assets/images/placeholder_pets/dog/2.jpg
-  - assets/images/placeholder_pets/dog/3.jpg
-  - assets/images/placeholder_pets/dog/4.jpg
-  - assets/images/placeholder_pets/dog/5.jpg
+  - assets/images/blue/cat_with_a_witch_hat_cuate.png
   - assets/fonts/FA5_Pets.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
