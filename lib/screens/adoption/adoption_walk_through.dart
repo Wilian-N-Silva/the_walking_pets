@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:the_walking_pets/constants/app_constants.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/screens/adoption/adopt_form.dart';
+import 'package:the_walking_pets/screens/adoption/adoption_form.dart';
 
 class AdoptionWalkThrough extends StatefulWidget {
   const AdoptionWalkThrough({Key? key, required this.animal}) : super(key: key);
@@ -33,7 +33,7 @@ class _AdoptionWalkThroughState extends State<AdoptionWalkThrough> {
               );
             },
             child: const Text(
-              'Pular',
+              'Continuar',
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -71,11 +71,11 @@ class _AdoptionWalkThroughState extends State<AdoptionWalkThrough> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      'Sei que está ansioso para adotar ${widget.animal.gender == 1 ? 'o' : 'a'} , ',
+                      'Sei que está ansioso para adotar ${widget.animal.gender == 1 ? 'o' : 'a'} ',
                   style: Theme.of(context).textTheme.headline5,
                   children: <TextSpan>[
                     TextSpan(
-                      text: '${widget.animal.name}',
+                      text: '${widget.animal.name}, ',
                       style: Theme.of(context)
                           .textTheme
                           .headline5!

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/constants/animal_consts.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
-import 'package:the_walking_pets/screens/adoption/adopt_form.dart';
 import 'package:the_walking_pets/screens/adoption/adoption_walk_through.dart';
 import 'package:the_walking_pets/utilities/helpers/age_helpers.dart';
 import 'package:the_walking_pets/utilities/helpers/fakedata/user_data.dart';
