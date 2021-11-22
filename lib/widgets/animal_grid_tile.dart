@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/model/animal/adoption.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
 import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
 import 'package:the_walking_pets/widgets/animal_profile.dart';
 
-Widget animalGridTile(
-    {required BuildContext context,
-    required Animal animal,
-    required bool adoption}) {
+Widget animalGridTile({
+  required BuildContext context,
+  required Animal animal,
+  required bool isAdoption,
+  AdoptionClass? adoption,
+}) {
   return GestureDetector(
     onTap: () {
-      !adoption
+      !isAdoption
           ? Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => AnimalProfile(
                   animal: animal,
+                  adoption: adoption!,
                 ),
               ),
             )

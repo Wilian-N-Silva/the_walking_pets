@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:the_walking_pets/constants/app_constants.dart';
-import 'package:the_walking_pets/model/animal/animal.dart';
+import 'package:the_walking_pets/model/animal/adoption.dart';
 import 'package:the_walking_pets/screens/adoption/adoption_form.dart';
 
 class AdoptionWalkThrough extends StatefulWidget {
-  const AdoptionWalkThrough({Key? key, required this.animal}) : super(key: key);
+  const AdoptionWalkThrough({Key? key, required this.adoption})
+      : super(key: key);
 
-  final Animal animal;
+  final AdoptionClass adoption;
 
   @override
   _AdoptionWalkThroughState createState() => _AdoptionWalkThroughState();
@@ -27,7 +28,7 @@ class _AdoptionWalkThroughState extends State<AdoptionWalkThrough> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => AdoptionForm(
-                    animal: widget.animal,
+                    adoption: widget.adoption,
                   ),
                 ),
               );
@@ -71,11 +72,11 @@ class _AdoptionWalkThroughState extends State<AdoptionWalkThrough> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      'Sei que está ansioso para adotar ${widget.animal.gender == 1 ? 'o' : 'a'} ',
+                      'Sei que está ansioso para adotar ${widget.adoption.animal!.gender == 1 ? 'o' : 'a'} ',
                   style: Theme.of(context).textTheme.headline5,
                   children: <TextSpan>[
                     TextSpan(
-                      text: '${widget.animal.name}, ',
+                      text: '${widget.adoption.animal!.name}, ',
                       style: Theme.of(context)
                           .textTheme
                           .headline5!
@@ -101,11 +102,11 @@ class _AdoptionWalkThroughState extends State<AdoptionWalkThrough> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      'Seu formulário será enviado diretamente para o parceiro que está cuidando ${widget.animal.gender == 1 ? 'do' : 'da'} ',
+                      'Seu formulário será enviado diretamente para o parceiro que está cuidando ${widget.adoption.animal!.gender == 1 ? 'do' : 'da'} ',
                   style: Theme.of(context).textTheme.headline5,
                   children: <TextSpan>[
                     TextSpan(
-                      text: '${widget.animal.name} ',
+                      text: '${widget.adoption.animal!.name} ',
                       style: Theme.of(context)
                           .textTheme
                           .headline5!
@@ -124,11 +125,11 @@ class _AdoptionWalkThroughState extends State<AdoptionWalkThrough> {
               child: RichText(
                 text: TextSpan(
                   text:
-                      'Leia e responda atentamente e com sinceridade, para que assim, você possa dar um lar ${widget.animal.gender == 1 ? 'ao' : 'a'} ',
+                      'Leia e responda atentamente e com sinceridade, para que assim, você possa dar um lar ${widget.adoption.animal!.gender == 1 ? 'ao' : 'a'} ',
                   style: Theme.of(context).textTheme.headline5,
                   children: <TextSpan>[
                     TextSpan(
-                      text: '${widget.animal.name} ',
+                      text: '${widget.adoption.animal!.name} ',
                       style: Theme.of(context)
                           .textTheme
                           .headline5!
@@ -136,7 +137,7 @@ class _AdoptionWalkThroughState extends State<AdoptionWalkThrough> {
                     ),
                     TextSpan(
                       text:
-                          'e ainda ter ${widget.animal.gender == 1 ? 'um novo amigo' : 'uma nova amiga'}.',
+                          'e ainda ter ${widget.adoption.animal!.gender == 1 ? 'um novo amigo' : 'uma nova amiga'}.',
                     ),
                   ],
                 ),

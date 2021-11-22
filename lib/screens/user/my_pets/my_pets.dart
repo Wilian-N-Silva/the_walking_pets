@@ -121,7 +121,7 @@ class _MyPetsState extends State<MyPets> {
                         return animalGridTile(
                           context: context,
                           animal: animal,
-                          adoption: widget.donation,
+                          isAdoption: widget.donation,
                         );
                       },
                     ).toList(),

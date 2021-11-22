@@ -93,7 +93,8 @@ class _AdoptionState extends State<Adoption> {
                       return animalGridTile(
                         context: context,
                         animal: donation.animal!,
-                        adoption: false,
+                        isAdoption: false,
+                        adoption: donation,
                       );
                     },
                   ).toList(),

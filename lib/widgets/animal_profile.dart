@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/constants/animal_consts.dart';
+import 'package:the_walking_pets/model/animal/adoption.dart';
 import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/screens/adoption/adoption_walk_through.dart';
 import 'package:the_walking_pets/utilities/helpers/age_helpers.dart';
@@ -27,10 +30,11 @@ class AnimalProfile extends StatefulWidget {
   const AnimalProfile({
     Key? key,
     required this.animal,
+    this.adoption,
   }) : super(key: key);
 
   final Animal animal;
-
+  final AdoptionClass? adoption;
   @override
   _AnimalProfileState createState() => _AnimalProfileState();
 }
@@ -195,7 +199,7 @@ class _AnimalProfileState extends State<AnimalProfile> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => AdoptionWalkThrough(
-                              animal: animal,
+                              adoption: widget.adoption!,
                             ),
                           ),
                         );
