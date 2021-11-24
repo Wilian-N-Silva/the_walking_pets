@@ -123,10 +123,12 @@ class _AddDonationState extends State<AddDonation> {
                                 ),
                               ),
                             );
-                            setState(() {
-                              _petNameController.text =
-                                  choosenAnimal!.name.toString();
-                            });
+                            if (choosenAnimal != null) {
+                              setState(() {
+                                _petNameController.text =
+                                    choosenAnimal!.name.toString();
+                              });
+                            }
                           },
                         ),
                       )

@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/enrollment.dart';
 import 'package:the_walking_pets/screens/user/my_adoptions/adoption_progress.dart';
@@ -8,7 +6,6 @@ import 'package:the_walking_pets/utilities/services/user_rest_api.dart';
 import 'package:the_walking_pets/utilities/ui/circular_loading.dart';
 import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
 import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
-import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
 
 class AdoptionList extends StatefulWidget {
   const AdoptionList({Key? key}) : super(key: key);
@@ -58,7 +55,9 @@ class _AdoptionListState extends State<AdoptionList> {
   Widget build(BuildContext context) {
     // log(_pets[0].adoption!.animal!.name.toString());
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Minhas adoções'),
+      ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: isLoading
@@ -105,11 +104,11 @@ class _AdoptionListState extends State<AdoptionList> {
                                 title: Text(enroll.adoption!.animal!.name ??
                                     'Sem nome'),
                                 trailing: Icon(
-                                  enroll.adoption!.animal!.gender != null
-                                      ? enroll.adoption!.animal!.gender == 1
-                                          ? Icons.male
-                                          : Icons.female
-                                      : Icons.help,
+                                  enroll.status! < 3
+                                      ? Icons.watch_later_outlined
+                                      : enroll.status! == 3
+                                          ? Icons.favorite
+                                          : Icons.error,
                                   color: Colors.white,
                                 ),
                               ),

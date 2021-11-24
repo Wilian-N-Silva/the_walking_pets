@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_walking_pets/config/themes/default_theme.dart';
@@ -14,6 +15,8 @@ Future<void> main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
 
   bool? onboarding = prefs.getBool('onboarding');
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom]);
 
   runApp(MyApp(
     route: onboarding == null ? const WalkThrough1() : const SigninPage(),

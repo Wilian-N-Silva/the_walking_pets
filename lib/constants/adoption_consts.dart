@@ -16,7 +16,7 @@ class AdoptionConsts {
   final List<String> jobCategories = [
     'Administração, negócios e serviços',
     'Ciências Biológicas e da Terra',
-    'Análise e Desenvolvimento de Sistemas',
+    'Análise e Desen. de Sistemas',
     'Ciências Sociais e Humanas',
     'Comunicação e Informação',
     'Engenharia e Produção',

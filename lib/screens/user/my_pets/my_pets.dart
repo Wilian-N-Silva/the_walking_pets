@@ -6,6 +6,7 @@ import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
 import 'package:the_walking_pets/utilities/ui/circular_loading.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
+import 'package:the_walking_pets/widgets/animal_profile.dart';
 
 class MyPets extends StatefulWidget {
   const MyPets({Key? key, required this.donation}) : super(key: key);
@@ -120,7 +121,8 @@ class _MyPetsState extends State<MyPets> {
                         return animalGridTile(
                           context: context,
                           animal: animal,
-                          isAdoption: widget.donation,
+                          route: AnimalProfile(animal: animal),
+                          popRoute: false,
                         );
                       },
                     ).toList(),

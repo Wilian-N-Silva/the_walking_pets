@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/constants/adoption_consts.dart';
 import 'package:the_walking_pets/model/animal/adoption.dart';

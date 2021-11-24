@@ -7,6 +7,7 @@ import 'package:the_walking_pets/utilities/services/adoption_rest_api.dart';
 import 'package:the_walking_pets/utilities/ui/circular_loading.dart';
 import 'package:the_walking_pets/utilities/ui/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
+import 'package:the_walking_pets/widgets/animal_profile.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
 class Adoption extends StatefulWidget {
@@ -72,8 +73,9 @@ class _AdoptionState extends State<Adoption> {
                     )
                   else
                     ElevatedButton(
-                        child: const Text('Voltar'),
-                        onPressed: () => Navigator.pop)
+                      child: const Text('Voltar'),
+                      onPressed: () => Navigator.pop,
+                    )
                 ],
               )
             : Container(
@@ -90,11 +92,13 @@ class _AdoptionState extends State<Adoption> {
                   children: _pets.map<Widget>(
                     (donation) {
                       return animalGridTile(
-                        context: context,
-                        animal: donation.animal!,
-                        isAdoption: false,
-                        adoption: donation,
-                      );
+                          context: context,
+                          animal: donation.animal!,
+                          route: AnimalProfile(
+                            animal: donation.animal!,
+                            adoption: donation,
+                          ),
+                          popRoute: false);
                     },
                   ).toList(),
                 ),
