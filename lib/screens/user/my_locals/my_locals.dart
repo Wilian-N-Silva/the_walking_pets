@@ -96,11 +96,11 @@ class _MyLocalsState extends State<MyLocals> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(requestError
-                          ? 'Erro ao listar animais cadastrados'
-                          : 'Não há Pets cadastrados'),
+                          ? 'Erro ao listar endereços cadastrados'
+                          : 'Não há locais cadastrados'),
                       if (!requestError)
                         ElevatedButton(
-                          child: const Text('Adicionar Pet'),
+                          child: const Text('Adicionar Endereço'),
                           onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(

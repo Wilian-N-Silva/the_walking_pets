@@ -43,7 +43,8 @@ class _AdoptionProgressState extends State<AdoptionProgress> {
       ),
       AdoptionStatus(
         title: 'Aguardando Resultado',
-        description: 'Tudo pronto. Agora ',
+        description:
+            'Tudo pronto. Agora só aguardar pelo resultado. Estamos torcendo para que seja favorável!',
       ),
       AdoptionStatus(
         title: 'Resultado',

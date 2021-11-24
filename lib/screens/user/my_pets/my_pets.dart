@@ -122,7 +122,7 @@ class _MyPetsState extends State<MyPets> {
                           context: context,
                           animal: animal,
                           route: AnimalProfile(animal: animal),
-                          popRoute: false,
+                          popRoute: widget.donation,
                         );
                       },
                     ).toList(),
