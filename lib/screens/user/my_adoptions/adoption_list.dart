@@ -20,7 +20,9 @@ class _AdoptionListState extends State<AdoptionList> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const AdoptionProgress(),
+                builder: (context) => const AdoptionProgress(
+                  status: 4,
+                ),
               ),
             );
           },
