@@ -7,6 +7,7 @@ import 'package:the_walking_pets/model/services/service.dart';
 import 'package:the_walking_pets/model/services/service_filter.dart';
 import 'package:the_walking_pets/screens/partners/partners_filter.dart';
 import 'package:the_walking_pets/screens/partners/partners_page.dart';
+import 'package:the_walking_pets/utilities/ui/circular_loading.dart';
 import 'package:the_walking_pets/utilities/ui/curve_clipper.dart';
 import 'package:the_walking_pets/widgets/custom_drawer.dart';
 
@@ -108,7 +109,7 @@ class _PartnersState extends State<Partners> {
               ),
             );
     } else {
-      return const Center(child: CircularProgressIndicator());
+      return const CircularLoading();
     }
   }
 
@@ -174,7 +175,7 @@ class _PartnersState extends State<Partners> {
               ),
             );
     } else {
-      return const Center(child: CircularProgressIndicator());
+      return const CircularLoading();
     }
   }
 

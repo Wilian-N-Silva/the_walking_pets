@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_walking_pets/model/animal/enrollment.dart';
 import 'package:the_walking_pets/utilities/ui/fa5_pet_icons.dart';
+import 'package:the_walking_pets/utilities/ui/network_image_handler.dart';
 
 class AdoptionStatus {
   AdoptionStatus({
@@ -11,9 +13,9 @@ class AdoptionStatus {
 }
 
 class AdoptionProgress extends StatefulWidget {
-  const AdoptionProgress({Key? key, required this.status}) : super(key: key);
+  const AdoptionProgress({Key? key, required this.enroll}) : super(key: key);
 
-  final int status;
+  final Enrollment enroll;
 
   @override
   _AdoptionProgressState createState() => _AdoptionProgressState();
@@ -76,21 +78,25 @@ class _AdoptionProgressState extends State<AdoptionProgress> {
                       clipBehavior: Clip.antiAlias,
                       child: Hero(
                         transitionOnUserGestures: false,
-                        tag: 't',
-                        child: Container(
-                          color: Theme.of(context).primaryColor,
-                          child: const Icon(
-                            FA5Pets.dog,
-                            size: 64.0,
-                            color: Colors.white,
-                          ),
-                        ),
+                        tag: widget.enroll,
+                        child: widget.enroll.adoption!.animal!.photo!.isNotEmpty
+                            ? NetworkImageHandler(
+                                animal: widget.enroll.adoption!.animal!,
+                              )
+                            : Container(
+                                color: Theme.of(context).primaryColor,
+                                child: const Icon(
+                                  FA5Pets.dog,
+                                  size: 64.0,
+                                  color: Colors.white,
+                                ),
+                              ),
                       ),
                     ),
                   ),
                 ),
                 Visibility(
-                  visible: widget.status >= 3,
+                  visible: widget.enroll.status! >= 3,
                   child: Positioned(
                     bottom: 0,
                     left: MediaQuery.of(context).size.width / 3 + 96,
@@ -98,13 +104,15 @@ class _AdoptionProgressState extends State<AdoptionProgress> {
                       height: 64.0,
                       width: 64.0,
                       decoration: BoxDecoration(
-                        color: widget.status == 3
+                        color: widget.enroll.status! == 3
                             ? Colors.green.shade300
                             : Colors.red,
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
-                        widget.status == 3 ? Icons.favorite : Icons.close,
+                        widget.enroll.status! == 3
+                            ? Icons.favorite
+                            : Icons.close,
                         size: 32.0,
                         color: Colors.white,
                       ),
@@ -113,7 +121,7 @@ class _AdoptionProgressState extends State<AdoptionProgress> {
                 ),
               ],
             ),
-            widget.status < 3
+            widget.enroll.status! < 3
                 ? ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -122,7 +130,7 @@ class _AdoptionProgressState extends State<AdoptionProgress> {
                     itemBuilder: (BuildContext context, int index) {
                       return StatusTile(
                           index: index,
-                          status: widget.status,
+                          status: widget.enroll.status!,
                           data: tileDataSource[index]);
                     },
                     separatorBuilder: (BuildContext context, int index) =>
@@ -131,7 +139,7 @@ class _AdoptionProgressState extends State<AdoptionProgress> {
                 : Container(
                     margin: const EdgeInsets.only(top: 32.0),
                     child: Text(
-                      widget.status == 3
+                      widget.enroll.status! == 3
                           ? 'Parabéns, você passou no processo de adoção!'
                           : 'Sentimos muito, mas você não passou no processo de adoção...',
                       style: Theme.of(context).textTheme.headline5,

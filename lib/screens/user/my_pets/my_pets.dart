@@ -4,6 +4,7 @@ import 'package:the_walking_pets/model/animal/animal.dart';
 import 'package:the_walking_pets/screens/user/my_pets/add_pet.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/utilities/services/animal_rest_api.dart';
+import 'package:the_walking_pets/utilities/ui/circular_loading.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
 
 class MyPets extends StatefulWidget {
@@ -81,9 +82,7 @@ class _MyPetsState extends State<MyPets> {
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: isLoading!
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? const CircularLoading()
             : _pets.isEmpty
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,

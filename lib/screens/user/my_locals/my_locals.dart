@@ -5,6 +5,7 @@ import 'package:the_walking_pets/model/util/address.dart';
 import 'package:the_walking_pets/screens/user/my_locals/add_local.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/utilities/services/user_rest_api.dart';
+import 'package:the_walking_pets/utilities/ui/circular_loading.dart';
 
 class MyLocals extends StatefulWidget {
   const MyLocals({Key? key, required this.donation}) : super(key: key);
@@ -87,9 +88,7 @@ class _MyLocalsState extends State<MyLocals> {
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: isLoading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? const CircularLoading()
             : _addresses.isEmpty
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,

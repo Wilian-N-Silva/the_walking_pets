@@ -16,6 +16,18 @@ class UserAPI {
     );
   }
 
+  static Future getEnrollmentsByUser() async {
+    Map<String, String> requestHeaders = {
+      'content-type': 'application/json',
+      'x-hasura-admin-secret': hasuraSecret,
+    };
+
+    return await http.get(
+      Uri.parse('$baseUrl/user/enrollment/list/${currentUser.id}'),
+      headers: requestHeaders,
+    );
+  }
+
   static Future insertAddress(Address address) async {
     Map<String, String> requestHeaders = {
       'content-type': 'application/json',

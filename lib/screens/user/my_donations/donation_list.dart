@@ -5,6 +5,7 @@ import 'package:the_walking_pets/model/animal/donation.dart';
 import 'package:the_walking_pets/screens/user/my_donations/add_donation.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/utilities/services/donation_rest_api.dart';
+import 'package:the_walking_pets/utilities/ui/circular_loading.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
 
 class MyDonations extends StatefulWidget {
@@ -82,9 +83,7 @@ class _MyDonationsState extends State<MyDonations> {
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: isLoading!
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? const CircularLoading()
             : _pets.isEmpty
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
