@@ -57,8 +57,8 @@ class _PartnersState extends State<Partners> {
           .where((e) {
             int distance = _positionDistance(
               _currentPosition,
-              e.coordLat,
-              e.coordLng,
+              e.lat,
+              e.lng,
             );
 
             return distance >= 0 && distance < currentFilter.maxDistance;
@@ -73,8 +73,8 @@ class _PartnersState extends State<Partners> {
           .where((e) {
             int distance = _positionDistance(
               _currentPosition,
-              e.coordLat,
-              e.coordLng,
+              e.lat,
+              e.lng,
             );
 
             return distance >= 0 && distance < currentFilter.maxDistance;
@@ -119,8 +119,8 @@ class _PartnersState extends State<Partners> {
           .where((e) {
             int distance = _positionDistance(
               _currentPosition,
-              e.coordLat,
-              e.coordLng,
+              e.lat,
+              e.lng,
             );
 
             return distance >= 0 && distance < currentFilter.maxDistance;
@@ -135,8 +135,8 @@ class _PartnersState extends State<Partners> {
           .where((e) {
             int distance = _positionDistance(
               _currentPosition,
-              e.coordLat,
-              e.coordLng,
+              e.lat,
+              e.lng,
             );
 
             return distance >= 0 && distance < currentFilter.maxDistance;
@@ -292,7 +292,7 @@ partnerInfoTile(
     subtitle: Text(data.categoria.titulo),
     isThreeLine: false,
     trailing: Text(
-      '${_positionDistance(currentPosition, data.coordLat, data.coordLng).toString()} km',
+      '${_positionDistance(currentPosition, data.lat, data.lng).toString()} km',
     ),
     contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
     onTap: () {

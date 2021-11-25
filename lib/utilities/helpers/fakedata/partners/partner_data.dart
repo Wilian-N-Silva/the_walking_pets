@@ -7,8 +7,14 @@ List<Partner> partnerData(BuildContext context) {
     Partner(
       nome: 'UniVet',
       // UNINOVE CAMPUS SANTO AMARO
-      coordLat: -23.65326430615493,
-      coordLng: -46.71171568804511,
+      lat: -23.65326430615493,
+      lng: -46.71171568804511,
+      postalCode: '04752-900',
+      address: 'R. Amador Bueno',
+      number: '389/491',
+      neighborhood: 'Santo Amaro',
+      location: 'São Paulo',
+      state: 'SP',
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 1)
           .first,
@@ -17,8 +23,14 @@ List<Partner> partnerData(BuildContext context) {
     Partner(
       // UNINOVE CAMPUS VERGUEIRO
       nome: 'Bom pra Cachorro',
-      coordLat: -23.564080268829915,
-      coordLng: -46.638072393193546,
+      lat: -23.564080268829915,
+      lng: -46.638072393193546,
+      postalCode: '01525-000',
+      address: 'Rua Vergueiro',
+      number: '235/249',
+      neighborhood: 'Liberdade',
+      location: 'São Paulo',
+      state: 'SP',
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 4)
           .first,
@@ -27,8 +39,14 @@ List<Partner> partnerData(BuildContext context) {
     Partner(
       // UNINOVE CAMPUS MEMORIAL
       nome: 'Vet IX de Julho',
-      coordLat: -23.529132873439977,
-      coordLng: -46.66625387982924,
+      lat: -23.529132873439977,
+      lng: -46.66625387982924,
+      postalCode: '',
+      address: 'Av. Dr. Adolpho Pinto',
+      number: '109',
+      neighborhood: 'Barra Funda',
+      location: 'São Paulo',
+      state: 'SP',
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 2)
           .first,
@@ -37,8 +55,15 @@ List<Partner> partnerData(BuildContext context) {
     Partner(
       // UNINOVE CAMPUS VILA PRUDENTE
       nome: 'Doglivery',
-      coordLat: -23.584003906326636,
-      coordLng: -46.581088060157114,
+      lat: -23.584003906326636,
+      lng: -46.581088060157114,
+      postalCode: '03155-000',
+
+      address: 'Av. Professor Luiz Ignácio Anhaia Mello',
+      number: '1363',
+      neighborhood: 'Vila Prudente',
+      location: 'São Paulo',
+      state: 'SP',
       categoria: partnerCategoryData(context)
           .where((element) => element.id == 3)
           .first,
