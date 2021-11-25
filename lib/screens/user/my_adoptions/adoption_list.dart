@@ -53,7 +53,6 @@ class _AdoptionListState extends State<AdoptionList> {
 
   @override
   Widget build(BuildContext context) {
-    // log(_pets[0].adoption!.animal!.name.toString());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Minhas adoções'),

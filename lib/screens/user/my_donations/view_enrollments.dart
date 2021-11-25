@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:the_walking_pets/constants/adoption_consts.dart';
 import 'package:the_walking_pets/model/animal/donation.dart';
 import 'package:the_walking_pets/model/animal/enrollment.dart';
@@ -59,7 +57,6 @@ class _ViewEnrollmentsState extends State<ViewEnrollments> {
 
   @override
   Widget build(BuildContext context) {
-    log(widget.donation.toString());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Formulários'),
@@ -100,7 +97,6 @@ class _ViewEnrollmentsState extends State<ViewEnrollments> {
                           _enrollments[index].user!.name.toUpperCase(),
                         ),
                         subtitle: Text(
-                          // 'Criado em: ${DateFormat('dd/MM/yyyy').format(_enrollments[index].createdAt!).toString()}',
                           AdoptionConsts().status[_enrollments[index].status!],
                         ),
                         onTap: () => Navigator.push(

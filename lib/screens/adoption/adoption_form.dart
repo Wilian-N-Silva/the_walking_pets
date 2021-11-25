@@ -71,6 +71,7 @@ class _AdoptionFormState extends State<AdoptionForm> {
         alreadyAdopted: _alreadyAdopted == 'Sim',
         haveChild: _haveChildrens == 'Sim',
         houseOwnership: _houseOwnership == 'Sim',
+        numResidents: int.parse(_numberOfResidents.text),
         houseTypeId: AdoptionConsts()
                 .houseType
                 .indexWhere((value) => value == _houseType) +
@@ -79,7 +80,6 @@ class _AdoptionFormState extends State<AdoptionForm> {
                 .jobCategories
                 .indexWhere((value) => value == _jobCategory) +
             1,
-        numResidents: int.parse(_numberOfResidents.text),
         onTravelId: AdoptionConsts()
                 .onTravel
                 .indexWhere((value) => value == _onTravel) +
@@ -164,7 +164,7 @@ class _AdoptionFormState extends State<AdoptionForm> {
                       handler: _handleJobCategory,
                     ),
                     CustomDropdown(
-                      label: 'Tem filhos',
+                      label: 'Tem filhos?',
                       selected: _haveChildrens,
                       items: const <String>['Sim', 'Não'],
                       handler: _handleChildrens,
@@ -188,9 +188,9 @@ class _AdoptionFormState extends State<AdoptionForm> {
                       handler: _handleHouseOwnership,
                     ),
                     CustomDropdown(
-                      label: 'Mora de aluguel ou imóvel próprio?',
+                      label: 'É proprietário da casa onde mora?',
                       selected: _houseOwnership,
-                      items: AdoptionConsts().houseOwnership,
+                      items: const <String>['Sim', 'Não'],
                       handler: _handleHouseType,
                     ),
                   ],

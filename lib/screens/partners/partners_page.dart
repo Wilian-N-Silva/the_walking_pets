@@ -62,12 +62,12 @@ class _PartnersPageState extends State<PartnersPage> {
         ],
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
               itemCount: tileDataSource.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
