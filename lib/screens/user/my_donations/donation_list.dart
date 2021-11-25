@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/animal/donation.dart';
 import 'package:the_walking_pets/screens/user/my_donations/add_donation.dart';
+import 'package:the_walking_pets/screens/user/my_donations/view_enrollments.dart';
 import 'package:the_walking_pets/screens/user/user_profile.dart';
 import 'package:the_walking_pets/utilities/services/donation_rest_api.dart';
 import 'package:the_walking_pets/utilities/ui/circular_loading.dart';
 import 'package:the_walking_pets/widgets/animal_grid_tile.dart';
-import 'package:the_walking_pets/widgets/animal_profile.dart';
 
 class MyDonations extends StatefulWidget {
   const MyDonations({Key? key}) : super(key: key);
@@ -115,13 +115,11 @@ class _MyDonationsState extends State<MyDonations> {
                     children: _pets.map<Widget>(
                       (donation) {
                         return animalGridTile(
-                            context: context,
-                            animal: donation.animal!,
-                            route: AnimalProfile(
-                              animal: donation.animal!,
-                              adoption: null,
-                            ),
-                            popRoute: false);
+                          context: context,
+                          animal: donation.animal!,
+                          route: ViewEnrollments(donation: donation),
+                          popRoute: false,
+                        );
                       },
                     ).toList(),
                   ),

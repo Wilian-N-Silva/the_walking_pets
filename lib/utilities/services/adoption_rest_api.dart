@@ -15,6 +15,18 @@ class AdoptionAPI {
     );
   }
 
+  static Future getEnrollmentList(int id) async {
+    Map<String, String> requestHeaders = {
+      'content-type': 'application/json',
+      'x-hasura-admin-secret': hasuraSecret,
+    };
+
+    return await http.get(
+      Uri.parse('$baseUrl/adoption/enroll/list/$id'),
+      headers: requestHeaders,
+    );
+  }
+
   static Future insertEnrollment(Enrollment enrollment) async {
     Map<String, String> requestHeaders = {
       'content-type': 'application/json',

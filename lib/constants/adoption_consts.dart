@@ -22,4 +22,12 @@ class AdoptionConsts {
     'Engenharia e Produção',
     'Saúde e Bem-estar'
   ];
+
+  final List<String> status = [
+    'Aguardando Triagem',
+    'Aguardando Entrevista',
+    'Aguardando resultados',
+    'Aprovado',
+    'Reprovado'
+  ];
 }

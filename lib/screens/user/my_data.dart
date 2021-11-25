@@ -31,15 +31,15 @@ class _MyDataState extends State<MyData> {
   @override
   void initState() {
     super.initState();
-    _name.text = currentUser.nome;
+    _name.text = currentUser.name;
     _email.text = currentUser.email;
     _birthDay.text =
-        DateFormat('dd/MM/yyyy').format(currentUser.dtNasc!).toString();
+        DateFormat('dd/MM/yyyy').format(currentUser.birth!).toString();
     _phone.text = DataFormatters().brazilianPhoneMask.maskText(
-          currentUser.telefone.toString(),
+          currentUser.phone.toString(),
         );
     _cellphone.text = DataFormatters().brazilianCellphoneMask.maskText(
-          currentUser.celular.toString(),
+          currentUser.cellphone.toString(),
         );
   }
 

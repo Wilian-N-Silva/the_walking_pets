@@ -5,23 +5,26 @@
 import 'dart:convert';
 
 import 'package:the_walking_pets/model/animal/adoption.dart';
+import 'package:the_walking_pets/model/user.dart';
 
 class Enrollment {
-  Enrollment(
-      {this.id,
-      required this.uid,
-      required this.adoptionId,
-      required this.alreadyAdopted,
-      required this.haveChild,
-      required this.houseOwnership,
-      required this.houseTypeId,
-      required this.jobCategoryId,
-      required this.numResidents,
-      required this.onTravelId,
-      this.status,
-      this.createdAt,
-      this.updatedAt,
-      this.adoption});
+  Enrollment({
+    this.id,
+    required this.uid,
+    required this.adoptionId,
+    required this.alreadyAdopted,
+    required this.haveChild,
+    required this.houseOwnership,
+    required this.houseTypeId,
+    required this.jobCategoryId,
+    required this.numResidents,
+    required this.onTravelId,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.adoption,
+    this.user,
+  });
 
   int? id;
   final int uid;
@@ -35,6 +38,7 @@ class Enrollment {
   final int onTravelId;
   final int? status;
   final AdoptionClass? adoption;
+  final User? user;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -56,6 +60,7 @@ class Enrollment {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         adoption: AdoptionClass.fromMap(json["adoption"]),
+        user: User.fromMap(json["user"]),
       );
 
   String toJson() => json.encode(toMap());
@@ -75,6 +80,7 @@ class Enrollment {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         adoption: AdoptionClass.fromMap(json["adoption"]),
+        user: User.fromMap(json["user"]),
       );
 
   Map<String, dynamic> toMap() => {

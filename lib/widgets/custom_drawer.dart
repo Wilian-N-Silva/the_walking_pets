@@ -133,7 +133,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           ),
                         ),
                         Text(
-                          currentUser.nome.split(' ')[0].toUpperCase(),
+                          currentUser.name.split(' ')[0].toUpperCase(),
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 32.0,
