@@ -130,7 +130,7 @@ class _EnrollmentDetailState extends State<EnrollmentDetail> {
       );
     }
 
-    _saveStatus() {}
+    // _saveStatus() {}
 
     return Scaffold(
       appBar: AppBar(

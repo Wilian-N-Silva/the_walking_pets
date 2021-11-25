@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:the_walking_pets/model/profile_options.dart';
+import 'package:the_walking_pets/screens/lost_and_found/lost_and_found.dart';
 import 'package:the_walking_pets/screens/user/my_adoptions/adoption_list.dart';
 import 'package:the_walking_pets/screens/user/my_data.dart';
 import 'package:the_walking_pets/screens/user/my_donations/donation_list.dart';
 import 'package:the_walking_pets/screens/user/my_locals/my_locals.dart';
+import 'package:the_walking_pets/screens/user/my_lost_and_found.dart';
 import 'package:the_walking_pets/screens/user/my_pets/my_pets.dart';
-import 'package:the_walking_pets/screens/user/user_profile.dart';
 
 List<ProfileSettings> profileOptions = [
   ProfileSettings(
@@ -42,6 +43,6 @@ List<ProfileSettings> profileOptions = [
   ProfileSettings(
     title: 'Achados e Perdidos',
     icon: Icons.screen_search_desktop_outlined,
-    route: const UserProfile(),
+    route: const MyLostAndFound(),
   ),
 ];

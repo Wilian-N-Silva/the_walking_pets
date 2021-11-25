@@ -37,6 +37,7 @@ class AnimalConsts {
     'Calmo',
     'Dócil',
     'Reservado',
-    'Agitado'
+    'Agitado',
+    'Agressivo'
   ];
 }
