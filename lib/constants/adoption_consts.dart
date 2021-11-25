@@ -26,7 +26,7 @@ class AdoptionConsts {
   final List<String> status = [
     'Aguardando Triagem',
     'Aguardando Entrevista',
-    'Aguardando resultados',
+    'Aguardando Resultados',
     'Aprovado',
     'Reprovado'
   ];
