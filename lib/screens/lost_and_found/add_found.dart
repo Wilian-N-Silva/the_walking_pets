@@ -24,16 +24,10 @@ class _AddFoundState extends State<AddFound> {
   final TextEditingController _addressController = TextEditingController();
 
   Address? choosenAddress;
-  String? _petSpecie,
-      _petGender,
-      _petSize,
-      _petTemperament,
-      _catCoat,
-      _dogCoat,
-      _photoUrl,
-      _blurhash;
+  String? _petSpecie, _petGender, _petSize, _petTemperament, _catCoat, _dogCoat;
 
-  bool _isVacinated = false, _isLoading = false;
+  bool _isVacinated = false;
+  final _isLoading = false;
 
   List<XFile>? _imageFileList;
   dynamic _pickImageError;
